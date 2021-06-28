@@ -11,11 +11,11 @@ async def search(c, m):
         await c.db.add_user(m.from_user.id)
 
     type = await c.db.get_type(m.from_user.id)
-    if type = 'all':
+    if type == 'all':
         call = 'autocomplete.get'
-    elif type = 'album':
+    elif type == 'album':
         call = 'search.getAlbumResults'
-    elif type = 'song':
+    elif type == 'song':
         call = 'search.getResults'
 
     api_url = 'https://www.jiosaavn.com/api.php?'
