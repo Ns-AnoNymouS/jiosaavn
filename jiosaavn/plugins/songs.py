@@ -41,11 +41,12 @@ async def opensong(c, m):
     elif type == 'song':
         call = 'search.getResults'
 
+    back_cb = f'{album_id}' if album_id else f'nxt+{call}+1'
     buttons = [[
         InlineKeyboardButton('lyrics', callback_data='lyrics'),
         InlineKeyboardButton('upload to tg', callback_data='up')
         ],[
-        InlineKeyboardButton('Back', callback_data=f'nxt+{call}+1')
+        InlineKeyboardButton('Back', callback_data=)
     ]]
     await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     
