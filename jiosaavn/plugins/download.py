@@ -52,7 +52,7 @@ async def download_tool(c, id, reply_to_message_id, msg):
         os.makedirs(file_name)
     file_name = f'{file_name}{song}.mp3'
 
-    await msg.edit(f'📥 Downloading {song}')
+    await msg.edit(f'__📥 Downloading {song}__')
     async with aiohttp.ClientSession() as session: 
         async with session.get(url) as response:
             with open(file_name, "wb") as file:
@@ -65,4 +65,5 @@ async def download_tool(c, id, reply_to_message_id, msg):
                         break
                     file.write(chunk)
 
+    await msg.edit(f'__📤 Uploading {song}__')
     
