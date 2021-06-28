@@ -46,7 +46,7 @@ async def search(c, m):
             if result['type'] == 'song':
                 album = ''
                 if 'more_info' in result:
-                    album = result['title'] if 'album' in result['more_info'] else ''
+                    album = result['more_info']['album'] if 'album' in result['more_info'] else ''
                 buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
             elif result['type'] == 'album':
                 buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
