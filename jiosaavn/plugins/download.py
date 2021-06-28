@@ -1,3 +1,4 @@
+import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
@@ -43,4 +44,15 @@ async def download_tool(c, id, reply_to_message_id):
     }
     data = (await req(url, params))[id]
     url = data['media_preview_url'].encode().decode()
-    
+
+    file_name = f"./DOWNLOADS/"
+    if not os.path.isdir(file_name):
+        os.makedirs(file_name)
+    file_name += str(song)
+    file_name += ".mp3"
+
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(url) as response:
+            with open(file_name, "wb") as file:
+
+
