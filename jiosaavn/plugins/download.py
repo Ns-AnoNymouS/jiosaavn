@@ -11,12 +11,14 @@ async def download(c, m, cb=False):
             await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
         type = 'song' if 'song' in m.text else 'album'
         id = m.text.split('/')[-1]
+        reply_to_message_id = m.message_id
     else:
         send_msg = m.message
         cmd, id, type = m.data.split('+')
+        reply_to_message_id = m.message.reply_to_message.message_id
 
     if type == 'song':
-        await download_tool(c, id)
+        await download_tool(c, id, reply_to_message_id)
 
 
 async def download_tool(c, id, reply_to_message_id):
