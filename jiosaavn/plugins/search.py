@@ -22,6 +22,8 @@ async def search(c, m):
     total_results = data['total']
     buttons = []
     for result in data['results']:
+        title = result['title'] if 'title' in result else ''
         if result['type'] == 'song':
-            buttons.append([InlineKeyboardButton("{result['title']} from '{}'", callback_data='')])
+            album = result['title'] if 'title' in result else ''
+            buttons.append([InlineKeyboardButton("{title} from '{}'", callback_data='')])
     print(data)
