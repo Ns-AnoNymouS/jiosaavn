@@ -30,7 +30,7 @@ async def search(c, m):
         '__call': call
     }
     data = await req(api_url, params)
-
+    print(data)
     buttons = []
 
     if type != 'all':
