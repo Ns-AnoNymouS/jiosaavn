@@ -1,4 +1,6 @@
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from ..tools.request import req
 
 
 @Client.on_message(filters.regex('.*http. *') & filters.private & filters.incoming)
@@ -13,5 +15,8 @@ async def download(c, m, cb=False):
         send_msg = m.message
         cmd, id, type = m.data.split('+')
 
-    
+    if type == 'song':
+        url = 
 
+
+async def download_tool():
