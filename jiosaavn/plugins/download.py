@@ -19,4 +19,5 @@ async def download(c, m, cb=False):
         url = 
 
 
-async def download_tool():
+async def download_tool(c, id):
+    is_exist = await c.db.is_id_exist(id)
