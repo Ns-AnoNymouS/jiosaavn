@@ -58,7 +58,7 @@ async def nxt_cb(c, m):
     }
     data = await req(api_url, params)
     print(data)
-    return
+
     total_results = data['total']
     buttons = []
     for result in data['results']:
