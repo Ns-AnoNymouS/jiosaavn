@@ -29,6 +29,7 @@ async def openalbum(c, m):
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons.append([InlineKeyboardButton('🔙', callback_data=back_cb)])
 
+    text = ""
     try:
         await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     except:
