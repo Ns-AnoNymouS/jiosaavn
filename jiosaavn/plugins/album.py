@@ -25,6 +25,7 @@ async def openalbum(c, m):
         id = song['id'] if 'id' in song else None
         buttons.append([InlineKeyboardButton(btn_txt, callback_data=f'open+{id}+{album_id}')])
 
+    type = await c.db.get_type(m.from_user.id)
     type = 'all' if type == 'all' else 'album'
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons.append([InlineKeyboardButton('🔙', callback_data=back_cb)])
