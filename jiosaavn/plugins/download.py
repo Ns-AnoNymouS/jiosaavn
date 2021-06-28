@@ -42,3 +42,5 @@ async def download_tool(c, id, reply_to_message_id):
         'pids': id
     }
     data = (await req(url, params))[id]
+    url = data['media_preview_url'].encode().decode()
+    
