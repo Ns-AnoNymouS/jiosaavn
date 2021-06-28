@@ -29,7 +29,13 @@ async def openalbum(c, m):
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons.append([InlineKeyboardButton('🔙', callback_data=back_cb)])
 
-    text = ""
+    album_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
+    image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
+
+    text = f"[\u2063]({image_url})"
+    text += f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
+    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
+
     try:
         await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     except:
