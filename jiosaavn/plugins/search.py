@@ -15,7 +15,7 @@ async def search(c, m):
         'api_version': 4,
         'ctx': 'wap6dot0',
         'n': 10,
-        '__call': 'search.getAlbumResults'
+        '__call': 'search.getResults'
     }
     data = await req(api_url, params)
     print(data)
