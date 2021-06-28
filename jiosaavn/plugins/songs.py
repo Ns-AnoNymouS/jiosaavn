@@ -20,5 +20,12 @@ async def opensong(c, m):
         '_format': 'json',
         'pids': song_id
     }
-    data = await req(url, params)
+    data = (await req(url, params))[song_id]
+    album_url = data['album_url'].encode().decode() if 'album_url' in data else ''
+
+    text = ""
+    text += f"**🎧 Song:** {data['song']}\n\n" if 'song' in data else ''
+    text += f"**📚 Album:** [{data['album']}]({album_url})\n\n" if 'album' in data else ''
+    text +=
+    
     print(data)
