@@ -5,7 +5,7 @@ from ..tools.request import req
 
 @Client.on_message(filters.text & filters.incoming & filters.private & ~filters.regex('.*http.*'))
 async def search(c, m):
-    send_msg = await m.reply_text('**Processing... ⏳**', quote=True)
+    send_msg = await m.reply_text('__**Processing... ⏳**__', quote=True)
 
     api_url = 'https://www.jiosaavn.com/api.php?'
     params = {
@@ -31,5 +31,5 @@ async def search(c, m):
                 album = result['title'] if 'album' in result['more_info'] else ''
             buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
 
-    await send_msg.edit(f'📈 Total Results: {total_results}\n\n🔍 Search Query: {m.text}', reply_markup=InlineKeyboardMarkup(buttons))
+    await send_msg.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}', reply_markup=InlineKeyboardMarkup(buttons))
     print(data)
