@@ -7,5 +7,5 @@ async def req(url, params):
         async with session.get(url, params=params) as response:
             data = await response.text()
             data = data.encode().decode('unicode-escape')
-            jsonResult = json.loads(data)
+            jsonResult = json.loads(data.read())
             return jsonResult
