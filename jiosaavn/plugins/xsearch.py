@@ -74,7 +74,7 @@ async def search(c, m):
     if type != "all":
         text = f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}\n\n**📜 Page No:** 1'
         if total_results > 10:
-            buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{call}+2")])
+            buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{params['__call']}+2")])
 
     if len(buttons) == 0:
         return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
