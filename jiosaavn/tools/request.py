@@ -10,5 +10,5 @@ async def req(url, params):
     }
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params, headers=headers) as response:
-            data = await response.json()
+            data = await response.text
             return data
