@@ -33,11 +33,19 @@ async def opensong(c, m):
     text += f"**📰 Language:** {data['language']}\n\n" if 'language' in data else ''
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
+    type = await c.db.get_type(m.from_user.id)
+    if type == 'all':
+        call = 'autocomplete.get'
+    elif type == 'album':
+        call = 'search.getAlbumResults'
+    elif type == 'song':
+        call = 'search.getResults'
+
     buttons = [[
         InlineKeyboardButton('lyrics, callback_data='lyrics),
         InlineKeyboardButton('upload to tg', callback_data='up')
         ],[
-        InlineKeyboardButton('Back', callback_data=f'nxt+{params['__call']}+1')
+        InlineKeyboardButton('Back', callback_data=f'nxt+{call}+1')
     ]]
     await m.message.edit(text, )
     
