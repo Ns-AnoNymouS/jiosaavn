@@ -8,5 +8,5 @@ async def req(url, params):
             data = await response.text()
             data = data.encode().decode('unicode-escape')
             jsonDump = json.dumps(data)
-            jsonResult = json.load(jsonDump)
+            jsonResult = json.load(data)
             return jsonResult
