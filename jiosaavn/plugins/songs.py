@@ -11,7 +11,7 @@ async def opensong(c, m):
     album_id = None
     if len(id) == 3:
         album_id = m.data.split('+')[2]
-
+    print(song_id)
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         '__call': 'song.getDetails',
