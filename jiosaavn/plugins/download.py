@@ -45,7 +45,9 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     }
     data = (await req(url, params))[id]
     url = data['media_preview_url'].encode().decode()
-    song = file_data['song'] if 'song' in file_data else 'Unknown'
+    song = data['song'] if 'song' in data else 'Unknown'
+    artists = data['primary_artists'] if 'primary_artists' in data else 'Unknown'
+    duration = data['duration'] if 'duration' in data else 0
 
     album_url = data['album_url'].encode().decode() if 'album_url' in data else ''
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
@@ -84,9 +86,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         caption=caption,
         duration=int(duration),
         title=song,
-        thumb=
+        thumb=image_url,
         performer=artists,
-        parse_mode="markdown",
-        progress=progress_bar,
-        progress_args=(send_message, start)
+        parse_mode="markdown"
     )
