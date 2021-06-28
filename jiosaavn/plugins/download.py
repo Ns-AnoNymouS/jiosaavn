@@ -47,7 +47,10 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     url = data['media_preview_url'].encode().decode()
     song = file_data['song'] if 'song' in file_data else 'Unknown'
 
-    
+    album_url = data['album_url'].encode().decode() if 'album_url' in data else ''
+    image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
+    song_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
+
     text = f"**🎧 Song:** [{data['song']}]({song_url})\n\n" if 'song' in data else 'Unknown'
     text += f"**📚 Album:** [{data['album']}]({album_url})\n\n" if 'album' in data else ''
     text += f"**🥁 Music:** {data['music']}\n\n" if 'music' in data else ''
