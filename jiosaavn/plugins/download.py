@@ -16,7 +16,7 @@ async def download(c, m, cb=False):
         cmd, id, type = m.data.split('+')
 
     if type == 'song':
-        url = 
+        await download_tool(c, id)
 
 
 async def download_tool(c, id):
