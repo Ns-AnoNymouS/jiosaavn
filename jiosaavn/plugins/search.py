@@ -29,7 +29,7 @@ async def search(c, m):
             album = ''
             if 'more_info' in result:
                 album = result['title'] if 'album' in result['more_info'] else ''
-            buttons.append([InlineKeyboardButton("🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+            buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
 
     await send_msg.edit(f'📈 Total Results: {total_results}\n\n🔍 Search Query: {m.text}', reply_markup=InlineKeyboardMarkup(buttons))
     print(data)
