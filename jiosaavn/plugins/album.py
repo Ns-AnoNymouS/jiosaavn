@@ -27,7 +27,7 @@ async def openalbum(c, m):
 
     type = await c.db.get_type(m.from_user.id)
     type = 'all' if type == 'all' else 'album'
-    back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
+    back_cb = f'nxt+{type}+1'
     buttons.append([InlineKeyboardButton('🔙', callback_data=back_cb)])
 
     album_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
