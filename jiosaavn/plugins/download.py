@@ -22,7 +22,7 @@ async def download(c, m, cb=False):
         await download_tool(c, id, reply_to_message_id)
 
 
-async def download_tool(c, id, reply_to_message_id):
+async def download_tool(c, id, reply_to_message_id, msg):
     is_exist = await c.db.is_id_exist(id)
     if is_exist:
         song = await c.db.get_song(id)
@@ -51,8 +51,16 @@ async def download_tool(c, id, reply_to_message_id):
         os.makedirs(file_name)
     file_name = f'{file_name}{song}.mp3'
 
+    await msg.edit()
     async with aiohttp.ClientSession() as session: 
         async with session.get(url) as response:
             with open(file_name, "wb") as file:
-
+                while True:
+                    try:
+                        chunk = await response.content.read(4 * 1024 * 1024)
+                    except:
+                        break
+                    if not chunk:
+                        break
+                    file.write(chunk)
 
