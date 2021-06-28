@@ -36,7 +36,5 @@ class Database:
         return type
 
     async def update_type(self, id, value):
-        user = await self.col.find_one({'id':id})
-        type = user.get('type')
-        await self.col.update_one({'id': id}, {'$set': {'type': type}})   
+        await self.col.update_one({'id': id}, {'$set': {'type': value}})   
 
