@@ -53,15 +53,15 @@ async def search(c, m):
                 buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
     else:
         for album in data['albums']['data']:
-            title = result['title'] if 'title' in result else ''
-            id = result['id'] if 'id' in result else None
+            title = album['title'] if 'title' in album else ''
+            id = album['id'] if 'id' in album else None
             buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
         for song in data['songs']['data']:
-            title = result['title'] if 'title' in result else ''
-            id = result['id'] if 'id' in result else None
+            title = song['title'] if 'title' in song else ''
+            id = song['id'] if 'id' in song else None
             album = ''
-            if 'more_info' in result:
-                album = result['title'] if 'album' in result['more_info'] else ''
+            if 'more_info' in song:
+                album = song['title'] if 'album' in song['more_info'] else ''
             buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
 
     if type != "all":
