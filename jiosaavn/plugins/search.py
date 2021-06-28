@@ -64,11 +64,13 @@ async def search(c, m):
                 album = song['title'] if 'album' in song['more_info'] else ''
             buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
 
+    text = f"**🔍 Search Query:** {m.text}\n\n__Your search result 👇__"
     if type != "all":
+        text = f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}\n\n**📜 Page No:** 1'
         if total_results > 10:
             buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{call}+2")])
 
-    await send_msg.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}\n\n**📜 Page No:** 1', reply_markup=InlineKeyboardMarkup(buttons))
+    await send_msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     print(data)
 
 
