@@ -34,6 +34,7 @@ async def opensong(c, m):
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
     type = await c.db.get_type(m.from_user.id)
+    type = 'all' if type == 'all' else 'song'
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons = [[
         InlineKeyboardButton('lyrics', callback_data='lyrics'),
