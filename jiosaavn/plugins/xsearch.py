@@ -104,7 +104,7 @@ async def nxt_cb(c, m):
     if type == 'all':
         params = {
             '__call': 'autocomplete.get',
-            'query': m.text,
+            'query': query.text,
             '_format': 'json',
             '_marker': 0,
             'ctx': 'wap6dot0'
