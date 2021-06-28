@@ -31,10 +31,10 @@ async def search(c, m):
     }
     data = await req(api_url, params)
 
-    total_results = data['total']
     buttons = []
 
     if type != 'all':
+        total_results = data['total']
         for result in data['results']:
             title = result['title'] if 'title' in result else ''
             id = result['id'] if 'id' in result else None
@@ -47,11 +47,20 @@ async def search(c, m):
                 buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
     else:
         for album in data['albums']['data']:
+            title = result['title'] if 'title' in result else ''
+            id = result['id'] if 'id' in result else None
+            buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
         for song in data['songs']['data']:
-            
+            title = result['title'] if 'title' in result else ''
+            id = result['id'] if 'id' in result else None
+            album = ''
+            if 'more_info' in result:
+                album = result['title'] if 'album' in result['more_info'] else ''
+            buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
 
-    if total_results > 10:
-        buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{call}+2")])
+    if type != "all":
+        if total_results > 10:
+            buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{call}+2")])
 
     await send_msg.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}\n\n**📜 Page No:** 1', reply_markup=InlineKeyboardMarkup(buttons))
     print(data)
