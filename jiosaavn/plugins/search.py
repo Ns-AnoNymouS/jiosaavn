@@ -33,16 +33,22 @@ async def search(c, m):
 
     total_results = data['total']
     buttons = []
-    for result in data['results']:
-        title = result['title'] if 'title' in result else ''
-        id = result['id'] if 'id' in result else None
-        if result['type'] == 'song':
-            album = ''
-            if 'more_info' in result:
-                album = result['title'] if 'album' in result['more_info'] else ''
-            buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
-        elif result['type'] == 'album':
-            buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
+
+    if type != 'all':
+        for result in data['results']:
+            title = result['title'] if 'title' in result else ''
+            id = result['id'] if 'id' in result else None
+            if result['type'] == 'song':
+                album = ''
+                if 'more_info' in result:
+                    album = result['title'] if 'album' in result['more_info'] else ''
+                buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+            elif result['type'] == 'album':
+                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
+    else:
+        for album in data['albums']['data']:
+        for song in data['songs']['data']:
+            
 
     if total_results > 10:
         buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{call}+2")])
