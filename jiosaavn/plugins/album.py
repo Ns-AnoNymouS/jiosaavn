@@ -24,5 +24,13 @@ async def openalbum(c, m):
         btn_txt = f"🎙 {song['song']}" if 'song' in song else '🎙 '
         id = song['id'] if 'id' in song else None
         buttons.append([InlineKeyboardButton(btn_txt, callback_data=f'open+{id}+{album_id}')])
-    
+
+    type = 'all' if type == 'all' else 'album'
+    back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
+    buttons.append([InlineKeyboardButton('🔙', callback_data=back_cb)])
+
+    try:
+        await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+    except:
+        pass
     print(data)
