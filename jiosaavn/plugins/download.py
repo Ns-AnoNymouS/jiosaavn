@@ -84,6 +84,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         caption=caption,
         duration=int(duration),
         title=song,
+        thumb=
         performer=artists,
         parse_mode="markdown",
         progress=progress_bar,
