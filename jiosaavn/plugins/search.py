@@ -62,7 +62,7 @@ async def search(c, m):
             album = ''
             if 'more_info' in song:
                 album = song['title'] if 'album' in song['more_info'] else ''
-            buttons[i].append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+            buttons[i].append(InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}'))
         buttons.insert(0, [InlineKeyboardButton('Albums 📖', callback_data='nxt+search.getAlbumResults+1'), InlineKeyboardButton('Songs 🎧', callback_data='nxt+search.getResults+1')])
 
     text = f"**🔍 Search Query:** {m.text}\n\n__Your search result 👇__"
