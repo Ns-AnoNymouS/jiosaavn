@@ -21,7 +21,6 @@ async def opensong(c, m):
         'pids': song_id
     }
     data = (await req(url, params))[song_id]
-    print(data)
     album_url = data['album_url'].encode().decode() if 'album_url' in data else ''
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
     song_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
