@@ -25,8 +25,10 @@ async def search(c, m):
     if type == 'all':
         params = {
             '__call': 'autocomplete.get',
+            'query': m.text,
             '_format': 'json',
-            'query': m.text
+            '_marker': 0,
+            'ctx': 'wap6dot0'
         }
     elif type == 'album':
         params['__call'] = 'search.getAlbumResults'
