@@ -50,3 +50,6 @@ class Database:
         song_ids = song.get('song')
         return song_ids
 
+    async def update_song(id, song):
+        song = await self.id_col.find_one({'id': id})
+
