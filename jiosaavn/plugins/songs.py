@@ -1,8 +1,11 @@
 from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from ..tools.request import req
 
 
 @Client.on_callback_query(filters.regex('^open\+'))
 async def opensong(c, m):
+    await m.answer()
     id = m.data.split('+')
     song_id = m.data.split('+')[1]
     album_id = None
@@ -17,4 +20,5 @@ async def opensong(c, m):
         '_format': 'json',
         'pids': 
     }
-    await m.edit()
+    data = await req(url, params)
+    print(data)
