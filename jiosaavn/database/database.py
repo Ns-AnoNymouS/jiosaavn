@@ -41,6 +41,10 @@ class Database:
         await self.col.update_one({'id': id}, {'$set': {'type': value}})   
 
     async def is_id_exist(id):
-        user = await self.id_col.find_one({'id': id})
-        return True if user else False
+        song = await self.id_col.find_one({'id': id})
+        return True if song else False
 
+    async def get_song(id):
+        song = await self.col.find_one({'id':id})
+        type = song.get('type')
+        return type
