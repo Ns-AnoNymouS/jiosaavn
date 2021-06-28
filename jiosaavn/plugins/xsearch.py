@@ -164,5 +164,7 @@ async def nxt_cb(c, m):
     if len(buttons) == 1:
         return await m.message.edit('__Nothing found here 👀__')
 
-    await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
-    
+    try:
+        await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+    except:
+        pass
