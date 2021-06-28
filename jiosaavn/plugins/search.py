@@ -66,6 +66,8 @@ async def search(c, m):
                 buttons[i].append(InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}'))
             except:
                 buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+        if len(buttons) == 0:
+            return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
         buttons.insert(0, [InlineKeyboardButton('Albums 📖', callback_data='nxt+search.getAlbumResults+1'), InlineKeyboardButton('Songs 🎧', callback_data='nxt+search.getResults+1')])
 
     text = f"**🔍 Search Query:** {m.text}\n\n__Your search result 👇__"
@@ -73,6 +75,9 @@ async def search(c, m):
         text = f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}\n\n**📜 Page No:** 1'
         if total_results > 10:
             buttons.append([InlineKeyboardButton("➡️", callback_data=f"nxt+{call}+2")])
+
+    if len(buttons) == 0:
+        return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
 
     await send_msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     print(data)
