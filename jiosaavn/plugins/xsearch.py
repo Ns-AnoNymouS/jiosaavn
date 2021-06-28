@@ -159,7 +159,7 @@ async def nxt_cb(c, m):
             nxt_btn.append(InlineKeyboardButton("⬅️", callback_data=f"nxt+{type}+{page-1}"))
         if total_results > 10 * page:
             nxt_btn.append(InlineKeyboardButton("➡️", callback_data=f"nxt+{type}+{page+1}"))
-        buttons.append(nxt_btn)
+    buttons.append(nxt_btn)
 
     if len(buttons) == 1:
         return await m.message.edit('__Nothing found here 👀__')
