@@ -3,8 +3,16 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
 
 @Client.on_callback_query(filters.command('settings'))
-async def settings(c, m):
+async def settings(c, m, cb=False):
     if not await c.db.is_user_exist(m.from_user.id):
         await c.db.add_user(m.from_user.id)
-
-    await m.reply_text('select the search result type', reply_markup=InlineKeyboardMarkup())
+    type = await c.db.get_type(m.from_user.id)
+    tx1 = '✅ All' if type == 'all' else 'All'
+    tx2 = '✅ Albums' if type == 'album' else 'Albums' 
+    tx3 = '✅ Songs' if type == 'song' else 'Songs'
+    buttons = [[
+        InlineKeyboardButton(tx1, callback_data='settings+all'),
+        InlineKeyboardButton(tx2, callback_data='settings+album'),
+        InlineKeyboardButton(tx3, callback_data='settings+song')
+    ]]
+    await m.reply_text('select the search result type', reply_markup=InlineKeyboardMarkup(buttons))
