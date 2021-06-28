@@ -42,7 +42,7 @@ async def opensong(c, m):
         call = 'search.getResults'
 
     buttons = [[
-        InlineKeyboardButton('lyrics, callback_data='lyrics'),
+        InlineKeyboardButton('lyrics', callback_data='lyrics'),
         InlineKeyboardButton('upload to tg', callback_data='up')
         ],[
         InlineKeyboardButton('Back', callback_data=f'nxt+{call}+1')
