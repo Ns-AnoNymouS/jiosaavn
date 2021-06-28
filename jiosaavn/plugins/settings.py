@@ -2,7 +2,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
 
-@Client.on_callback_query(filters.command('settings'))
+
+@Client.on_message(filters.command('settings'))
 async def settings(c, m, cb=False):
     if not await c.db.is_user_exist(m.from_user.id):
         await c.db.add_user(m.from_user.id)
@@ -15,7 +16,7 @@ async def settings(c, m, cb=False):
         InlineKeyboardButton(tx2, callback_data='settings+album'),
         InlineKeyboardButton(tx3, callback_data='settings+song')
     ]]
-    text = 'select the search result type'
+    text = '**Select the search result type 🧏‍♂️**'
     if cb:
         try:
             await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
@@ -23,3 +24,8 @@ async def settings(c, m, cb=False):
             pass
     else:
         await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+
+
+@Client.on_callback_query(filters.regex('^settings\+'))
+async def settings_cb(c, m):
+    cmd, status = m.data.split('+')
