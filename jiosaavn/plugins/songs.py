@@ -37,7 +37,7 @@ async def opensong(c, m):
         InlineKeyboardButton('lyrics, callback_data='lyrics),
         InlineKeyboardButton('upload to tg', callback_data='up')
         ],[
-        InlineKeyboardButton('Back', callback_data='')
+        InlineKeyboardButton('Back', callback_data=f'nxt+{params['__call']}+1')
     ]]
     await m.message.edit(text, )
     
