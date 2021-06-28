@@ -28,4 +28,7 @@ async def settings(c, m, cb=False):
 
 @Client.on_callback_query(filters.regex('^settings\+'))
 async def settings_cb(c, m):
-    cmd, status = m.data.split('+')
+    cmd, value = m.data.split('+')
+    await c.db.update_type(m.from_user.id,  value)
+    await m.answer()
+    await settings(c, m, True)
