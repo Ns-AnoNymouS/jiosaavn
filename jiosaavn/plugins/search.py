@@ -7,6 +7,10 @@ from ..tools.request import req
 async def search(c, m):
     send_msg = await m.reply_text('__**Processing... ⏳**__', quote=True)
 
+    if not await c.db.is_user_exist(m.from_user.id):
+        await c.db.add_user(m.from_user.id)
+
+    type = await c.db
     api_url = 'https://www.jiosaavn.com/api.php?'
     params = {
         'p': 1,
