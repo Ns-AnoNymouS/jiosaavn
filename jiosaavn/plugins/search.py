@@ -50,12 +50,12 @@ async def search(c, m):
                     album = result['title'] if 'album' in result['more_info'] else ''
                 buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
             elif result['type'] == 'album':
-                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
+                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
     else:
         for album in data['albums']['data']:
             title = album['title'] if 'title' in album else ''
             id = album['id'] if 'id' in album else None
-            buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
+            buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
         for song in data['songs']['data']:
             title = song['title'] if 'title' in song else ''
             id = song['id'] if 'id' in song else None
@@ -106,7 +106,7 @@ async def nxt_cb(c, m):
                 album = result['title'] if 'album' in result['more_info'] else ''
             buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
         elif result['type'] == 'album':
-            buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'open+{id}')])
+            buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
 
     nxt_btn = []
     if page != 1:
