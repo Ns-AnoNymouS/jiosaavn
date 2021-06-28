@@ -42,9 +42,11 @@ class Database:
 
     async def is_id_exist(id):
         song = await self.id_col.find_one({'id': id})
+        self.id_col.insert_one({id: id, song: []})
         return True if song else False
 
     async def get_song(id):
-        song = await self.col.find_one({'id':id})
+        song = await self.id_col.find_one({'id': id})
         type = song.get('type')
         return type
+
