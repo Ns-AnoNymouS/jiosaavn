@@ -10,14 +10,6 @@ async def search(c, m):
     if not await c.db.is_user_exist(m.from_user.id):
         await c.db.add_user(m.from_user.id)
 
-    type = await c.db.get_type(m.from_user.id)
-    if type == 'all':
-        call = 'autocomplete.get'
-    elif type == 'album':
-        call = 'search.getAlbumResults'
-    elif type == 'song':
-        call = 'search.getResults'
-
     api_url = 'https://www.jiosaavn.com/api.php?'
     params = {
         'p': 1,
@@ -26,11 +18,23 @@ async def search(c, m):
         '_marker': 0,
         'api_version': 4,
         'ctx': 'wap6dot0',
-        'n': 10,
-        '__call': call
+        'n': 10
     }
+
+    type = await c.db.get_type(m.from_user.id)
+    if type == 'all':
+        params = {
+            '__call': 'autocomplete.get',
+            '_format': 'json',
+            'query': m.text
+        }
+    elif type == 'album':
+        params['__call'] = 'search.getAlbumResults'
+    elif type == 'song':
+        params['__call'] = 'search.getResults'
+
     data = await req(api_url, params)
-    print(data, call)
+    print(data)
     buttons = []
 
     if type != 'all':
