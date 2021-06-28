@@ -18,4 +18,9 @@ async def search(c, m):
         '__call': 'search.getResults'
     }
     data = await req(api_url, params)
+
+    total_results = data['total']
+    buttons = []
+    for result in data['results']:
+        buttons.append([InlineKeyboardButton('', callback_data='')])
     print(data)
