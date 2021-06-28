@@ -41,4 +41,3 @@ async def openalbum(c, m):
         await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     except:
         pass
-    print(data)
