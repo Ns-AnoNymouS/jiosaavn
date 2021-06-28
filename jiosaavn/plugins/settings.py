@@ -15,4 +15,11 @@ async def settings(c, m, cb=False):
         InlineKeyboardButton(tx2, callback_data='settings+album'),
         InlineKeyboardButton(tx3, callback_data='settings+song')
     ]]
-    await m.reply_text('select the search result type', reply_markup=InlineKeyboardMarkup(buttons))
+    text = 'select the search result type'
+    if cb:
+        try:
+            await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+        except:
+            pass
+    else:
+        await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
