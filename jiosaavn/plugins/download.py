@@ -22,7 +22,11 @@ async def download(c, m, cb=False):
 async def download_tool(c, id):
     is_exist = await c.db.is_id_exist(id)
     if is_exist:
-        return
+        song = await c.db.get_song(id)
+        try:
+            return
+        except:
+            pass
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
