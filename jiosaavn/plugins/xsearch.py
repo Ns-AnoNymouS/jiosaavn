@@ -52,10 +52,13 @@ async def search(c, m):
             elif result['type'] == 'album':
                 buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
     else:
+        index_btn = []
         for album in data['albums']['data']:
             title = album['title'] if 'title' in album else ''
             id = album['id'] if 'id' in album else None
             buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+        if len(buttons) != 0:
+            index_btn.append(InlineKeyboardButton('Albums 📖', callback_data='nxt+search.getAlbumResults+1'))
         for i, song in enumerate(data['songs']['data']):
             title = song['title'] if 'title' in song else ''
             id = song['id'] if 'id' in song else None
@@ -68,7 +71,8 @@ async def search(c, m):
                 buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
         if len(buttons) == 0:
             return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
-        buttons.insert(0, [InlineKeyboardButton('Albums 📖', callback_data='nxt+search.getAlbumResults+1'), InlineKeyboardButton('Songs 🎧', callback_data='nxt+search.getResults+1')])
+        index_btn.append(InlineKeyboardButton('Songs 🎧', callback_data='nxt+search.getResults+1'))
+        buttons.insert(0, index_btn)
 
     text = f"**🔍 Search Query:** {m.text}\n\n__Your search result 👇__"
     if type != "all":
