@@ -41,6 +41,7 @@ async def search(c, m):
 
 @Client.on_callback_query(filters.regex('^nxt\+[0-9]*$'))
 async def nxt_cb(c, m):
+    await m.answer()
     page = int(m.data.split('+')[1])
     query = m.message.reply_to_message
     
@@ -69,10 +70,10 @@ async def nxt_cb(c, m):
             buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
 
     nxt_btn = []
-    if total_results > 10:
-        nxt_btn.append(InlineKeyboardButton("➡️", callback_data=f"nxt+{page+1}"))
     if page != 1:
         nxt_btn.append(InlineKeyboardButton("⬅️", callback_data=f"nxt+{page-1}"))
+    if total_results > 10:
+        nxt_btn.append(InlineKeyboardButton("➡️", callback_data=f"nxt+{page+1}"))
     buttons.append(nxt_btn)
 
     await m.message.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {query.text}', reply_markup=InlineKeyboardMarkup(buttons))
