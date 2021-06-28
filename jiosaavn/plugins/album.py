@@ -22,6 +22,7 @@ async def openalbum(c, m):
     buttons = []
     for song in songs:
         btn_txt = f"🎙 {song['song']}" if 'song' in song else '🎙 '
-        id = song['id']
-        buttons.append([InlineKeyboardButton(btn_txt, callback_data='')])
+        id = song['id'] if 'id' in song else None
+        buttons.append([InlineKeyboardButton(btn_txt, callback_data=f'open+{id}+{album_id}')])
+    
     print(data)
