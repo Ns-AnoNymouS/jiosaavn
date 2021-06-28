@@ -40,16 +40,16 @@ class Database:
     async def update_type(self, id, value):
         await self.col.update_one({'id': id}, {'$set': {'type': value}})   
 
-    async def is_id_exist(id):
+    async def is_id_exist(self, id):
         song = await self.id_col.find_one({'id': id})
         self.id_col.insert_one({'id': id, 'chat_id': 0, 'message_id': 0})
         return True if song else False
 
-    async def get_song(id):
+    async def get_song(self, id):
         song = await self.id_col.find_one({'id': id})
         song_ids = song.get('song')
         return song_ids
 
-    async def update_song(id, chat_id, message_id):
+    async def update_song(self, id, chat_id, message_id):
         await self.id_col.update_one({'id': id}, {'$set': {'chat_id': chat_id, 'message_id': message_id}})   
 
