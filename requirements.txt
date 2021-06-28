@@ -1,2 +1,4 @@
+motor
+dnspython
 pyrogram==1.2.9
 aiohttp[speedups]
