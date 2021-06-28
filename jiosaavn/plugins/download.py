@@ -19,12 +19,15 @@ async def download(c, m, cb=False):
         await download_tool(c, id)
 
 
-async def download_tool(c, id):
+async def download_tool(c, id, reply_to_message_id):
     is_exist = await c.db.is_id_exist(id)
     if is_exist:
         song = await c.db.get_song(id)
         try:
-            return
+            song_msg = await c.get_messages(chat_id=int(song.chat_id), message_ids=int(song.message_id))
+            if not song_msg.empty:
+                await song_msg.copy(chat_id=m.chat.id, reply_to_message_id=reply_to_message_id)
+                return
         except:
             pass
 
