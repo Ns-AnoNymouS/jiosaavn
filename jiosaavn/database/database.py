@@ -47,6 +47,6 @@ class Database:
 
     async def get_song(id):
         song = await self.id_col.find_one({'id': id})
-        type = song.get('type')
+        song_ids = song.get('song')
         return type
 
