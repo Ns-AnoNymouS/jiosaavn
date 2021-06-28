@@ -42,7 +42,7 @@ class Database:
 
     async def is_id_exist(id):
         song = await self.id_col.find_one({'id': id})
-        self.id_col.insert_one({id: id, song: []})
+        self.id_col.insert_one({'id': id, 'chat_id': 0, 'message_id': 0})
         return True if song else False
 
     async def get_song(id):
@@ -50,6 +50,6 @@ class Database:
         song_ids = song.get('song')
         return song_ids
 
-    async def update_song(id, value):
-        await self.id_col.update_one({'id': id}, {'$set': {'song': value}})   
+    async def update_song(id, chat_id, message_id):
+        await self.id_col.update_one({'id': id}, {'$set': {'chat_id': chat_id}, {'$set': {'message_id': message_id}})   
 
