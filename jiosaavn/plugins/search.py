@@ -57,7 +57,8 @@ async def nxt_cb(c, m):
         '__call': 'search.getResults'
     }
     data = await req(api_url, params)
-
+    print(data)
+    return
     total_results = data['total']
     buttons = []
     for result in data['results']:
@@ -77,4 +78,4 @@ async def nxt_cb(c, m):
     buttons.append(nxt_btn)
 
     await m.message.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {query.text}', reply_markup=InlineKeyboardMarkup(buttons))
-    print(data)
+    
