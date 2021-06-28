@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from ..tools.request import req
 
 
-@Client.on_message(filters.text & filters.incoming & filters.private & ~)
+@Client.on_message(filters.text & filters.incoming & filters.private & ~filters.regex('.*http.*'))
 async def search(c, m):
     send_msg = await m.reply_text('**Processing... ⏳**', quote=True)
 
