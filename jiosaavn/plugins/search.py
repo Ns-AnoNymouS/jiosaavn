@@ -56,13 +56,14 @@ async def search(c, m):
             title = album['title'] if 'title' in album else ''
             id = album['id'] if 'id' in album else None
             buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
-        for song in data['songs']['data']:
+        for i, song in enumerate(data['songs']['data']):
             title = song['title'] if 'title' in song else ''
             id = song['id'] if 'id' in song else None
             album = ''
             if 'more_info' in song:
                 album = song['title'] if 'album' in song['more_info'] else ''
-            buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+            buttons[i].append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+        buttons.insert(0, [InlineKeyboardButton('Albums 📖', callback_data='nxt+search.getAlbumResults+1'), InlineKeyboardButton('Songs 🎧', callback_data='nxt+search.getResults+1')])
 
     text = f"**🔍 Search Query:** {m.text}\n\n__Your search result 👇__"
     if type != "all":
@@ -75,7 +76,7 @@ async def search(c, m):
 
 
 
-@Client.on_callback_query(filters.regex('^nxt\+[0-9]*$'))
+@Client.on_callback_query(filters.regex('^nxt'))
 async def nxt_cb(c, m):
     await m.answer()
     cmd, call, page = m.data.split('+')
