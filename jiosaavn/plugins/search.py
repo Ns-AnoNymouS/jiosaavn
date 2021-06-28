@@ -75,5 +75,5 @@ async def nxt_cb(c, m):
         nxt_btn.append(InlineKeyboardButton("⬅️", callback_data=f"nxt+{page-1}"))
     buttons.append(nxt_btn)
 
-    await m.message.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {m.text}', reply_markup=InlineKeyboardMarkup(buttons))
+    await m.message.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {query.text}', reply_markup=InlineKeyboardMarkup(buttons))
     print(data)
