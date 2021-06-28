@@ -23,7 +23,7 @@ def main():
         workers = 100
     )
 
-    jiosaavn.db = Database(Config.DATABASE_URL, 'jiosaavn')
+    jiosaavn.db = Database(Config.DATABASE_URL)
     jiosaavn.run()
 
 
