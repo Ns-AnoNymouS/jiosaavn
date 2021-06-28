@@ -1,4 +1,6 @@
+import json
 import aiohttp
+
 
 async def req(url, params):
     useragent = ('Mozilla/5.0 (Linux; Android 10; SM-G975F) '
@@ -9,6 +11,8 @@ async def req(url, params):
         'Accept': 'application/json',
     }
     async with aiohttp.ClientSession() as session:
-        async with session.get(url, params=params, headers=headers) as response:
+        async with session.get(url, params=params) as response:
             data = await response.text()
-            return data
+            data = data.encode().decode('unicode-escape')
+            jsonResult = json.loads(data)
+            return jsonResult
