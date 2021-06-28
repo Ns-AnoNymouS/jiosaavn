@@ -22,5 +22,5 @@ async def search(c, m):
     total_results = data['total']
     buttons = []
     for result in data['results']:
-        buttons.append([InlineKeyboardButton('', callback_data='')])
+        buttons.append([InlineKeyboardButton("{result['title']} from '{}'", callback_data='')])
     print(data)
