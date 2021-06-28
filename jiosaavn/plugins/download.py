@@ -44,12 +44,12 @@ async def download_tool(c, id, reply_to_message_id):
     }
     data = (await req(url, params))[id]
     url = data['media_preview_url'].encode().decode()
+    song = file_data['song'] if 'song' in file_data else 'Unknown'
 
     file_name = f"./DOWNLOADS/"
     if not os.path.isdir(file_name):
         os.makedirs(file_name)
-    file_name += str(song)
-    file_name += ".mp3"
+    file_name = f'{file_name}{song}.mp3'
 
     async with aiohttp.ClientSession() as session: 
         async with session.get(url) as response:
