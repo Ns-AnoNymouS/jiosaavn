@@ -47,6 +47,14 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     url = data['media_preview_url'].encode().decode()
     song = file_data['song'] if 'song' in file_data else 'Unknown'
 
+    
+    text = f"**🎧 Song:** [{data['song']}]({song_url})\n\n" if 'song' in data else 'Unknown'
+    text += f"**📚 Album:** [{data['album']}]({album_url})\n\n" if 'album' in data else ''
+    text += f"**🥁 Music:** {data['music']}\n\n" if 'music' in data else ''
+    text += f"**👨‍🎤 Singers:** {data['singers']}\n\n" if 'singers' in data else ''
+    text += f"**📰 Language:** {data['language']}\n\n" if 'language' in data else ''
+    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
+
     file_name = f"./DOWNLOADS/"
     if not os.path.isdir(file_name):
         os.makedirs(file_name)
