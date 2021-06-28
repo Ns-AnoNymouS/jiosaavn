@@ -7,7 +7,7 @@ from ..tools.request import req
 @Client.on_message(filters.regex('.*http. *') & filters.private & filters.incoming)
 async def download(c, m, cb=False):
     if not cb:
-        send_msg = await m.reply_text('Checking...🕵‍♂️', quote=True)
+        send_msg = await m.reply_text('**Checking...🕵‍♂️**', quote=True)
         if 'jiosaavn' not in m.text:
             await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
         type = 'song' if 'song' in m.text else 'album'
@@ -15,6 +15,7 @@ async def download(c, m, cb=False):
         reply_to_message_id = m.message_id
     else:
         send_msg = m.message
+        await m.message.edit('**Processing...**')
         cmd, id, type = m.data.split('+')
         reply_to_message_id = m.message.reply_to_message.message_id
 
