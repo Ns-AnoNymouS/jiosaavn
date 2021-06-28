@@ -146,7 +146,7 @@ async def nxt_cb(c, m):
             except:
                 buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
         if len(buttons) == 0:
-            return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
+            return await m.message.edit(f'🔎 No search result found for your query `{m.text}`')
         index_btn.append(InlineKeyboardButton('Songs 🎧', callback_data='nxt+search.getResults+1'))
         buttons.insert(0, index_btn)
 
