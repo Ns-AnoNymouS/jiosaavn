@@ -61,9 +61,7 @@ async def search(c, m):
         for i, song in enumerate(data['songs']['data']):
             title = song['title'] if 'title' in song else ''
             id = song['id'] if 'id' in song else None
-            album = ''
-            if 'more_info' in song:
-                album = song['title'] if 'album' in song['more_info'] else ''
+            album = song['album'] if 'album' in song else ''
             try:
                 buttons[i].append(InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}'))
             except:
