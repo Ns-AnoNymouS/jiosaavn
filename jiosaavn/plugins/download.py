@@ -5,3 +5,6 @@ from pyrogram import Client, filters
 async def download(c, m, cb=False):
     if not cb:
         send_msg = await m.reply_text('Checking...🕵‍♂️', quote=True)
+    else:
+        send_msg = m.message
+
