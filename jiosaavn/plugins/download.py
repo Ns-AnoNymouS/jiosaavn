@@ -20,10 +20,10 @@ async def download(c, m, cb=False):
         reply_to_message_id = m.message.reply_to_message.message_id
 
     if type == 'song':
-        await download_tool(c, id, reply_to_message_id)
+        await download_tool(c, m, id, reply_to_message_id)
 
 
-async def download_tool(c, id, reply_to_message_id, msg):
+async def download_tool(c, m, id, reply_to_message_id, msg):
     is_exist = await c.db.is_id_exist(id)
     if is_exist:
         song = await c.db.get_song(id)
@@ -67,3 +67,14 @@ async def download_tool(c, id, reply_to_message_id, msg):
 
     await msg.edit(f'__📤 Uploading {song}__')
     
+    await c.send_audio(
+        chat_id=m.from_user.id,
+        audio=file_name,
+        caption=caption,
+        duration=int(duration),
+        title=song,
+        performer=artists,
+        parse_mode="markdown",
+        progress=progress_bar,
+        progress_args=(send_message, start)
+    )
