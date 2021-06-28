@@ -9,7 +9,7 @@ class Database:
         self.user_db = self._client['jiosaavn_users']
         self.id_db = self._client['jiosaavn_ids']
         self.col = self.user_db.users
-        self.
+        self.id_col = self.id_db.ids
     
     def new_user(self, id):
         return dict(
@@ -39,4 +39,8 @@ class Database:
 
     async def update_type(self, id, value):
         await self.col.update_one({'id': id}, {'$set': {'type': value}})   
+
+    async def is_id_exist(id):
+        user = await self.id_col.find_one({'id': id})
+        return True if user else False
 
