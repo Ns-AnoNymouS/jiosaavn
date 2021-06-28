@@ -41,7 +41,7 @@ async def search(c, m):
 
 @Client.on_callback_query(filters.regex('^nxt\+[0-9]*$'))
 async def nxt_cb(c, m):
-    page = m.data.split('+')[1]
+    page = int(m.data.split('+')[1])
     query = m.message.reply_to_message
     
     api_url = 'https://www.jiosaavn.com/api.php?'
