@@ -36,7 +36,6 @@ async def search(c, m):
         params['__call'] = 'search.getResults'
 
     data = await req(api_url, params)
-    print(data)
     buttons = []
 
     if type != 'all':
@@ -84,7 +83,6 @@ async def search(c, m):
         return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
 
     await send_msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
-    print(data)
 
 
 
