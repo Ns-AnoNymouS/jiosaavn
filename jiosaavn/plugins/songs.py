@@ -18,7 +18,7 @@ async def opensong(c, m):
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
         '_format': 'json',
-        'pids': 
+        'pids': song_id
     }
     data = await req(url, params)
     print(data)
