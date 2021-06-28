@@ -42,6 +42,7 @@ async def opensong(c, m):
         ],[
         InlineKeyboardButton('🔙', callback_data=back_cb)
     ]]
-    await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
-    
-    print(data)
+    try:
+        await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+    except:
+        pass
