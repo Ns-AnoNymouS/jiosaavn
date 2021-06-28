@@ -20,7 +20,7 @@ async def download(c, m, cb=False):
         reply_to_message_id = m.message.reply_to_message.message_id
 
     if type == 'song':
-        await download_tool(c, m, id, reply_to_message_id)
+        await download_tool(c, m, id, reply_to_message_id, send_msg)
 
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
