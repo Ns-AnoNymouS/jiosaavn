@@ -34,7 +34,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                 return
         except:
             pass
-
+    print(id)
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         '__call': 'song.getDetails',
