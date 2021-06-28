@@ -125,7 +125,7 @@ async def nxt_cb(c, m):
     buttons.append(nxt_btn)
 
     if len(buttons) == 1:
-        return await m.message.edit('Something went wrong pls try again if problem again persists contact [Ns bot Supporters](https://t.me/Ns_Bot_supporters)')
+        return await m.message.edit('__Nothing found here 👀__')
 
     await m.message.edit(f'**📈 Total Results:** {total_results}\n\n**🔍 Search Query:** {query.text}\n\n**📜 Page No:** {page}', reply_markup=InlineKeyboardMarkup(buttons))
     
