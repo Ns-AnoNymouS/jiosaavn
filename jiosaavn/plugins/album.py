@@ -6,6 +6,7 @@ from ..tools.request import req
 @Client.on_callback_query(filters.regex('^album\+'))
 async def openalbum(c, m):
     await m.answer()
+    album_id = m.data.split('+')[1]
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
@@ -13,7 +14,7 @@ async def openalbum(c, m):
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
         '_format': 'json',
-        'albumid': song_id
+        'albumid': album_id
     }
     data = await req(url, params)
     print(data)
