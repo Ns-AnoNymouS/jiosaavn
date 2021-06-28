@@ -17,4 +17,10 @@ async def openalbum(c, m):
         'albumid': album_id
     }
     data = await req(url, params)
+
+    songs = data['songs']
+    buttons = []
+    for song in songs:
+        btn_txt = f"🎙 {song['song']}" if 'song' in song else '🎙 '
+        buttons.append([InlineKeyboardButton(btn_txt, callback_data='')])
     print(data)
