@@ -22,10 +22,23 @@ async def opensong(c, m):
     }
     data = (await req(url, params))[song_id]
     album_url = data['album_url'].encode().decode() if 'album_url' in data else ''
+    image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
+    song_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
 
-    text = ""
-    text += f"**🎧 Song:** {data['song']}\n\n" if 'song' in data else ''
+    text = f"[\u2063]({image_url})"
+    text += f"**🎧 Song:** [{data['song']}]({song_url})\n\n" if 'song' in data else ''
     text += f"**📚 Album:** [{data['album']}]({album_url})\n\n" if 'album' in data else ''
-    text +=
+    text += f"**🥁 Music:** {data['music']}\n\n" if 'music' in data else ''
+    text += f"**👨‍🎤 Singers:** {data['singers']}\n\n" if 'singers' in data else ''
+    text += f"**📰 Language:** {data['language']}\n\n" if 'language' in data else ''
+    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
+
+    buttons = [[
+        InlineKeyboardButton('lyrics, callback_data='lyrics),
+        InlineKeyboardButton('upload to tg', callback_data='up')
+        ],[
+        InlineKeyboardButton('Back', callback_data='')
+    ]]
+    await m.message.edit(text, )
     
     print(data)
