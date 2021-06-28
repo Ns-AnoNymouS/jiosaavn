@@ -6,10 +6,6 @@ from ..tools.request import req
 @Client.on_callback_query(filters.regex('^album\+'))
 async def openalbum(c, m):
     await m.answer()
-    try:
-        await m.message.edit(m.message.text, reply_markup=m.message.reply_markup, disable_web_page_preview=True)
-    except Exception as e:
-        print(e)
     album_id = m.data.split('+')[1]
 
     url = 'https://www.jiosaavn.com/api.php?'
