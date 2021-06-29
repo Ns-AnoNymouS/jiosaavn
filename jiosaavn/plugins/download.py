@@ -43,14 +43,20 @@ async def download(c, m, cb=False):
         'albumid': album_id
     }
     data = await req(url, params)
-    await send_msg.delete()
-    await c.send_photo(chat_id=m.from_user.id, photo=)
+    image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
+    text = f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
+    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
+
+    try:
+        await c.send_photo(chat_id=m.from_user.id, photo=image_url, caption=text, reply_to_message_id=reply_to_message_id)
+        await send_msg.delete()
+    except:
+        pass
+
     songs = data['songs']
     for song in songs:
         id = song['id'] if 'id' in song else None
         await download_tool(c, m, id, reply_to_message_id, send_msg)
-    text += f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
-    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
     await send_msg.edit(text)
 
 
