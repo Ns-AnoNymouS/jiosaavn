@@ -39,6 +39,8 @@ async def search(c, m):
     buttons = []
 
     if type != 'all':
+        if not 'result' in data:
+            return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
         total_results = data['total']
         for result in data['results']:
             title = result['title'] if 'title' in result else ''
@@ -51,6 +53,8 @@ async def search(c, m):
             elif result['type'] == 'album':
                 buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
     else:
+        if not 'albums' in data:
+            return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
         index_btn = []
         for album in data['albums']['data']:
             title = album['title'] if 'title' in album else ''
