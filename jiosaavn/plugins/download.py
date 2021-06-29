@@ -57,7 +57,7 @@ async def download(c, m, cb=False):
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
         '_format': 'json',
-        'albumid': album_id
+        'albumid': id
     }
     data = await req(url, params)
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
