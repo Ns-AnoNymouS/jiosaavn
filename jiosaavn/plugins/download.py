@@ -94,7 +94,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     await c.send_audio(
         chat_id=m.from_user.id,
         audio=file_name,
-        caption=caption,
+        caption=text,
         duration=int(duration),
         title=song,
         thumb=image_url,
