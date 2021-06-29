@@ -17,7 +17,7 @@ async def openalbum(c, m):
         'albumid': album_id
     }
     data = await req(url, params)
-    print(data)
+    
     songs = data['songs']
     buttons = []
     for song in songs:
