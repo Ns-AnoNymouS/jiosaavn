@@ -99,7 +99,14 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     file_name = f'{file_name}{song}.mp3'
     thumbnail_location = f'{file_name}{song}.jpeg'
 
-    await msg.edit(f'__📥 Downloading {song}__')
+    try:
+        await msg.edit(f'__📥 Downloading {song}__')
+        await c.send_chat_action(
+            chat_id=message.chat.id,
+            action="record_audio"
+        )
+    except:
+        pass
     async with aiohttp.ClientSession() as session: 
         async with session.get(url) as response:
             with open(file_name, "wb") as file:
