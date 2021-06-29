@@ -38,4 +38,4 @@ async def search_inline(c, m):
     if 'Album:' in m.query:
         params['__call'] = 'search.getAlbumResults'
         data = await req(url, params)
-
+        print(data)
