@@ -14,10 +14,10 @@ async def search_inline(c, m):
         )
         return
 
-    offset = m.offset if m.offset else 0
+    offset = m.offset if m.offset else 1
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        'p': 1,
+        'p': offset,
         'q': m.query.replace('Album:', '').strip(),
         '_format': 'json',
         '_marker': 0,
@@ -38,6 +38,7 @@ async def search_inline(c, m):
                     switch_pm_parameter="help",
                 )
                 return
+            for song
         else:
             await m.answer(
                 results=[],
