@@ -77,12 +77,12 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     thumbnail_location = f'{file_name}{song}.jpeg'
 
     await msg.edit(f'__📥 Downloading {song}__')
-    async with aiohttp.StreamReader.readany() as session: 
+    async with aiohttp.ClientSession() as session: 
         async with session.get(url, allow_redirects=True) as response:
             with open(file_name, "wb") as file:
                 while True:
                     try:
-                        chunk = await response.content.read(4 * 1024 * 1024)
+                        chunk = await response.StreamReader.readany(4 * 1024 * 1024)
                     except:
                         break
                     if not chunk:
