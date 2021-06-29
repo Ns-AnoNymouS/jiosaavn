@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import FloodWait
 from ..tools.request import req
-
+from ..tools.upload_helpers import send_audio, copy
 
 @Client.on_message(filters.regex('.*http. *') & filters.private & filters.incoming)
 async def download(c, m, cb=False):
