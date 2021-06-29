@@ -38,7 +38,7 @@ async def opensong(c, m):
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons = [[
         InlineKeyboardButton('lyrics', callback_data='lyrics'),
-        InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{}+{}')
+        InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{song_id}+song')
         ],[
         InlineKeyboardButton('🔙', callback_data=back_cb)
     ]]
@@ -46,3 +46,9 @@ async def opensong(c, m):
         await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     except:
         pass
+
+
+@Client.on_callback_query(filters.regex('^upload\+'))
+async def upload_cb(c, m):
+    await m.answer()
+    
