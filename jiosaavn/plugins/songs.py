@@ -72,7 +72,7 @@ async def lyrics(c, m):
     }
     data = await req(url, params)
     if 'lyrics' in data:
-        lyrics = data['lyrics'].encode().decode().replace('<br>', '\\n')
+        lyrics = data['lyrics'].encode().decode().replace('<br>', '\n')
         if len(lyrics) <= 4096:
             callback_data = f'open+{lyrics_id}' if album_id == 'None' else f'open+{lyrics_id}+{album_id}'
             button = [[InlineKeyboardButton('🔙', callback_data=callback_data)]]
