@@ -43,12 +43,17 @@ async def search_inline(c, m):
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
                 language = result['language'] if 'language' in result else ''
-                album_url = result['perma_url'] if 'perma_url' in result else ''
+                album_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
                 year = result['year'] if 'year' in result else ''
                 songs = result['song_count'] if 'song_count' in result else 0
                 description = result['subtitle'] if 'subtitle' in result else ''
-                image = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
-                
+                image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
+
+                text = f"[\u2063]({image_url})"
+                text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in data else ''
+                text += f"**🔊 Total Songs:** {songs}\n\n"
+                text += f"**📆 Year:** __{year}__\n\n"
+
         else:
             await m.answer(
                 results=[],
