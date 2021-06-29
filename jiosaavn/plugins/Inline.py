@@ -38,12 +38,15 @@ async def search_inline(c, m):
                     switch_pm_parameter="help",
                 )
                 return
-            print(data)
+
             for result in data['results']:
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
                 language = result['language'] if 'language' in result else ''
-                
+                album_url = result['perma_url'] if 'perma_url' in result else ''
+                year = result['year'] if 'year' in result else ''
+                songs = result['song_count'] if 'song_count' in result else 0
+
 
         else:
             await m.answer(
