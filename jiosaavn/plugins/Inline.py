@@ -42,7 +42,8 @@ async def search_inline(c, m):
             for result in data['results']:
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
-                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+                language = result['language'] if 'language' in result else ''
+                
 
         else:
             await m.answer(
