@@ -124,9 +124,16 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                         break
                     file.write(chunk)
 
-    await msg.edit(f'__📤 Uploading {song}__')
-    
-    await c.send_audio(
+    try:
+        await msg.edit(f'__📤 Uploading {song}__')
+        await c.send_chat_action(
+            chat_id=message.chat.id,
+            action="upload_audio"
+        )
+    except:
+        pass
+
+    song = await c.send_audio(
         chat_id=m.from_user.id,
         audio=file_name,
         caption=text,
@@ -136,6 +143,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         performer=artists,
         parse_mode="markdown"
     )
+    await c.db.update_song(id, song.chat.id, song.message_id)
     try:
         os.remove(file_name)
     except:
