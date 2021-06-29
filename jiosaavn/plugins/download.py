@@ -167,17 +167,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     except:
         pass
 
-    song = await c.send_audio(
-        chat_id=m.from_user.id,
-        audio=file_name,
-        caption=text,
-        duration=int(duration),
-        title=song,
-        thumb=thumbnail_location,
-        performer=artists,
-        parse_mode="markdown",
-        reply_to_message_id=reply_to_message_id
-    )
+    song = await send_audio(c, m.from_user.id, file_name, text, int(duration), song, thumbnail_location, artists, reply_to_message_id)
     await c.db.update_song(id, song.chat.id, song.message_id)
     try:
         os.remove(file_name)
