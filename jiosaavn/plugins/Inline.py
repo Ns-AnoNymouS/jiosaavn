@@ -55,7 +55,7 @@ async def search_inline(c, m):
                 text += f"**🔊 Total Songs:** {songs}\n\n"
                 text += f"**📆 Year:** __{year}__\n\n"
 
-                button = [[InlineKeyboardButton('', callback_data='')]]
+                button = [[InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')]]
                 inlineresults.append(
                     InlineQueryResultArticle(
                         thumb_url=image_url,
