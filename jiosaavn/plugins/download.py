@@ -90,6 +90,18 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                         break
                     file.write(chunk)
 
+    async with aiohttp.ClientSession() as session: 
+        async with session.get(image_url) as response:
+            with open(thumbnail_location, "wb") as file:
+                while True:
+                    try:
+                        chunk = await response.content.read(4 * 1024 * 1024)
+                    except:
+                        break
+                    if not chunk:
+                        break
+                    file.write(chunk)
+
     await msg.edit(f'__📤 Uploading {song}__')
     
     await c.send_audio(
@@ -98,7 +110,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         caption=text,
         duration=int(duration),
         title=song,
-        thumb=image_url,
+        thumb=thumbnail_location,
         performer=artists,
         parse_mode="markdown"
     )
