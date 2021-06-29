@@ -84,5 +84,6 @@ async def lyrics(c, m):
                 pass
         else:
             with open(f"{data['']} song lyrics.txt", 'w') as f:
+                f.write(lyrics)
     else:
         await m.answer('No lyrics Found 😶')
