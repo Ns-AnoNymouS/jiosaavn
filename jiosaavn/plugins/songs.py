@@ -1,3 +1,4 @@
+import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
@@ -82,8 +83,11 @@ async def lyrics(c, m):
                 await m.message.edit(lyrics, reply_markup=InlineKeyboardMarkup(button))
             except:
                 pass
-        else:
-            with open(f"{data['']} song lyrics.txt", 'w') as f:
-                f.write(lyrics)
+        #else:
+        print(data)
+        with open(f"{data['snippet']} song lyrics.txt", 'w') as f:
+            f.write(lyrics)
+        await c.send_message(chat_id=m.from_user.id, document=f"{data['snippet']} song lyrics.txt")
+        
     else:
         await m.answer('No lyrics Found 😶')
