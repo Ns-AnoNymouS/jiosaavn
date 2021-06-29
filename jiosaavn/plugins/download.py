@@ -55,7 +55,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     }
     data = (await req(url, params))[id]
     print(data)
-    url = data['media_url'].encode().decode()
+    url = data['media_url'].replace("preview", "aac").encode().decode()
     song = data['song'] if 'song' in data else 'Unknown'
     artists = data['primary_artists'] if 'primary_artists' in data else 'Unknown'
     duration = data['duration'] if 'duration' in data else 0
@@ -83,7 +83,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
             with open(file_name, "wb") as file:
                 while True:
                     try:
-                        chunk = await response.content.readchunk(4 * 1024 * 1024)
+                        chunk = await response.content.read(4 * 1024 * 1024)
                     except:
                         break
                     if not chunk:
