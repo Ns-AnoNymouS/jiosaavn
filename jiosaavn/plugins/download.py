@@ -76,7 +76,10 @@ async def download(c, m, cb=False):
     for song in songs:
         id = song['id'] if 'id' in song else None
         await download_tool(c, m, id, reply_to_message_id, send_ms)
-    await send_ms.edit(text)
+    try:
+        await send_ms.edit(text)
+    except:
+        pass
 
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
