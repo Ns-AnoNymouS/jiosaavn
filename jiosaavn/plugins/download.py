@@ -31,6 +31,9 @@ async def download(c, m, cb=False):
 
     if type == 'song':
         await download_tool(c, m, id, reply_to_message_id, send_msg)
+        await send_msg.delete()
+        return
+    
 
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
