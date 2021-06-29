@@ -58,7 +58,12 @@ async def search_inline(c, m):
                 text += f"**📆 Year:** __{year}__\n\n"
                 text += f"**📋 Description:** {description}"
 
-                button = [[InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')]]
+                button = [[
+                    InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')
+                    ],[
+                    InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
+                    InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+                ]]
                 inlineresults.append(
                     InlineQueryResultArticle(
                         thumb_url=image_url,
