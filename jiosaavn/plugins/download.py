@@ -54,7 +54,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         'pids': id
     }
     data = (await req(url, params))[id]
-    url = data['media_url'].replace("preview", "aac").encode().decode()
+    url = data['media_preview_url'].replace("preview", "aac").encode().decode()
     if data['320kbps']=="true":
         url = url.replace("_96_p.mp4", "_320.mp4")
     else:
