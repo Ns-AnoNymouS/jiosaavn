@@ -58,11 +58,13 @@ async def upload_cb(c, m):
 
 @Client.on_calback_query(filters.regex('lyrics\+'))
 async def lyrics(c, m):
+    lyrics_id = m.data.split('+')[1]
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        __call=lyrics.getLyrics,
-        ctx=web6dot0,
-        api_version=4,
-        _format=json,
-        _marker=0%3F_marker%3D0,
-        lyrics_id=
+        '__call': 'lyrics.getLyrics',
+        'ctx': 'web6dot0',
+        'api_version': 4,
+        '_format': 'json',
+        '_marker': '0%3F_marker%3D0',
+        'lyrics_id': lyrics_id
+    }
