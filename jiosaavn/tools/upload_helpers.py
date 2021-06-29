@@ -22,4 +22,5 @@ async def send_audio(c, chat_id, audio, caption, duration, title, thumb, artists
         await send_audio(c, chat_id, audio, caption, duration, title, thumb, artists, reply_to_message_id)
     except Exception as e:
         logger.warning(e)
+        return
     
