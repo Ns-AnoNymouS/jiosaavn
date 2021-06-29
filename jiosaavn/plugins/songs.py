@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
-
+from .download import download
 
 @Client.on_callback_query(filters.regex('^open\+'))
 async def opensong(c, m):
@@ -51,4 +51,4 @@ async def opensong(c, m):
 @Client.on_callback_query(filters.regex('^upload\+'))
 async def upload_cb(c, m):
     await m.answer()
-    
+    await download(c, m, True)
