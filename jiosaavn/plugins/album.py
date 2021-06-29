@@ -42,7 +42,7 @@ async def openalbum(c, m):
     try:
         if m.inline_message_id:
             buttons.pop()
-            return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=text, reply_markup=InlineKeyboardMarkup(buttons))
+            return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=m.message.text, reply_markup=InlineKeyboardMarkup(buttons))
         await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     except:
         pass
