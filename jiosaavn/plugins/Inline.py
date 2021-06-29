@@ -121,7 +121,7 @@ async def search_inline(c, m):
                 text += f"**📋 Description:** {description}"
 
                 button = [[
-                    InlineKeyboardButton('lyrics', callback_data='lyrics'),
+                    InlineKeyboardButton('Lyrics 🧾', callback_data='lyrics'),
                     InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{song_id}+song')
                     ],[
                     InlineKeyboardButton('Search Song 🔍', switch_inline_query="")
