@@ -66,7 +66,7 @@ async def download(c, m, cb=False):
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
     try:
-        await c.send_photo(chat_id=m.from_user.id, photo=image_url, caption=text, reply_to_message_id=reply_to_message_id)
+        send_ms = await c.send_photo(chat_id=m.from_user.id, photo=image_url, caption=text, reply_to_message_id=reply_to_message_id)
         await send_msg.delete()
     except:
         pass
@@ -74,8 +74,8 @@ async def download(c, m, cb=False):
     songs = data['songs']
     for song in songs:
         id = song['id'] if 'id' in song else None
-        await download_tool(c, m, id, reply_to_message_id, send_msg)
-    await send_msg.edit(text)
+        await download_tool(c, m, id, reply_to_message_id, send_ms)
+    await send_ms.edit(text)
 
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
