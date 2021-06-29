@@ -2,6 +2,7 @@ import os
 import aiohttp
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import FloodWait
 from ..tools.request import req
 
 
