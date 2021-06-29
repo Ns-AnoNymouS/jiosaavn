@@ -27,7 +27,7 @@ async def search_inline(c, m):
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         'p': 1,
-        'q': m.query,
+        'q': m.query.replace('Album:', '').strip(),
         '_format': 'json',
         '_marker': 0,
         'api_version': 4,
