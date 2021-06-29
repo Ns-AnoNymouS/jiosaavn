@@ -16,6 +16,7 @@ async def send_audio(c, chat_id, audio, caption, duration, title, thumb, artists
             parse_mode="markdown",
             reply_to_message_id=reply_to_message_id
         )
+        return song
     except FloodWait as e:
         await asyncio.sleep(e.x)
         await send_audio(c, chat_id, audio, caption, duration, title, thumb, artists, reply_to_message_id)
