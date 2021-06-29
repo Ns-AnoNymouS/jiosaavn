@@ -47,6 +47,7 @@ class Database:
 
     async def get_song(self, id):
         song = await self.id_col.find_one({'id': id})
+        song_dict = {'chat_id': song.get('chat_id'), 'message_id': song.get('message_id')}
         return song
 
     async def update_song(self, id, chat_id, message_id):
