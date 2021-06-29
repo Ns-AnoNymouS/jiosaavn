@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineQueryResultArticle, InlineQueryResultPhoto, InlineKeyboardMarkup, InlineKeyboardButton, InputTextMessageContent, ChosenInlineResult, InputMediaAudio    
+from pyrogram.types import InlineQueryResultArticle, InlineQueryResultPhoto, InlineKeyboardMarkup, InlineKeyboardButton, InputTextMessageContent    
 from ..tools.request import req
 
 
@@ -39,6 +39,7 @@ async def search_inline(c, m):
                 )
                 return
 
+            inlineresults = []
             for result in data['results']:
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
@@ -53,6 +54,23 @@ async def search_inline(c, m):
                 text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in data else ''
                 text += f"**🔊 Total Songs:** {songs}\n\n"
                 text += f"**📆 Year:** __{year}__\n\n"
+
+                button = [[InlineKeyboardButton('', callback_data='')]]
+                inlineresults.append(
+                    InlineQueryResultArticle(
+                        thumb_url=image_url,
+                        title=title,
+                        description=description,
+                        input_message_content=InputTextMessageContent(message_text=text),
+                        reply_markup=InlineKeyboardMarkup(button)
+                ))
+            await m.answer(
+                results=inlineresults,
+                cache_time=0,
+                switch_pm_text=f"📚 {data['total']} results found for '{m.query.replace('Album:', '').strip()}'",
+                switch_pm_parameter="help",
+                next_offset=offset+1
+            )
 
         else:
             await m.answer(
