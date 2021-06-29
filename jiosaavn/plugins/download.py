@@ -78,7 +78,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
 
     await msg.edit(f'__📥 Downloading {song}__')
     async with aiohttp.ClientSession() as session: 
-        async with session.get(url, allow_redirects=True) as response:
+        async with session.get(url) as response:
             with open(file_name, "wb") as file:
                 while True:
                     try:
