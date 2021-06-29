@@ -54,7 +54,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         'pids': id
     }
     data = (await req(url, params))[id]
-    url = data['media_preview_url'].encode().decode()
+    url = data['media_url'].encode().decode()
     song = data['song'] if 'song' in data else 'Unknown'
     artists = data['primary_artists'] if 'primary_artists' in data else 'Unknown'
     duration = data['duration'] if 'duration' in data else 0
