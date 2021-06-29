@@ -75,6 +75,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     if not os.path.isdir(file_name):
         os.makedirs(file_name)
     file_name = f'{file_name}{song}.mp3'
+    thumbnail_location = f'{file_name}{song}.jpeg'
 
     await msg.edit(f'__📥 Downloading {song}__')
     async with aiohttp.ClientSession() as session: 
