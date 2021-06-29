@@ -56,7 +56,7 @@ async def upload_cb(c, m):
     await download(c, m, True)
 
 
-@Client.on_calback_query(filters.regex('lyrics\+'))
+@Client.on_callback_query(filters.regex('lyrics\+'))
 async def lyrics(c, m):
     lyrics_id = m.data.split('+')[1]
     url = 'https://www.jiosaavn.com/api.php?'
