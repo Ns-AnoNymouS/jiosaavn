@@ -71,6 +71,7 @@ async def lyrics(c, m):
         'lyrics_id': lyrics_id
     }
     data = await req(url, params)
-    print(data)
     if 'lyrics' in data:
-        await m.message.edit()
+        lyrics = data['lyrics'].encode().decode().replace('<br>', '\\n')
+        if len(lyrics) <= 4096:
+            await m.message.edit(lyrics)
