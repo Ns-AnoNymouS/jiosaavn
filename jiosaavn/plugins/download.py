@@ -34,6 +34,19 @@ async def download(c, m, cb=False):
         await send_msg.delete()
         return
     
+    url = 'https://www.jiosaavn.com/api.php?'
+    params = {
+        '__call': 'content.getAlbumDetails',
+        'cc': 'in',
+        '_marker': '0%3F_marker%3D0',
+        '_format': 'json',
+        'albumid': album_id
+    }
+    data = await req(url, params)
+    songs = data['songs']
+    for song in songs:
+        id = song['id'] if 'id' in song else None
+        await download_tool(c, m, id, reply_to_message_id, send_msg)
 
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
