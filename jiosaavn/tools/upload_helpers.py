@@ -1,3 +1,8 @@
+import logging
+logger = logging.getLogger(__name__)
+from pyrogram.errors import FloodWait
+
+
 async def send_audio(c, chat_id, audio, caption, duration, title, thumb, artists, reply_to_message_id):
     try:
         song = await c.send_audio(
