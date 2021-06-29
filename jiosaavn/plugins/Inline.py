@@ -124,8 +124,8 @@ async def search_inline(c, m):
                     InlineKeyboardButton('Lyrics 🧾', callback_data='lyrics'),
                     InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{id}+song')
                     ],[
-                    InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
-                    InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
+                    InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
+                    InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
                 ]]
 
                 inlineresults.append(
