@@ -120,7 +120,13 @@ async def search_inline(c, m):
                 text += f"**📆 Year:** __{year}__\n\n"
                 text += f"**📋 Description:** {description}"
 
-                button = [[InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')]]
+                button = [[
+                    InlineKeyboardButton('lyrics', callback_data='lyrics'),
+                    InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{song_id}+song')
+                    ],[
+                    InlineKeyboardButton('🔙', callback_data=back_cb)
+                ]]
+
                 inlineresults.append(
                     InlineQueryResultArticle(
                         thumb_url=image_url,
