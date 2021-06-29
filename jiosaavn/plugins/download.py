@@ -54,8 +54,11 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         'pids': id
     }
     data = (await req(url, params))[id]
-    print(data)
     url = data['media_url'].replace("preview", "aac").encode().decode()
+    if data['320kbps']=="true":
+        url = url.replace("_96_p.mp4", "_320.mp4")
+    else:
+        url = url.replace("_96_p.mp4", "_160.mp4")
     song = data['song'] if 'song' in data else 'Unknown'
     artists = data['primary_artists'] if 'primary_artists' in data else 'Unknown'
     duration = data['duration'] if 'duration' in data else 0
