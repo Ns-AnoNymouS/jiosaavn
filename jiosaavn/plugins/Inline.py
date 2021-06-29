@@ -49,7 +49,7 @@ async def search_inline(c, m):
                 songs = result['more_info']['song_count'] if 'more_info' in result else 0
                 description = result['subtitle'] if 'subtitle' in result else ''
                 image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
-                inlinedescription = f"🎙 Total Songs:** {songs}\n📕 Language:** {language}\n🎴 Year: {year}"
+                inlinedescription = f"• Total Songs: {songs}\n• Language: {language}\n• Year: {year}"
 
                 text = f"[\u2063]({image_url})"
                 text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in result else ''
