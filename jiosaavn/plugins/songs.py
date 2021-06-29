@@ -69,3 +69,4 @@ async def lyrics(c, m):
         'lyrics_id': lyrics_id
     }
     data = await req(url, params)
+    print(data)
