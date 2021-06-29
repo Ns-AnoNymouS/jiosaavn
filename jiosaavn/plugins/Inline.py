@@ -70,7 +70,7 @@ async def search_inline(c, m):
             await m.answer(
                 results=inlineresults,
                 cache_time=0,
-                switch_pm_text=f"📚 {data['total']} results found for '{m.query.replace('Album:', '').strip()}'",
+                switch_pm_text=f"📚 {data['total']} results found for Album '{m.query.replace('Album:', '').strip()}'",
                 switch_pm_parameter="help",
                 next_offset=str(offset+1)
             )
@@ -133,7 +133,7 @@ async def search_inline(c, m):
             await m.answer(
                 results=inlineresults,
                 cache_time=0,
-                switch_pm_text=f"📚 {data['total']} results found for '{m.query.replace('Album:', '').strip()}'",
+                switch_pm_text=f"📚 {data['total']} results found for song '{m.query.replace('Album:', '').strip()}'",
                 switch_pm_parameter="help",
                 next_offset=str(offset+1)
             )
