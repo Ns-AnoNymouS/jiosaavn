@@ -24,4 +24,5 @@ async def search_inline(c, m):
         return
 
     offset = m.offset if m.offset else 0
+    if 'Album:' in m.query:
     
