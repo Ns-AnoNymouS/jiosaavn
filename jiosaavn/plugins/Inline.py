@@ -49,7 +49,8 @@ async def search_inline(c, m):
                 songs = result['more_info']['song_count'] if 'more_info' in result else 0
                 description = result['subtitle'] if 'subtitle' in result else ''
                 image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
-                
+                inlinedescription = "🎙 Total Songs:** {songs}\n📕 Language:** {language}\n🎴 Year: {year}"
+
                 text = f"[\u2063]({image_url})"
                 text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in result else ''
                 text += f"**🔊 Total Songs:** {songs}\n\n"
@@ -62,7 +63,7 @@ async def search_inline(c, m):
                     InlineQueryResultArticle(
                         thumb_url=image_url,
                         title=title,
-                        description=description,
+                        description=inlinedescription,
                         input_message_content=InputTextMessageContent(message_text=text),
                         reply_markup=InlineKeyboardMarkup(button)
                 ))
