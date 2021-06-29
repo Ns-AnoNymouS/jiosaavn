@@ -136,3 +136,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         performer=artists,
         parse_mode="markdown"
     )
+    try:
+        os.remove(file_name)
+    except:
+        pass
