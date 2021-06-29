@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
 
 
-@Client.on_message(filters.text & filters.incoming & filters.private & ~filters.regex('.*http.*') & ~filters.edited)
+@Client.on_message(filters.text & filters.incoming & filters.private & ~filters.regex('.*http.*') & ~filters.edited & ~filters.via_bot)
 async def search(c, m):
     send_msg = await m.reply_text('__**Processing... ⏳**__', quote=True)
 
