@@ -75,4 +75,5 @@ async def lyrics(c, m):
         lyrics = data['lyrics'].encode().decode().replace('<br>', '\\n')
         if len(lyrics) <= 4096:
             callback_data = f'open+{lyrics_id}' if album_id == 'None' else f'open+{lyrics_id}+{album_id}'
-            await m.message.edit(lyrics)
+            button = [[InlineKeyboardButton('🔙', callback_data=callback_data)]]
+            await m.message.edit(lyrics, reply_markup=InlineKeyboardMarkup(button))
