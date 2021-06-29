@@ -37,7 +37,7 @@ async def opensong(c, m):
     type = 'all' if type == 'all' else 'song'
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons = [[
-        InlineKeyboardButton('lyrics 📃', callback_data='lyrics'),
+        InlineKeyboardButton('lyrics 📃', callback_data=f'lyrics+{song_id}'),
         InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{song_id}+song')
         ],[
         InlineKeyboardButton('🔙', callback_data=back_cb)
