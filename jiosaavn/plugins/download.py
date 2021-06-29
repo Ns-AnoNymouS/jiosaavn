@@ -167,9 +167,11 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     except:
         pass
 
-    song = await send_audio(c, m.from_user.id, file_name, text, int(duration), song, thumbnail_location, artists, reply_to_message_id)
-    await c.db.update_song(id, song.chat.id, song.message_id)
+    song_file = await send_audio(c, m.from_user.id, file_name, text, int(duration), song, thumbnail_location, artists, reply_to_message_id)
+    if not song_file:
+        return await c.send_message(chat_id=m.from_user.id, text=f"Failed to upload {song}")
     try:
+        await c.db.update_song(id, song_file.chat.id, song_file.message_id)
         os.remove(file_name)
     except:
         pass
