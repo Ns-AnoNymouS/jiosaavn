@@ -42,10 +42,14 @@ async def download(c, m, cb=False):
 
         reply_to_message_id = m.message_id
     else:
-        send_msg = m.message
-        await m.message.edit('**Processing...**')
+        if m.inline_message_id:
+            send_msg = await c.send_message(chat_id=m.from_user.id, text="*Processing...*")
+            reply_to_message_id = None
+        else:
+            send_msg = m.message
+            await m.message.edit('**Processing...**')
+            reply_to_message_id = m.message.reply_to_message.message_id
         cmd, id, type = m.data.split('+')
-        reply_to_message_id = m.message.reply_to_message.message_id
 
     if type == 'song':
         await download_tool(c, m, id, reply_to_message_id, send_msg)
