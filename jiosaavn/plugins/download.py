@@ -30,10 +30,10 @@ async def download(c, m, cb=False):
             async with aiohttp.ClientSession() as session:
                 async with session.get(m.text) as response:
                     try:
-                        id = response.text.split('"album_id":"')[1].split('"')[0]
+                        id = (await response.text()).split('"album_id":"')[1].split('"')[0]
                     except IndexError:
                         try:
-                            id = response.text.split('"page_id","')[1].split('","')[0]
+                            id = (await response.text()).split('"page_id","')[1].split('","')[0]
                         except:
                             return await send_msg.edit("**Invalid link 🤦**")
                     except:
