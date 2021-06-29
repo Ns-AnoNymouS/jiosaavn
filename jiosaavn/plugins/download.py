@@ -60,6 +60,7 @@ async def download(c, m, cb=False):
         'albumid': id
     }
     data = await req(url, params)
+    album_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
     text = f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
