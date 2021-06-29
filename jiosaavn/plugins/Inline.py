@@ -14,7 +14,7 @@ async def search_inline(c, m):
         )
         return
 
-    if m.query == 'Album: '
+    if m.query == 'Album: ':
         await m.answer(
             results=[],
             cache_time=0,
