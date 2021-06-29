@@ -101,7 +101,10 @@ async def search_inline(c, m):
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
                 language = result['language'] if 'language' in result else ''
-                album_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
+                song_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
+                play_count = result['play_count'] if 'play_count' in result else 0
+                album = result['more_info']['album'] if 'album' in result['more_info'] else ''
+                album_url = result['more_info']['album_url'] if 'album_url' in result['more_info'] else ''
                 year = result['year'] if 'year' in result else ''
                 songs = result['more_info']['song_count'] if 'more_info' in result else 0
                 description = result['subtitle'] if 'subtitle' in result else ''
@@ -109,8 +112,9 @@ async def search_inline(c, m):
                 inlinedescription = f"• Total Songs: {songs}\n• Language: {language}\n• Year: {year}"
 
                 text = f"[\u2063]({image_url})"
-                text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in result else ''
-                text += f"**🔊 Total Songs:** {songs}\n\n"
+                text += f"**🎙 Song:** [{title}]({song_url})\n\n"
+                text += f"**📚 Album:** [{album}]({album_url})\n\n" if 'title' in result else ''
+                text += f"**▶️ Plays Count:** {play_count}\n\n"
                 text += f"**📰 Language:** {language}\n\n"
                 text += f"**📆 Year:** __{year}__\n\n"
                 text += f"**📋 Description:** {description}"
