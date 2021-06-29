@@ -106,7 +106,6 @@ async def search_inline(c, m):
                 album = result['more_info']['album'] if 'album' in result['more_info'] else ''
                 album_url = result['more_info']['album_url'] if 'album_url' in result['more_info'] else ''
                 year = result['year'] if 'year' in result else ''
-                songs = result['more_info']['song_count'] if 'more_info' in result else 0
                 description = result['subtitle'] if 'subtitle' in result else ''
                 image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
                 music = result['music'] if 'music' in result else ''
