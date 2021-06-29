@@ -36,6 +36,7 @@ async def openalbum(c, m):
 
     text = f"[\u2063]({image_url})"
     text += f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
+    text += f"**🔊 Total Songs:** {len(songs)}"
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
     try:
