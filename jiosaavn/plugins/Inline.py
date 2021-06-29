@@ -14,7 +14,7 @@ async def search_inline(c, m):
         )
         return
 
-    offset = m.offset if m.offset else 1
+    offset = int(m.offset) if m.offset else 1
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         'p': offset,
@@ -69,7 +69,7 @@ async def search_inline(c, m):
                 cache_time=0,
                 switch_pm_text=f"📚 {data['total']} results found for '{m.query.replace('Album:', '').strip()}'",
                 switch_pm_parameter="help",
-                next_offset=offset+1
+                next_offset=str(offset+1)
             )
 
         else:
