@@ -17,7 +17,7 @@ async def openalbum(c, m):
         'albumid': album_id
     }
     data = await req(url, params)
-
+    print(data)
     songs = data['songs']
     buttons = []
     for song in songs:
@@ -36,7 +36,7 @@ async def openalbum(c, m):
 
     text = f"[\u2063]({image_url})"
     text += f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
-    text += f"**🔊 Total Songs:** {len(songs)}"
+    text += f"**🔊 Total Songs:** {len(songs)}\n\n"
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
     try:
