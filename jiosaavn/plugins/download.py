@@ -47,6 +47,9 @@ async def download(c, m, cb=False):
     for song in songs:
         id = song['id'] if 'id' in song else None
         await download_tool(c, m, id, reply_to_message_id, send_msg)
+    text += f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
+    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
+    await send_msg.edit(text)
 
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
