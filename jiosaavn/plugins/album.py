@@ -40,6 +40,8 @@ async def openalbum(c, m):
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
     try:
+        if m.inline_message_id:
+            return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=text, reply_markup=InlineKeyboardMarkup(buttons))
         await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     except:
         pass
