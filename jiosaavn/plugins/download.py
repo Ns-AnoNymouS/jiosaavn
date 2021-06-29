@@ -82,7 +82,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
             with open(file_name, "wb") as file:
                 while True:
                     try:
-                        chunk = await response.StreamReader.readany(4 * 1024 * 1024)
+                        chunk = await response.content.readany(4 * 1024 * 1024)
                     except:
                         break
                     if not chunk:
