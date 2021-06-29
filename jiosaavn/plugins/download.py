@@ -13,15 +13,32 @@ async def download(c, m, cb=False):
             await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
         type = 'song' if 'song' in m.text else 'album'
 
-        async with aiohttp.ClientSession() as session:
-            async with session.get(m.text, data=[('bitrate', '320')]) as response:
-                try:
-                    id = (await response.text()).split('"song":{"type":"')[1].split('","image":')[0].split('"id":"')[-1]
-                except IndexError:
+        if type == 'song':
+            async with aiohttp.ClientSession() as session:
+                async with session.get(m.text, data=[('bitrate', '320')]) as response:
                     try:
-                        id = ((await response.text()).split('"pid":"'))[1].split('","')[0]
+                        id = (await response.text()).split('"song":{"type":"')[1].split('","image":')[0].split('"id":"')[-1]
+                    except IndexError:
+                        try:
+                            id = ((await response.text()).split('"pid":"'))[1].split('","')[0]
+                        except:
+                            return await send_msg.edit("**Invalid link 🤦**")
                     except:
-                        await send_msg.edit("**Invalid link 🤦**")
+                        return await send_msg.edit("**Invalid link 🤦**")
+
+        elif type == 'album':
+            async with aiohttp.ClientSession() as session:
+                async with session.get(m.text) as response:
+                    try:
+                        id = response.text.split('"album_id":"')[1].split('"')[0]
+                    except IndexError:
+                        try:
+                            id = response.text.split('"page_id","')[1].split('","')[0]
+                        except:
+                            return await send_msg.edit("**Invalid link 🤦**")
+                    except:
+                        return await send_msg.edit("**Invalid link 🤦**")
+
         reply_to_message_id = m.message_id
     else:
         send_msg = m.message
