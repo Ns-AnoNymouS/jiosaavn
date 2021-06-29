@@ -42,7 +42,7 @@ async def opensong(c, m):
         InlineKeyboardButton('🔙', callback_data=back_cb)
     ]]
     if data['has_lyrics']:
-        buttons[0].insert(0, InlineKeyboardButton('lyrics 📃', callback_data=f'lyrics+{song_id}'))
+        buttons[0].insert(0, InlineKeyboardButton('lyrics 📃', callback_data=f'lyrics+{song_id}+{album_id}'))
 
     try:
         if m.inline_message_id:
@@ -60,7 +60,7 @@ async def upload_cb(c, m):
 
 @Client.on_callback_query(filters.regex('lyrics\+'))
 async def lyrics(c, m):
-    lyrics_id = m.data.split('+')[1]
+    cmd, lyrics_id, album_id = m.data.split('+')
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         '__call': 'lyrics.getLyrics',
@@ -74,4 +74,5 @@ async def lyrics(c, m):
     if 'lyrics' in data:
         lyrics = data['lyrics'].encode().decode().replace('<br>', '\\n')
         if len(lyrics) <= 4096:
+            callback_data = f'open+{lyrics_id}' if album_id == 'None' else f'open+{lyrics_id}+{album_id}'
             await m.message.edit(lyrics)
