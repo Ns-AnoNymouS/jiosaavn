@@ -85,10 +85,10 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         try:
             song_msg = await c.get_messages(chat_id=int(song.chat_id), message_ids=int(song.message_id))
             if not song_msg.empty:
-                await song_msg.copy(chat_id=m.chat.id, reply_to_message_id=reply_to_message_id)
+                await song_msg.copy(chat_id=m.from_user.id, reply_to_message_id=reply_to_message_id)
                 return
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
@@ -174,7 +174,8 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         title=song,
         thumb=thumbnail_location,
         performer=artists,
-        parse_mode="markdown"
+        parse_mode="markdown",
+        reply_to_message_id=reply_to_message_id
     )
     await c.db.update_song(id, song.chat.id, song.message_id)
     try:
