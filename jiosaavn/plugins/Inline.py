@@ -84,14 +84,14 @@ async def search_inline(c, m):
             )
             return
     else:
-        params['__call'] = 'search.getAlbumResults'
+        params['__call'] = 'search.getResults'
         data = await req(url, params)
         if 'total' in data:
             if data['total'] == 0:
                 await m.answer(
                     results=[],
                     cache_time=0,
-                    switch_pm_text=f"❌ No Album search result found for '{m.query.replace('Album:', '').strip()}'",
+                    switch_pm_text=f"❌ No song search result found for '{m.query}'",
                     switch_pm_parameter="help",
                 )
                 return
@@ -136,7 +136,7 @@ async def search_inline(c, m):
             await m.answer(
                 results=[],
                 cache_time=0,
-                switch_pm_text=f"🔎 Type the Album name for searching...",
+                switch_pm_text=f"🔎 Type the song name for searching...",
                 switch_pm_parameter="help",
             )
             return
