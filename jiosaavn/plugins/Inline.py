@@ -46,8 +46,9 @@ async def search_inline(c, m):
                 album_url = result['perma_url'] if 'perma_url' in result else ''
                 year = result['year'] if 'year' in result else ''
                 songs = result['song_count'] if 'song_count' in result else 0
-
-
+                description = result['subtitle'] if 'subtitle' in result else ''
+                image = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
+                
         else:
             await m.answer(
                 results=[],
