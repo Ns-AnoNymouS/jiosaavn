@@ -11,7 +11,13 @@ async def download(c, m, cb=False):
         if 'jiosaavn' not in m.text:
             await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
         type = 'song' if 'song' in m.text else 'album'
-        id = m.text.split('/')[-1]
+        res = await req(url, data=[('bitrate', '320')])
+        print(res)
+        try:
+            id = res.text.split('"song":{"type":"')[1].split('","image":')[0].split('"id":"')[-1]
+        except IndexError:
+            id = (res.text.split('"pid":"'))[1].split('","')[0]
+
         reply_to_message_id = m.message_id
     else:
         send_msg = m.message
