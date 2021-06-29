@@ -38,6 +38,7 @@ async def search_inline(c, m):
                     switch_pm_parameter="help",
                 )
                 return
+            print(data)
             for result in data['results']:
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
