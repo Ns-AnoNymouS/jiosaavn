@@ -25,4 +25,13 @@ async def search_inline(c, m):
 
     offset = m.offset if m.offset else 0
     if 'Album:' in m.query:
-    
+        url = 'https://www.jiosaavn.com/api.php?'
+        params = {
+            '__call': 'content.getAlbumDetails',
+            'cc': 'in',
+            '_marker': '0%3F_marker%3D0',
+            '_format': 'json',
+            'albumid': album_id
+        }
+        data = await req(url, params)
+
