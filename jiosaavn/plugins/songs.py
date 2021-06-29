@@ -24,7 +24,7 @@ async def opensong(c, m):
     album_url = data['album_url'].encode().decode() if 'album_url' in data else ''
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
     song_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
-    print(data)
+
     text = f"[\u2063]({image_url})"
     text += f"**🎧 Song:** [{data['song']}]({song_url})\n\n" if 'song' in data else ''
     text += f"**📚 Album:** [{data['album']}]({album_url})\n\n" if 'album' in data else ''
@@ -37,11 +37,13 @@ async def opensong(c, m):
     type = 'all' if type == 'all' else 'song'
     back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
     buttons = [[
-        InlineKeyboardButton('lyrics 📃', callback_data=f'lyrics+{song_id}'),
         InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{song_id}+song')
         ],[
         InlineKeyboardButton('🔙', callback_data=back_cb)
     ]]
+    if data['has_lyrics']:
+        buttons[0].insert(0, InlineKeyboardButton('lyrics 📃', callback_data=f'lyrics+{song_id}'))
+
     try:
         if m.inline_message_id:
             return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=text, reply_markup=InlineKeyboardMarkup(buttons))
