@@ -43,6 +43,8 @@ async def download(c, m, cb=False):
         'albumid': album_id
     }
     data = await req(url, params)
+    await send_msg.delete()
+    await c.send_photo(chat_id=m.from_user.id, photo=)
     songs = data['songs']
     for song in songs:
         id = song['id'] if 'id' in song else None
@@ -102,7 +104,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     try:
         await msg.edit(f'__📥 Downloading {song}__')
         await c.send_chat_action(
-            chat_id=message.chat.id,
+            chat_id=m.from_user.id,
             action="record_audio"
         )
     except:
@@ -134,7 +136,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     try:
         await msg.edit(f'__📤 Uploading {song}__')
         await c.send_chat_action(
-            chat_id=message.chat.id,
+            chat_id=m.from_user.id,
             action="upload_audio"
         )
     except:
