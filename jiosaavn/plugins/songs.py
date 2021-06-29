@@ -87,7 +87,7 @@ async def lyrics(c, m):
         print(data)
         with open(f"{data['snippet']} song lyrics.txt", 'w') as f:
             f.write(lyrics)
-        await c.send_message(chat_id=m.from_user.id, document=f"{data['snippet']} song lyrics.txt")
+        await c.send_document(chat_id=m.from_user.id, document=f"{data['snippet']} song lyrics.txt")
         
     else:
         await m.answer('No lyrics Found 😶')
