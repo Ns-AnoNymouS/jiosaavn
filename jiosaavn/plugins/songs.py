@@ -77,3 +77,5 @@ async def lyrics(c, m):
             callback_data = f'open+{lyrics_id}' if album_id == 'None' else f'open+{lyrics_id}+{album_id}'
             button = [[InlineKeyboardButton('🔙', callback_data=callback_data)]]
             await m.message.edit(lyrics, reply_markup=InlineKeyboardMarkup(button))
+    else:
+        await m.answer('No lyrics Found 😶')
