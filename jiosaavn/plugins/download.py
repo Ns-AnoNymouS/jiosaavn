@@ -84,7 +84,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     if is_exist:
         song = await c.db.get_song(id)
         try:
-            song_msg = await c.get_messages(chat_id=int(song.chat_id), message_ids=int(song.message_id))
+            song_msg = await c.get_messages(chat_id=int(song.get('chat_id')), message_ids=int(song.get('message_id')))
             if not song_msg.empty:
                 is_sent = await copy(song_msg, m.from_user.id, reply_to_message_id)
                 if is_sent:
