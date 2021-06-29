@@ -23,7 +23,7 @@ async def search_inline(c, m):
         '_marker': 0,
         'api_version': 4,
         'ctx': 'wap6dot0',
-        'n': 10
+        'n': 5
     }
 
     if 'Album:' in m.query:
@@ -38,7 +38,11 @@ async def search_inline(c, m):
                     switch_pm_parameter="help",
                 )
                 return
-            for song
+            for result in data['results']:
+                title = result['title'] if 'title' in result else ''
+                id = result['id'] if 'id' in result else None
+                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+
         else:
             await m.answer(
                 results=[],
