@@ -14,12 +14,12 @@ async def download(c, m, cb=False):
 
         async with aiohttp.ClientSession() as session:
             async with session.get(m.text, data=[('bitrate', '320')]) as response:
-                print(response.text)
+                print(response.text())
                 try:
-                    id = await response.text().split('"song":{"type":"')[1].split('","image":')[0].split('"id":"')[-1]
+                    id = response.text().split('"song":{"type":"')[1].split('","image":')[0].split('"id":"')[-1]
                 except IndexError:
                     try:
-                        id = (await response.text().split('"pid":"'))[1].split('","')[0]
+                        id = (response.text().split('"pid":"'))[1].split('","')[0]
                     except:
                         await send_msg.edit("**Invalid link 🤦**")
         reply_to_message_id = m.message_id
