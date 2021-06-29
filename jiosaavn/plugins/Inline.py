@@ -119,7 +119,7 @@ async def search_inline(c, m):
                 text = f"[\u2063]({image_url})"
                 text += f"**🎙 Song:** [{title}]({song_url})\n\n"
                 text += f"**📚 Album:** [{album}]({album_url})\n\n" if 'title' in result else ''
-                text += f"**▶️ Plays Count:** {play_count}\n\n"
+                text += f"**▶️ Plays Count:** __{play_count}__\n\n"
                 text += f"**🥁 Music:** {music}\n\n"
                 text += f"**📰 Language:** {language}\n\n"
                 text += f"**📆 Year:** __{year}__\n\n"
