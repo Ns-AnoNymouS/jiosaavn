@@ -88,7 +88,9 @@ async def download(c, m, cb=False):
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
     is_exist = await c.db.is_id_exist(id)
-    user = await c.db.
+    if not await c.db.is_user_exist(m.from_user.id):
+        await c.db.add_user(m.from_user.id)
+
     if is_exist:
         song = await c.db.get_song(id)
         try:
