@@ -12,7 +12,13 @@ async def download(c, m, cb=False):
         send_msg = await m.reply_text('**Checking...🕵‍♂️**', quote=True)
         if 'jiosaavn' not in m.text:
             await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
-        type = 'song' if 'song' in m.text else 'album'
+
+        if 'song' in m.text:
+            type = 'song'
+        elif 'album' in m.text:
+            type = 'album'
+        elif 'feature' in m.text:
+            type = 'playlist' 
 
         if type == 'song':
             async with aiohttp.ClientSession() as session:
