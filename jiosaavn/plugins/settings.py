@@ -12,6 +12,7 @@ async def settings(c, m, cb=False):
     tx1 = '✅ All' if type == 'all' else 'All'
     tx2 = '✅ Albums' if type == 'album' else 'Albums' 
     tx3 = '✅ Songs' if type == 'song' else 'Songs'
+    ql1 = '✅ 320kbps' if quality == '320kbps' else '320kbps' 
     buttons = [[
         InlineKeyboardButton(tx1, callback_data='settings+type+all'),
         InlineKeyboardButton(tx2, callback_data='settings+type+album'),
