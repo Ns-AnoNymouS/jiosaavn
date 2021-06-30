@@ -3,8 +3,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from ..tools.request import req
 
 
-@Client.on_callback_query(filters.regex('^album\+'))
-async def openalbum(c, m):
+@Client.on_callback_query(filters.regex('^playlist\+'))
+async def openplaylist(c, m):
     await m.answer()
     album_id = m.data.split('+')[1]
 
