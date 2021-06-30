@@ -10,5 +10,7 @@ async def start(c, m):
         ],[
         InlineKeyboardButton('Help 💡', callback_data='help'),
         InlineKeyboardButton('Settings ⚙', callback_data='settings')
+        ],[
+        InlineKeyboardButton
     ]]
     await m.reply_text(text)
