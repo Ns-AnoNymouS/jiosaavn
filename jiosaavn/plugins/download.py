@@ -56,7 +56,8 @@ async def download(c, m, cb=False):
                         return await send_msg.edit("**Invalid link 🤦**")
 
         elif 'artist' in m.text:
-            type = 'playlist' 
+            return await send_msg.edit("**Sorry artist download was not available 😶**")
+            """type = 'playlist' 
             async with aiohttp.ClientSession() as session:
                 async with session.get(m.text) as response:
                     try:
@@ -67,7 +68,7 @@ async def download(c, m, cb=False):
                         except:
                             id = await send_msg.edit("**Invalid link 🤦**")
                     except:
-                        return await send_msg.edit("**Invalid link 🤦**")
+                        return await send_msg.edit("**Invalid link 🤦**")"""
 
         else:
             return await send_msg.edit("**Invalid link 🤦**")
