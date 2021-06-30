@@ -7,8 +7,9 @@ from ..tools.request import req
 async def settings(c, m, cb=False):
     if not await c.db.is_user_exist(m.from_user.id):
         await c.db.add_user(m.from_user.id)
-    type = (await c.db.get_user(m.from_user.id))['type']
-    quality = (await c.db.get_user(m.from_user.id))['quality']
+    user = await c.db.get_user(m.from_user.id)
+    type = user['type']
+    quality = user['quality']
     tx1 = '✅ All' if type == 'all' else 'All'
     tx2 = '✅ Albums' if type == 'album' else 'Albums' 
     tx3 = '✅ Songs' if type == 'song' else 'Songs'
