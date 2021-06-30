@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+
 @Client.on_message(filters.command('start') & filters.private & filters.incoming)
 async def start(c, m, cb=False):
     text = f"Hi {m.from_user.mention(style='md')},\n\nI am a telegram prowerful jiosaavn bot helps you to search and download songs, playlists, Albums, etc from jiosaavn.\n\n**Maintained By:** [Anonymous](https://t.me/Ns_AnoNymous)"
@@ -96,3 +97,28 @@ async def about(c, m, cb=False):
             pass
     else:
         await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+
+
+@Client.on_callback_query(filters.regex('^help$'))
+async def help_cb(c, m):
+    await m.answer()
+    await help(c, m, True)
+
+@Client.on_callback_query(filters.regex('^about$'))
+async def about_cb(c, m):
+    await m.answer()
+    await about(c, m, True)
+
+@Client.on_callback_query(filters.regex('^home$'))
+async def start_cb(c, m):
+    await m.answer()
+    await start(c, m, True)
+
+@Client.on_callback_query(filters.regex('^help$'))
+async def close_cb(c, m):
+    await m.answer()
+    try:
+        await m.message.delete()
+        await m.message.reply_to_message.delete()
+    except:
+        pass
