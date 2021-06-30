@@ -18,7 +18,7 @@ async def search_inline(c, m):
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         'p': offset,
-        'q': m.query.replace('Album:', '').strip(),
+        'q': m.query.replace('Album:', '').replace('Playlist:', '').strip(),
         '_format': 'json',
         '_marker': 0,
         'api_version': 4,
@@ -138,7 +138,7 @@ async def search_inline(c, m):
             await m.answer(
                 results=inlineresults,
                 cache_time=0,
-                switch_pm_text=f"📚 {data['total']} results found for Album '{m.query.replace('Album:', '').strip()}'",
+                switch_pm_text=f"💾 {data['total']} results found for Playlist '{m.query.replace('Playlist:', '').strip()}'",
                 switch_pm_parameter="help",
                 next_offset=str(offset+1)
             )
