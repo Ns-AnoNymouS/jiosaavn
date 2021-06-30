@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 @Client.on_message(filters.command('start') & filters.private & filters.incoming)
-async def start(c, m):
+async def start(c, m, cb=False):
     text = f"Hi {m.from_user.mention(style='md')},\n\nI am a telegram prowerful jiosaavn bot helps you to search and download songs, playlists, Albums, etc from jiosaavn.\n\n**Maintained By:** [Anonymous](https://t.me/Ns_AnoNymous)"
     buttons = [[
         InlineKeyboardButton('My Father 🧑', url='https://t.me/Ns_AnoNymous'),
@@ -17,4 +17,10 @@ async def start(c, m):
         InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist: "),
         InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
     ]]
-    await m.reply_text(text)
+    if cb:
+        try:
+            await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+        except:
+            pass
+    else:
+        await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
