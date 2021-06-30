@@ -63,6 +63,9 @@ async def search_inline(c, m):
                     ],[
                     InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
                     InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+                    ],[
+                    InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist:"),
+                    InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
                 ]]
                 inlineresults.append(
                     InlineQueryResultArticle(
@@ -108,7 +111,7 @@ async def search_inline(c, m):
                 id = result['id'] if 'id' in result else None
                 album_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
                 songs = result['more_info']['song_count'] if 'more_info' in result else 0
-                followers = result['subtitle'] if 'subtitle' in result else ''
+                followers = result['follower_count'] if 'follower_count' in result else ''
                 image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
                 inlinedescription = f"• Total Songs: {songs}\n• Followers: {followers}"
 
@@ -118,10 +121,13 @@ async def search_inline(c, m):
                 text += f"**👥 Followers:** {followers}"
 
                 button = [[
-                    InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')
+                    InlineKeyboardButton('Show Songs 👀', callback_data=f'playlist+{id}')
                     ],[
                     InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
                     InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+                    ],[
+                    InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist:"),
+                    InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
                 ]]
                 inlineresults.append(
                     InlineQueryResultArticle(
@@ -190,6 +196,9 @@ async def search_inline(c, m):
                     ],[
                     InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
                     InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+                    ],[
+                    InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist:"),
+                    InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
                 ]]
 
                 inlineresults.append(
