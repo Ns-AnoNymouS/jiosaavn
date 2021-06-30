@@ -106,20 +106,16 @@ async def search_inline(c, m):
             for result in data['results']:
                 title = result['title'] if 'title' in result else ''
                 id = result['id'] if 'id' in result else None
-                language = result['language'] if 'language' in result else ''
                 album_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
-                year = result['year'] if 'year' in result else ''
                 songs = result['more_info']['song_count'] if 'more_info' in result else 0
-                description = result['subtitle'] if 'subtitle' in result else ''
+                followers = result['subtitle'] if 'subtitle' in result else ''
                 image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
-                inlinedescription = f"• Total Songs: {songs}\n• Language: {language}\n• Year: {year}"
+                inlinedescription = f"• Total Songs: {songs}\n• Followers: {followers}"
 
                 text = f"[\u2063]({image_url})"
                 text += f"**💾 Playlist:** [{title}]({album_url})\n\n" if 'title' in result else ''
                 text += f"**🔊 Total Songs:** {songs}\n\n"
-                text += f"**📰 Language:** {language}\n\n"
-                text += f"**📆 Year:** __{year}__\n\n"
-                text += f"**📋 Description:** {description}"
+                text += f"**👥 Followers:** {followers}"
 
                 button = [[
                     InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')
@@ -147,7 +143,7 @@ async def search_inline(c, m):
             await m.answer(
                 results=[],
                 cache_time=0,
-                switch_pm_text=f"🔎 Type the Album name for searching...",
+                switch_pm_text=f"🔎 Type the Playlist name for searching...",
                 switch_pm_parameter="help",
             )
             return
