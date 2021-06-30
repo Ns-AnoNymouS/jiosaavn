@@ -11,11 +11,11 @@ async def start(c, m, cb=False):
         InlineKeyboardButton('Help 💡', callback_data='help'),
         InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ],[
-        InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
-        InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+        InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
+        InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
         ],[
-        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist: "),
-        InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
+        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
+        InlineKeyboardButton('Search Artist 🔍', switch_inline_query="Artist: ")
     ]]
     if cb:
         try:
@@ -24,3 +24,41 @@ async def start(c, m, cb=False):
             pass
     else:
         await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+
+
+@Client.on_message(filters.command('help') & filters.private & filters.incoming)
+async def help(c, m, cb=False):
+    text = """**Its is very simple to use me 😉**
+
+Just open the /settings and change the settings as your choice.
+
+The send me the name of song or playlist or album or singer.
+
+You can also use me inline 😊.
+"""
+    buttons = [[
+        InlineKeyboardButton('About 📕', callback_data='about')
+        InlineKeyboardButton('Settings ⚙', callback_data='settings')
+        ],[
+        InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
+        InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
+        ],[
+        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
+        InlineKeyboardButton('Search Artist 🔍', switch_inline_query="Artist: ")
+        ],[
+        InlineKeyboardButton('Home 🏕', callback_data='home'),
+        InlineKeyboardButton('Close ❌', callback_data='close')
+    ]]
+    if cb:
+        try:
+            await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+        except:
+            pass
+    else:
+        await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+
+
+@Client.on_message(filters.command('about') & filters.private & filters.incoming)
+async def about(c, m, cb=False):
+    text = "
+"
