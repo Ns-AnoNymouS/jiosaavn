@@ -78,6 +78,7 @@ async def lyrics(c, m):
             callback_data = f'open+{lyrics_id}' if album_id == 'None' else f'open+{lyrics_id}+{album_id}'
             button = [[InlineKeyboardButton('🔙', callback_data=callback_data)]]
             try:
+                await m.answer()
                 if m.inline_message_id:
                     return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=lyrics, reply_markup=InlineKeyboardMarkup(buttons))
                 await m.message.edit(lyrics, reply_markup=InlineKeyboardMarkup(button))
@@ -86,7 +87,11 @@ async def lyrics(c, m):
         else:
             with open(f"{data['snippet']} song lyrics.txt", 'w') as f:
                 f.write(lyrics)
-            await c.send_document(chat_id=m.from_user.id, document=f"{data['snippet']} song lyrics.txt")
-        
+            try:
+                await c.send_document(chat_id=m.from_user.id, document=f"{data['snippet']} song lyrics.txt")
+                await m.answer()
+            except:
+                if m.inline_message_id:
+                    await m.answer('This lyrics was too long so i want to send a document.\n\nSo please start the bot 🤖')
     else:
         await m.answer('No lyrics Found 😶')
