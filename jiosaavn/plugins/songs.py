@@ -92,6 +92,6 @@ async def lyrics(c, m):
                 await m.answer()
             except:
                 if m.inline_message_id:
-                    await m.answer('This lyrics was too long so i want to send a document.\n\nSo please start the bot 🤖')
+                    await m.answer('This lyrics was too long so i want to send a document.\n\nSo please start the bot 🤖', show_alert=True)
     else:
-        await m.answer('No lyrics Found 😶')
+        await m.answer('No lyrics Found 😶', show_alert=True)
