@@ -78,10 +78,10 @@ async def download(c, m, cb=False):
         '_format': 'json'
     }
 
-    if type == 'playlist:
+    if type == 'playlist':
         params['__call'] = 'playlist.getDetails'
         params['listid'] = id
-    if type == 'album:
+    if type == 'album':
         params['__call'] = 'content.getAlbumDetails'
         params['albumid'] = id
     data = await req(url, params)
