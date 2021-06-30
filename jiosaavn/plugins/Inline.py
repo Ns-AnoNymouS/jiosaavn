@@ -65,7 +65,6 @@ async def search_inline(c, m):
                     InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
                     ],[
                     InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist:"),
-                    InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
                 ]]
                 inlineresults.append(
                     InlineQueryResultArticle(
@@ -125,7 +124,6 @@ async def search_inline(c, m):
                     InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
                     ],[
                     InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist:"),
-                    InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
                 ]]
                 inlineresults.append(
                     InlineQueryResultArticle(
@@ -196,7 +194,6 @@ async def search_inline(c, m):
                     InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
                     ],[
                     InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist:"),
-                    InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
                 ]]
 
                 inlineresults.append(
