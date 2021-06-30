@@ -17,7 +17,7 @@ async def openplaylist(c, m):
         'listid': album_id
     }
     data = await req(url, params)
-    
+    print(data)
     songs = data['songs']
     buttons = []
     for song in songs:
@@ -27,7 +27,7 @@ async def openplaylist(c, m):
 
     buttons.append([InlineKeyboardButton('Upload Album 📤', callback_data=f'upload+{album_id}+album')])
     type = (await c.db.get_user(m.from_user.id))['type']
-    type = 'all' if type == 'all' else 'album'
+    type = 'all' if type == 'all' else 'playlist'
     back_cb = f'nxt+{type}+1'
     buttons.append([InlineKeyboardButton('🔙', callback_data=back_cb)])
 
