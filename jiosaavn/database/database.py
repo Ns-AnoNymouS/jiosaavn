@@ -49,6 +49,6 @@ class Database:
         song = await self.id_col.find_one({'id': id})
         return song
 
-    async def update_song(self, id, chat_id, message_id, quality):
+    async def update_song(self, id, quality, chat_id, message_id):
         await self.id_col.update_one({'id': id}, {'$set': {f'{quality}.chat_id': chat_id, f'{quality}.message_id': message_id}})   
 
