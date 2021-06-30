@@ -90,17 +90,18 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     is_exist = await c.db.is_id_exist(id)
     if not await c.db.is_user_exist(m.from_user.id):
         await c.db.add_user(m.from_user.id)
+    quality = (await c.db.get_user(m.from_user.id))['quality']
 
     if is_exist:
-        song = await c.db.get_song(id)
         try:
+            song = (await c.db.get_song(id))[quality]
             song_msg = await c.get_messages(chat_id=int(song.get('chat_id')), message_ids=int(song.get('message_id')))
             if not song_msg.empty:
                 is_sent = await copy(song_msg, m.from_user.id, reply_to_message_id)
                 if is_sent:
                     return
-        except Exception as e:
-            print(e)
+        except:
+            pass
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
@@ -182,7 +183,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     if not song_file:
         return await c.send_message(chat_id=m.from_user.id, text=f"Failed to upload {song}")
     try:
-        await c.db.update_song(id, song_file.chat.id, song_file.message_id)
+        await c.db.update_song(id, quality, song_file.chat.id, song_file.message_id)
         os.remove(file_name)
     except:
         pass
