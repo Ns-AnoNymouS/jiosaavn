@@ -35,11 +35,10 @@ class Database:
     
     async def get_type(self, id):
         user = await self.col.find_one({'id':id})
-        type = user.get('type')
-        return type
+        return user
 
-    async def update_type(self, id, value):
-        await self.col.update_one({'id': id}, {'$set': {'type': value}})   
+    async def update_user(self, id, key, value):
+        await self.col.update_one({'id': id}, {'$set': {key: value}})   
 
     async def is_id_exist(self, id):
         song = await self.id_col.find_one({'id': id})
