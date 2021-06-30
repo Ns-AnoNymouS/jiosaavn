@@ -47,15 +47,21 @@ async def search(c, m):
             return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
         total_results = data['total']
         for result in data['results']:
-            title = result['title'] if 'title' in result else ''
             id = result['id'] if 'id' in result else None
-            if result['type'] == 'song':
-                album = ''
-                if 'more_info' in result:
-                    album = result['more_info']['album'] if 'album' in result['more_info'] else ''
-                buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
-            elif result['type'] == 'album':
-                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+            if 'type' in result:
+                title = result['title'] if 'title' in result else ''
+                if result['type'] == 'song':
+                    album = ''
+                    if 'more_info' in result:
+                        album = result['more_info']['album'] if 'album' in result['more_info'] else ''
+                    buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+                elif result['type'] == 'album':
+                    buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+                elif result['type'] == 'playlist':
+                    buttons.append([InlineKeyboardButton(f"💾 {title}", callback_data=f'playlist+{id}')])
+            else:
+                buttons.append([InlineKeyboardButton(f"👨‍🎤 {result['name']}", callback_data=f'artist+{id}')])
+
     else:
         if not 'albums' in data:
             return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
@@ -121,6 +127,10 @@ async def nxt_cb(c, m):
         params['__call'] = 'search.getAlbumResults'
     elif type == 'song':
         params['__call'] = 'search.getResults'
+    elif type == 'artists':
+        params['__call'] = 'search.getArtistResults'
+    elif type == 'playlist':
+        params['__call'] = 'search.getPlaylistResults'
 
     data = await req(api_url, params)
 
