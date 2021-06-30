@@ -61,7 +61,7 @@ async def download(c, m, cb=False):
                 async with session.get(m.text) as response:
                     return print(await response.text())
                     try:
-                        id = (await response.text()).split('"type":"playlist","id":"')[1].split('"')[0]
+                        id = (await response.text()).split('"type":"artist","id":"')[1].split('"')[0]
                     except IndexError:
                         try:
                             id = (await response.text()).split('"page_id","')[1].split('","')[0]
