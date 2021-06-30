@@ -88,6 +88,69 @@ async def search_inline(c, m):
                 switch_pm_parameter="help",
             )
             return
+
+    elif 'Playlist:' in m.query:
+        params['__call'] = 'search.getPlaylistResults'
+        data = await req(url, params)
+        if 'total' in data:
+            if data['total'] == 0:
+                await m.answer(
+                    results=[],
+                    cache_time=0,
+                    switch_pm_text=f"❌ No Playlist search result found for '{m.query.replace('Album:', '').strip()}'",
+                    switch_pm_parameter="help",
+                )
+                return
+
+            inlineresults = []
+            for result in data['results']:
+                title = result['title'] if 'title' in result else ''
+                id = result['id'] if 'id' in result else None
+                language = result['language'] if 'language' in result else ''
+                album_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
+                year = result['year'] if 'year' in result else ''
+                songs = result['more_info']['song_count'] if 'more_info' in result else 0
+                description = result['subtitle'] if 'subtitle' in result else ''
+                image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
+                inlinedescription = f"• Total Songs: {songs}\n• Language: {language}\n• Year: {year}"
+
+                text = f"[\u2063]({image_url})"
+                text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in result else ''
+                text += f"**🔊 Total Songs:** {songs}\n\n"
+                text += f"**📰 Language:** {language}\n\n"
+                text += f"**📆 Year:** __{year}__\n\n"
+                text += f"**📋 Description:** {description}"
+
+                button = [[
+                    InlineKeyboardButton('Show Songs 👀', callback_data=f'album+{id}')
+                    ],[
+                    InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
+                    InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+                ]]
+                inlineresults.append(
+                    InlineQueryResultArticle(
+                        thumb_url=image_url,
+                        title=title,
+                        description=inlinedescription,
+                        input_message_content=InputTextMessageContent(message_text=text),
+                        reply_markup=InlineKeyboardMarkup(button)
+                ))
+            await m.answer(
+                results=inlineresults,
+                cache_time=0,
+                switch_pm_text=f"📚 {data['total']} results found for Album '{m.query.replace('Album:', '').strip()}'",
+                switch_pm_parameter="help",
+                next_offset=str(offset+1)
+            )
+
+        else:
+            await m.answer(
+                results=[],
+                cache_time=0,
+                switch_pm_text=f"🔎 Type the Album name for searching...",
+                switch_pm_parameter="help",
+            )
+            return
     else:
         params['__call'] = 'search.getResults'
         data = await req(url, params)
