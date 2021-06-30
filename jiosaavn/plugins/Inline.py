@@ -111,14 +111,12 @@ async def search_inline(c, m):
                 id = result['id'] if 'id' in result else None
                 album_url = result['perma_url'].encode().decode() if 'perma_url' in result else ''
                 songs = result['more_info']['song_count'] if 'more_info' in result else 0
-                followers = result['follower_count'] if 'follower_count' in result else ''
                 image_url = result['image'].replace('150x150', '500x500').encode().decode() if 'image' in result else None
-                inlinedescription = f"• Total Songs: {songs}\n• Followers: {followers}"
+                inlinedescription = f"• Total Songs: {songs}"
 
                 text = f"[\u2063]({image_url})"
                 text += f"**💾 Playlist:** [{title}]({album_url})\n\n" if 'title' in result else ''
                 text += f"**🔊 Total Songs:** {songs}\n\n"
-                text += f"**👥 Followers:** {followers}"
 
                 button = [[
                     InlineKeyboardButton('Show Songs 👀', callback_data=f'playlist+{id}')
