@@ -210,5 +210,6 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     try:
         await c.db.update_song(id, quality, song_file.chat.id, song_file.message_id)
         os.remove(file_name)
+        os.remove(thumbnail_location)
     except:
         pass
