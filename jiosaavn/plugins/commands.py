@@ -11,6 +11,10 @@ async def start(c, m):
         InlineKeyboardButton('Help 💡', callback_data='help'),
         InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ],[
-        InlineKeyboardButton
+        InlineKeyboardButton('Search Song 🔍', switch_inline_query_current_chat=""),
+        InlineKeyboardButton('Search Album 🔍', switch_inline_query_current_chat="Album: ")
+        ],[
+        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query_current_chat="Playlist: "),
+        InlineKeyboardButton('Search Artist 🔍', switch_inline_query_current_chat="Artist: ")
     ]]
     await m.reply_text(text)
