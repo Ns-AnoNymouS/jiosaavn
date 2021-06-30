@@ -11,7 +11,7 @@ async def download(c, m, cb=False):
     if not cb:
         send_msg = await m.reply_text('**Checking...🕵‍♂️**', quote=True)
         if 'jiosaavn' not in m.text:
-            await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
+            return await send_msg.edit('__Currently only jiosaavn links are supported 🤭__')
 
         if 'song' in m.text:
             type = 'song'
