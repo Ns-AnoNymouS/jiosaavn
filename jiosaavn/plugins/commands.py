@@ -6,17 +6,16 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 async def start(c, m, cb=False):
     text = f"Hi {m.from_user.mention(style='md')},\n\nI am a telegram prowerful jiosaavn bot helps you to search and download songs, playlists, Albums, etc from jiosaavn.\n\n**Maintained By:** [Anonymous](https://t.me/Ns_AnoNymous)"
     buttons = [[
+        InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
+        InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
+        ],[
+        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
+        ],[
         InlineKeyboardButton('My Father 🧑', url='https://t.me/Ns_AnoNymous'),
         InlineKeyboardButton('About 📕', callback_data='about')
         ],[
         InlineKeyboardButton('Help 💡', callback_data='help'),
         InlineKeyboardButton('Settings ⚙', callback_data='settings')
-        ],[
-        InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
-        InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
-        ],[
-        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
-        InlineKeyboardButton('Search Artist 🔍', switch_inline_query="Artist: ")
     ]]
     if cb:
         try:
@@ -38,14 +37,14 @@ The send me the name of song or playlist or album or singer.
 You can also use me inline 😊.
 """
     buttons = [[
-        InlineKeyboardButton('About 📕', callback_data='about'),
-        InlineKeyboardButton('Settings ⚙', callback_data='settings')
-        ],[
+
         InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
         InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
         ],[
         InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
-        InlineKeyboardButton('Search Artist 🔍', switch_inline_query="Artist: ")
+        ],[
+        InlineKeyboardButton('About 📕', callback_data='about'),
+        InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ],[
         InlineKeyboardButton('Home 🏕', callback_data='home'),
         InlineKeyboardButton('Close ❌', callback_data='close')
@@ -78,14 +77,13 @@ async def about(c, m, cb=False):
 **👥 Group:** [Ns BOT SUPPORT](https://t.me/Ns_Bot_supporters)
 """
     buttons = [[
-        InlineKeyboardButton('Help 💡', callback_data='help'),
-        InlineKeyboardButton('Settings ⚙', callback_data='settings')
-        ],[
         InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
         InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
         ],[
         InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
-        InlineKeyboardButton('Search Artist 🔍', switch_inline_query="Artist: ")
+        ],[
+        InlineKeyboardButton('Help 💡', callback_data='help'),
+        InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ],[
         InlineKeyboardButton('Home 🏕', callback_data='home'),
         InlineKeyboardButton('Close ❌', callback_data='close')
