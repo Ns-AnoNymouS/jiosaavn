@@ -60,5 +60,39 @@ You can also use me inline 😊.
 
 @Client.on_message(filters.command('about') & filters.private & filters.incoming)
 async def about(c, m, cb=False):
-    text = "
-"
+    me = await c.get_me()
+
+    text = f"""--**𝖬𝗒 𝖣𝖾𝗍𝖺𝗂𝗅𝗌 :**--
+
+**🤖 My Name:** {me.mention(style='md')}
+    
+**📝 Language:** [Python 3](https://www.python.org/)
+
+**🧰 FrameWork:** [Pyrogram](https://github.com/pyrogram/pyrogram)
+
+**👨‍💻 Developer:** [𝐀𝐧𝐨𝐧𝐲𝐦𝐨𝐮𝐬](https://t.me/Ns_AnoNymouS)
+
+**📢 Channel:** [NS BOT UPDATES](https://t.me/Ns_bot_updates)
+
+**👥 Group:** [Ns BOT SUPPORT](https://t.me/Ns_Bot_supporters)
+"""
+    buttons = [[
+        InlineKeyboardButton('Help 💡', callback_data='help')
+        InlineKeyboardButton('Settings ⚙', callback_data='settings')
+        ],[
+        InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
+        InlineKeyboardButton('Search Album 🔍', switch_inline_query="Album: ")
+        ],[
+        InlineKeyboardButton('Search Playlist 🔍', switch_inline_query="Playlist: "),
+        InlineKeyboardButton('Search Artist 🔍', switch_inline_query="Artist: ")
+        ],[
+        InlineKeyboardButton('Home 🏕', callback_data='home'),
+        InlineKeyboardButton('Close ❌', callback_data='close')
+    ]]
+    if cb:
+        try:
+            await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+        except:
+            pass
+    else:
+        await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
