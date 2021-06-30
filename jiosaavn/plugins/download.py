@@ -59,7 +59,7 @@ async def download(c, m, cb=False):
             type = 'playlist' 
             async with aiohttp.ClientSession() as session:
                 async with session.get(m.text) as response:
-                    return print(response)
+                    return print(await response.text())
                     try:
                         id = (await response.text()).split('"type":"playlist","id":"')[1].split('"')[0]
                     except IndexError:
