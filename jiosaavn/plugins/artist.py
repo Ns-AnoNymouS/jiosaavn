@@ -4,17 +4,22 @@ from ..tools.request import req
 
 
 @Client.on_callback_query(filters.regex('^artist\+'))
-async def openalbum(c, m):
+async def openartist(c, m):
     await m.answer()
     album_id = m.data.split('+')[1]
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        '__call': 'content.getArtistDetails',
-        'cc': 'in',
-        '_marker': '0%3F_marker%3D0',
+        '__call': 'webapi.get',
         '_format': 'json',
-        'albumid': album_id
+        'type'artist,
+        'token': album_id,
+        'n_song': 50,
+        'n_album': 50,
+        'includeMetaTags': 0,
+        'ctx': wap6dot0,
+        'api_version': 4,
+        '_marker': 0
     }
     data = await req(url, params)
     print(data)
