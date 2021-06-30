@@ -10,11 +10,11 @@ async def openplaylist(c, m):
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        '__call': 'content.getAlbumDetails',
+        '__call': 'playlist.getDetails',
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
         '_format': 'json',
-        'albumid': album_id
+        'listid': album_id
     }
     data = await req(url, params)
     
