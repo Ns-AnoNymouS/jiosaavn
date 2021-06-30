@@ -113,7 +113,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     }
     data = (await req(url, params))[id]
     url = data['media_preview_url'].replace("preview", "aac").encode().decode()
-    if data['320kbps']=="true" and :
+    if data['320kbps']=="true" and quality=='320kbps':
         url = url.replace("_96_p.mp4", "_320.mp4")
     else:
         url = url.replace("_96_p.mp4", "_160.mp4")
