@@ -15,12 +15,6 @@ async def download(c, m, cb=False):
 
         if 'song' in m.text:
             type = 'song'
-        elif 'album' in m.text:
-            type = 'album'
-        elif 'feature' in m.text:
-            type = 'playlist' 
-
-        if type == 'song':
             async with aiohttp.ClientSession() as session:
                 async with session.get(m.text, data=[('bitrate', '320')]) as response:
                     try:
@@ -33,7 +27,8 @@ async def download(c, m, cb=False):
                     except:
                         return await send_msg.edit("**Invalid link 🤦**")
 
-        elif type == 'album':
+        elif 'album' in m.text:
+            type = 'album'
             async with aiohttp.ClientSession() as session:
                 async with session.get(m.text) as response:
                     try:
@@ -43,6 +38,20 @@ async def download(c, m, cb=False):
                             id = (await response.text()).split('"page_id","')[1].split('","')[0]
                         except:
                             return await send_msg.edit("**Invalid link 🤦**")
+                    except:
+                        return await send_msg.edit("**Invalid link 🤦**")
+
+        elif 'feature' in m.text:
+            type = 'playlist' 
+            async with aiohttp.ClientSession() as session:
+                async with session.get(m.text) as response:
+                    try:
+                        id = (await response.text()).split('"type":"playlist","id":"')[1].split('"')[0]
+                    except IndexError:
+                        try:
+                            id = (await response.text()).split('"page_id","')[1].split('","')[0]
+                        except:
+                            id = await send_msg.edit("**Invalid link 🤦**")
                     except:
                         return await send_msg.edit("**Invalid link 🤦**")
 
@@ -117,6 +126,10 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         '_format': 'json',
         'pids': id
     }
+    """if type == 'playlist:
+        playlist.getDetails
+    if type == 'album:"""
+    return print(await req(url, params))
     data = (await req(url, params))[id]
     url = data['media_preview_url'].replace("preview", "aac").encode().decode()
     if data['320kbps']=="true" and quality=='320kbps':
