@@ -90,11 +90,11 @@ async def about(c, m, cb=False):
     ]]
     if cb:
         try:
-            await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+            await m.message.edit(text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
         except:
             pass
     else:
-        await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+        await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True, disable_web_page_preview=True)
 
 
 @Client.on_callback_query(filters.regex('^help$'))
