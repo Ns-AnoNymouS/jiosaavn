@@ -38,7 +38,7 @@ The send me the name of song or playlist or album or singer.
 You can also use me inline 😊.
 """
     buttons = [[
-        InlineKeyboardButton('About 📕', callback_data='about')
+        InlineKeyboardButton('About 📕', callback_data='about'),
         InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ],[
         InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
@@ -78,7 +78,7 @@ async def about(c, m, cb=False):
 **👥 Group:** [Ns BOT SUPPORT](https://t.me/Ns_Bot_supporters)
 """
     buttons = [[
-        InlineKeyboardButton('Help 💡', callback_data='help')
+        InlineKeyboardButton('Help 💡', callback_data='help'),
         InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ],[
         InlineKeyboardButton('Search Song 🔍', switch_inline_query=""),
