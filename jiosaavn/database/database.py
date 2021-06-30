@@ -33,7 +33,7 @@ class Database:
         user = self.new_user(id)
         await self.col.insert_one(user)
     
-    async def get_type(self, id):
+    async def get_user(self, id):
         user = await self.col.find_one({'id':id})
         return user
 
