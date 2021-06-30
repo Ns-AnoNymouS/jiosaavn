@@ -34,6 +34,10 @@ async def search(c, m):
         params['__call'] = 'search.getAlbumResults'
     elif type == 'song':
         params['__call'] = 'search.getResults'
+    elif type == 'artists':
+        params['__call'] = 'search.getArtistResults'
+    elif type == 'playlist':
+        params['__call'] = 'search.getPlaylistResults'
 
     data = await req(api_url, params)
     buttons = []
