@@ -38,9 +38,10 @@ async def settings(c, m, cb=False):
         await m.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
 
 
-@Client.on_callback_query(filters.regex('^settings\+'))
+@Client.on_callback_query(filters.regex('^settings'))
 async def settings_cb(c, m):
-    cmd, key, value = m.data.split('+')
-    await c.db.update_user(m.from_user.id, key, value)
+    if '+' in m.data:
+        cmd, key, value = m.data.split('+')
+        await c.db.update_user(m.from_user.id, key, value)
     await m.answer()
     await settings(c, m, True)
