@@ -80,10 +80,10 @@ async def lyrics(c, m):
             try:
                 await m.answer()
                 if m.inline_message_id:
-                    return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=lyrics, reply_markup=InlineKeyboardMarkup(buttons))
+                    return await c.edit_inline_text(inline_message_id=m.inline_message_id, text=lyrics, reply_markup=InlineKeyboardMarkup(button))
                 await m.message.edit(lyrics, reply_markup=InlineKeyboardMarkup(button))
-            except Exception as e:
-                print(e)
+            except:
+                pass
         else:
             with open(f"{data['snippet']} song lyrics.txt", 'w') as f:
                 f.write(lyrics)
