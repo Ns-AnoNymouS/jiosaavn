@@ -12,7 +12,7 @@ async def openartist(c, m):
     params = {
         '__call': 'webapi.get',
         '_format': 'json',
-        'type'artist,
+        'type': 'artist',
         'token': album_id,
         'n_song': 50,
         'n_album': 50,
