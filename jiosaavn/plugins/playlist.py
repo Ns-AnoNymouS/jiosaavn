@@ -17,7 +17,7 @@ async def openplaylist(c, m):
         'listid': album_id
     }
     data = await req(url, params)
-    print(data)
+
     songs = data['songs']
     buttons = []
     for song in songs:
@@ -35,9 +35,9 @@ async def openplaylist(c, m):
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
 
     text = f"[\u2063]({image_url})"
-    text += f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
+    text += f"**💾 Playlist:** [{data['listname']}]({album_url})\n\n" if 'listname' in data else ''
     text += f"**🔊 Total Songs:** {len(songs)}\n\n"
-    text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
+    text += f"**👥 Follwers:** __{data['follower_count']}__\n\n" if 'follower_count' in data else ''
 
     try:
         if m.inline_message_id:
