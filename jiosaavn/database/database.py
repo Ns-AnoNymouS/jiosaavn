@@ -16,6 +16,7 @@ class Database:
             id = id,
             join_date = datetime.date.today().isoformat(),
             type="all",
+            quality='320p',
             ban_status={
                 'is_banned': False,
                 'ban_duration': 0,
