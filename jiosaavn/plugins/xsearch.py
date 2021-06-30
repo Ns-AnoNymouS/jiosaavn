@@ -48,18 +48,17 @@ async def search(c, m):
         total_results = data['total']
         for result in data['results']:
             id = result['id'] if 'id' in result else None
-            if 'type' in result:
-                title = result['title'] if 'title' in result else ''
-                if result['type'] == 'song':
-                    album = ''
-                    if 'more_info' in result:
-                        album = result['more_info']['album'] if 'album' in result['more_info'] else ''
-                    buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
-                elif result['type'] == 'album':
-                    buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
-                elif result['type'] == 'playlist':
-                    buttons.append([InlineKeyboardButton(f"💾 {title}", callback_data=f'playlist+{id}')])
-            else:
+            title = result['title'] if 'title' in result else ''
+            if result['type'] == 'song':
+                album = ''
+                if 'more_info' in result:
+                    album = result['more_info']['album'] if 'album' in result['more_info'] else ''
+                buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+            elif result['type'] == 'album':
+                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+            elif result['type'] == 'playlist':
+                buttons.append([InlineKeyboardButton(f"💾 {title}", callback_data=f'playlist+{id}')])
+            elif result['type'] == 'artist':
                 buttons.append([InlineKeyboardButton(f"👨‍🎤 {result['name']}", callback_data=f'artist+{id}')])
 
     else:
@@ -139,18 +138,17 @@ async def nxt_cb(c, m):
         total_results = data['total']
         for result in data['results']:
             id = result['id'] if 'id' in result else None
-            if 'type' in result:
-                title = result['title'] if 'title' in result else ''
-                if result['type'] == 'song':
-                    album = ''
-                    if 'more_info' in result:
-                        album = result['more_info']['album'] if 'album' in result['more_info'] else ''
-                    buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
-                elif result['type'] == 'album':
-                    buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
-                elif result['type'] == 'playlist':
-                    buttons.append([InlineKeyboardButton(f"💾 {title}", callback_data=f'playlist+{id}')])
-            else:
+            title = result['title'] if 'title' in result else ''
+            if result['type'] == 'song':
+                album = ''
+                if 'more_info' in result:
+                    album = result['more_info']['album'] if 'album' in result['more_info'] else ''
+                buttons.append([InlineKeyboardButton(f"🎙 {title} from '{album}'", callback_data=f'open+{id}')])
+            elif result['type'] == 'album':
+                buttons.append([InlineKeyboardButton(f"📚 {title}", callback_data=f'album+{id}')])
+            elif result['type'] == 'playlist':
+                buttons.append([InlineKeyboardButton(f"💾 {title}", callback_data=f'playlist+{id}')])
+            elif result['type'] == 'artist':
                 buttons.append([InlineKeyboardButton(f"👨‍🎤 {result['name']}", callback_data=f'artist+{id}')])
 
     else:
