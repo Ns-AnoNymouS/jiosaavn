@@ -102,6 +102,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                     return
         except Exception as e:
             print(e)
+            print(await c.db.get_song(id))
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
