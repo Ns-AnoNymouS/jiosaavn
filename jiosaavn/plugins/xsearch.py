@@ -39,7 +39,7 @@ async def search(c, m):
     buttons = []
 
     if type != 'all':
-        if not 'result' in data:
+        if not 'results' in data:
             return await send_msg.edit(f'🔎 No search result found for your query `{m.text}`')
         total_results = data['total']
         for result in data['results']:
