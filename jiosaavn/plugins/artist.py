@@ -10,7 +10,7 @@ async def openalbum(c, m):
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        '__call': 'artist.getDetails',
+        '__call': 'content.getArtistDetails',
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
         '_format': 'json',
