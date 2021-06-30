@@ -73,18 +73,22 @@ async def download(c, m, cb=False):
     
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        '__call': 'content.getAlbumDetails',
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
-        '_format': 'json',
-        'albumid': id
+        '_format': 'json'
     }
+
+    if type == 'playlist:
+        params['__call'] = 'playlist.getDetails'
+        params['listid'] = id
+    if type == 'album:
+        params['__call'] = 'content.getAlbumDetails'
+        params['albumid'] = id
     data = await req(url, params)
     album_url = data['perma_url'].encode().decode() if 'perma_url' in data else ''
     image_url = data['image'].encode().decode().replace("150x150", "500x500") if 'image' in data else ''
     text = f"**📚 Album:** [{data['title']}]({album_url})\n\n" if 'title' in data else ''
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
-
     try:
         send_ms = await c.send_photo(chat_id=m.from_user.id, photo=image_url, caption=text, reply_to_message_id=reply_to_message_id)
         await send_msg.delete()
@@ -126,10 +130,6 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         '_format': 'json',
         'pids': id
     }
-    """if type == 'playlist:
-        playlist.getDetails
-    if type == 'album:"""
-    return print(await req(url, params))
     data = (await req(url, params))[id]
     url = data['media_preview_url'].replace("preview", "aac").encode().decode()
     if data['320kbps']=="true" and quality=='320kbps':
