@@ -21,7 +21,7 @@ async def search(c, m):
         'n': 10
     }
 
-    type = await c.db.get_type(m.from_user.id)
+    type = (await c.db.get_user(m.from_user.id))['type']
     if type == 'all':
         params = {
             '__call': 'autocomplete.get',
