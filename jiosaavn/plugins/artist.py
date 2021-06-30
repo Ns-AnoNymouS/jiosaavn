@@ -10,14 +10,15 @@ async def openalbum(c, m):
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
-        '__call': 'content.getAlbumDetails',
+        '__call': 'artist.getDetails',
         'cc': 'in',
         '_marker': '0%3F_marker%3D0',
         '_format': 'json',
         'albumid': album_id
     }
     data = await req(url, params)
-    
+    print(data)
+    return
     songs = data['songs']
     buttons = []
     for song in songs:
