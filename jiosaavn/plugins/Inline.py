@@ -97,7 +97,7 @@ async def search_inline(c, m):
                 await m.answer(
                     results=[],
                     cache_time=0,
-                    switch_pm_text=f"❌ No Playlist search result found for '{m.query.replace('Album:', '').strip()}'",
+                    switch_pm_text=f"❌ No Playlist search result found for '{m.query.replace('Playlist:', '').strip()}'",
                     switch_pm_parameter="help",
                 )
                 return
@@ -115,7 +115,7 @@ async def search_inline(c, m):
                 inlinedescription = f"• Total Songs: {songs}\n• Language: {language}\n• Year: {year}"
 
                 text = f"[\u2063]({image_url})"
-                text += f"**📚 Album:** [{title}]({album_url})\n\n" if 'title' in result else ''
+                text += f"**💾 Playlist:** [{title}]({album_url})\n\n" if 'title' in result else ''
                 text += f"**🔊 Total Songs:** {songs}\n\n"
                 text += f"**📰 Language:** {language}\n\n"
                 text += f"**📆 Year:** __{year}__\n\n"
