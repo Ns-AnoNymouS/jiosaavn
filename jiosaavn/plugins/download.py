@@ -100,9 +100,8 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                 is_sent = await copy(song_msg, m.from_user.id, reply_to_message_id)
                 if is_sent:
                     return
-        except Exception as e:
-            print(e)
-            print(await c.db.get_song(id))
+        except:
+            pass
 
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
