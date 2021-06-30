@@ -23,9 +23,9 @@ async def openplaylist(c, m):
     for song in songs:
         btn_txt = f"🎙 {song['song']}" if 'song' in song else '🎙 '
         id = song['id'] if 'id' in song else None
-        buttons.append([InlineKeyboardButton(btn_txt, callback_data=f'open+{id}+{album_id}')])
+        buttons.append([InlineKeyboardButton(btn_txt, callback_data=f'open+{id}+{album_id}+{playlist}')])
 
-    buttons.append([InlineKeyboardButton('Upload Album 📤', callback_data=f'upload+{album_id}+album')])
+    buttons.append([InlineKeyboardButton('Upload Album 📤', callback_data=f'upload+{album_id}+playlist')])
     type = (await c.db.get_user(m.from_user.id))['type']
     type = 'all' if type == 'all' else 'playlist'
     back_cb = f'nxt+{type}+1'
