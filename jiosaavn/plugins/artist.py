@@ -17,7 +17,7 @@ async def openartist(c, m):
         'n_song': 50,
         'n_album': 50,
         'includeMetaTags': 0,
-        'ctx': wap6dot0,
+        'ctx': 'wap6dot0',
         'api_version': 4,
         '_marker': 0
     }
