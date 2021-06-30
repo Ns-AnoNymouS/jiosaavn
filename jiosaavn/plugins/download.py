@@ -55,6 +55,24 @@ async def download(c, m, cb=False):
                     except:
                         return await send_msg.edit("**Invalid link 🤦**")
 
+        elif 'artist' in m.text:
+            type = 'playlist' 
+            async with aiohttp.ClientSession() as session:
+                async with session.get(m.text) as response:
+                    return print(response)
+                    try:
+                        id = (await response.text()).split('"type":"playlist","id":"')[1].split('"')[0]
+                    except IndexError:
+                        try:
+                            id = (await response.text()).split('"page_id","')[1].split('","')[0]
+                        except:
+                            id = await send_msg.edit("**Invalid link 🤦**")
+                    except:
+                        return await send_msg.edit("**Invalid link 🤦**")
+
+        else:
+            return await send_msg.edit("**Invalid link 🤦**")
+
         reply_to_message_id = m.message_id
     else:
         if m.inline_message_id:
