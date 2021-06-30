@@ -10,9 +10,9 @@ async def opensong(c, m):
     id = m.data.split('+')
     song_id = m.data.split('+')[1]
     album_id = None
-    if len(id) == 3:
+    if len(id) == 4:
         album_id = m.data.split('+')[2]
-
+        type = m.data.split('+')[3]
     url = 'https://www.jiosaavn.com/api.php?'
     params = {
         '__call': 'song.getDetails',
@@ -36,7 +36,7 @@ async def opensong(c, m):
 
     type = (await c.db.get_user(m.from_user.id))['type']
     type = 'all' if type == 'all' else 'song'
-    back_cb = f'album+{album_id}' if album_id else f'nxt+{type}+1'
+    back_cb = f'{type}+{album_id}' if album_id else f'nxt+{type}+1'
     buttons = [[
         InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload+{song_id}+song')
         ],[
