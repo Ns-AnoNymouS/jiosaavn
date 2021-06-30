@@ -88,6 +88,7 @@ async def download(c, m, cb=False):
 
 async def download_tool(c, m, id, reply_to_message_id, msg):
     is_exist = await c.db.is_id_exist(id)
+    user = await c.db.
     if is_exist:
         song = await c.db.get_song(id)
         try:
@@ -109,7 +110,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     }
     data = (await req(url, params))[id]
     url = data['media_preview_url'].replace("preview", "aac").encode().decode()
-    if data['320kbps']=="true":
+    if data['320kbps']=="true" and :
         url = url.replace("_96_p.mp4", "_320.mp4")
     else:
         url = url.replace("_96_p.mp4", "_160.mp4")
