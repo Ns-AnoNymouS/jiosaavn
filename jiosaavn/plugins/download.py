@@ -120,8 +120,9 @@ async def download(c, m, cb=False):
         send_ms = await c.send_photo(chat_id=m.from_user.id, photo=image_url, caption=text, reply_to_message_id=reply_to_message_id)
         await send_msg.delete()
     except:
-        pass
-
+        send_ms = await c.send_message(chat_id=m.from_user.id, text="Processing...")
+        if not send_msg.empty:
+            await send_msg.delete()
     songs = data['songs']
     for song in songs:
         id = song['id'] if 'id' in song else None
