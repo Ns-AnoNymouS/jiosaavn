@@ -80,7 +80,7 @@ async def download(c, m, cb=False):
             try:
                 send_msg = await c.send_message(chat_id=m.from_user.id, text="**Processing...**")
             except:
-                await m.answer("Please start the bot first", show_alert=True)
+                return await m.answer("Please start the bot first", show_alert=True)
             reply_to_message_id = None
         else:
             send_msg = m.message
