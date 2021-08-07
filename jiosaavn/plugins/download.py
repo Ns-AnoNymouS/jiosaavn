@@ -1,4 +1,5 @@
 import os
+import time
 import aiohttp
 import aiofiles
 from pyrogram import Client, filters
@@ -180,7 +181,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
     text += f"**📰 Language:** {data['language']}\n\n" if 'language' in data else ''
     text += f"**📆 Release Date:** __{data['release_date']}__\n\n" if 'release_date' in data else ''
 
-    file_name = f"./DOWNLOADS/"
+    file_name = f"./DOWNLOADS/{time.time()}{m.from_user.id}/"
     if not os.path.isdir(file_name):
         os.makedirs(file_name)
     file_name = f'{file_name}{song}.mp3'
