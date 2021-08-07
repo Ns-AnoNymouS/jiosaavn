@@ -5,8 +5,6 @@ from ..tools.request import req
 
 @Client.on_message(filters.command('settings'))
 async def settings(c, m, cb=False):
-    if not await c.db.is_user_exist(m.from_user.id):
-        await c.db.add_user(m.from_user.id)
     user = await c.db.get_user(m.from_user.id)
     type = user['type']
     quality = user['quality']
