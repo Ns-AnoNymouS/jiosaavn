@@ -6,7 +6,7 @@ from pyrogram.errors import FloodWait
 from ..tools.request import req
 from ..tools.upload_helpers import send_audio, copy
 
-@Client.on_message(filters.regex('.*http. *') & filters.private & filters.incoming)
+@Client.on_message(filters.regex('.*http. *') & filters.private & filters.incoming & ~filters.edited)
 async def download(c, m, cb=False):
     if not cb:
         send_msg = await m.reply_text('**Checking...🕵‍♂️**', quote=True)
