@@ -1,5 +1,6 @@
 import os
 import aiohttp
+import aiofiles
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import FloodWait
@@ -195,7 +196,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
         pass
     async with aiohttp.ClientSession() as session: 
         async with session.get(url) as response:
-            with open(file_name, "wb") as file:
+            async with aiofiles.open(file_name, "wb") as file:
                 while True:
                     try:
                         chunk = await response.content.read(4 * 1024 * 1024)
@@ -205,17 +206,9 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                         break
                     file.write(chunk)
 
-    async with aiohttp.ClientSession() as session: 
         async with session.get(image_url) as response:
-            with open(thumbnail_location, "wb") as file:
-                while True:
-                    try:
-                        chunk = await response.content.read(4 * 1024 * 1024)
-                    except:
-                        break
-                    if not chunk:
-                        break
-                    file.write(chunk)
+            async with aiofiles.open(thumbnail_location, "wb") as file:
+                await file.write(await response.read())
 
     try:
         await msg.edit(f'__📤 Uploading {song}__')
