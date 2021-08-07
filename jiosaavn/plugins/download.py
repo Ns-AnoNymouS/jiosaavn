@@ -204,7 +204,7 @@ async def download_tool(c, m, id, reply_to_message_id, msg):
                         break
                     if not chunk:
                         break
-                    file.write(chunk)
+                    await file.write(chunk)
 
         async with session.get(image_url) as response:
             async with aiofiles.open(thumbnail_location, "wb") as file:
