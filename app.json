@@ -10,10 +10,6 @@
     "Telegram Bot"
    ],
   "env": {
-    "ENV": {
-      "description": "Set it to anything to enable configuration by environment variables.",
-      "value": "ANYTHING"
-    },
     "BOT_TOKEN": {
       "description": "Get it from @BotFather"
     },
@@ -25,10 +21,6 @@
     },
     "DATABASE_URL": {
       "description": "Mongodb token for saving the users data",
-      "value": ""
-    },
-    "AUTH_USERS": {
-      "description": "Auth users who have right to ban.",
       "value": ""
     }
   },
