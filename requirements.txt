@@ -1,6 +1,9 @@
 motor
-TgCrypto
-dnspython
-pyrogram==1.2.9
-aiohttp[speedups]
+uvloop
 aiofiles
+dnspython
+pyrofork
+humanfriendly
+python-dotenv
+tgcrypto-pyrofork
+aiohttp[speedups]

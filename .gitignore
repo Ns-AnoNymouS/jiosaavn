@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# pyrogram
+*.session
+
 # Distribution / packaging
 .Python
 build/

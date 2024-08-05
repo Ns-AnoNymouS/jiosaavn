@@ -1,0 +1,229 @@
+{
+    "albums": {
+        "data": [
+            {
+                "id": "1029814",
+                "title": "Hello Brother",
+                "image": "https://c.saavncdn.com/814/Hello-Brother-2000-50x50.jpg",
+                "music": "K. S. Chithra, S.P. Balasubrahmanyam, Raj-Koti",
+                "url": "https://www.jiosaavn.com/album/hello-brother/dLgAJYAcReo_",
+                "type": "album",
+                "description": "1994 \u00b7 Telugu Film \u00b7 K. S. Chithra, S.P. Balasubrahmanyam, Raj-Koti",
+                "ctr": 596,
+                "position": 1,
+                "more_info": {
+                    "year": "1994",
+                    "is_movie": "1",
+                    "language": "telugu",
+                    "song_pids": "0VFDKT00, h4MElUhV, JlH7soSO, lDnlQgKc, MiIVQSrN, x-bry8Li"
+                }
+            },
+            {
+                "id": "31000848",
+                "title": "Hello",
+                "image": "https://c.saavncdn.com/432/Hello-Punjabi-2021-20211123132715-50x50.jpg",
+                "music": "Nirvair Pannu",
+                "url": "https://www.jiosaavn.com/album/hello/wv5G,4ZSxL4_",
+                "type": "album",
+                "description": "2021 \u00b7 Punjabi Album \u00b7 Nirvair Pannu",
+                "ctr": 50,
+                "position": 2,
+                "more_info": {
+                    "year": "2021",
+                    "is_movie": "",
+                    "language": "punjabi",
+                    "song_pids": "8o0eLGyX"
+                }
+            },
+            {
+                "id": "53258270",
+                "title": "Hello Brother",
+                "image": "https://c.saavncdn.com/434/Hello-Brother-Hindi-1999-20240408213727-50x50.jpg",
+                "music": "Himesh Reshammiya, Sajid-Wajid Khan",
+                "url": "https://www.jiosaavn.com/album/hello-brother/NRThTMVXgEY_",
+                "type": "album",
+                "description": "1999 \u00b7 Hindi Film \u00b7 Himesh Reshammiya, Sajid-Wajid Khan",
+                "ctr": 723,
+                "position": 3,
+                "more_info": {
+                    "year": "1999",
+                    "is_movie": "1",
+                    "language": "hindi",
+                    "song_pids": "vDETp60M, 4MXcIFib, RQnSRJRg, _SBz5Q7W, OhSdXKyq, aM6JNEpc, MjfkfNzQ, E8mr02I8, 8YisfxjD, nLqemut4, i_A-esvQ"
+                }
+            }
+        ],
+        "position": 2
+    },
+    "songs": {
+        "data": [
+            {
+                "id": "RCqwzFLD",
+                "title": "Hello",
+                "image": "https://c.saavncdn.com/933/Hello-Telugu-2017-20171210-50x50.jpg",
+                "album": "Hello!",
+                "url": "https://www.jiosaavn.com/song/hello/IisaRg52e3c",
+                "type": "song",
+                "description": "Hello! \u00b7 Armaan Malik",
+                "ctr": 165,
+                "position": 1,
+                "more_info": {
+                    "vcode": "010910400733508",
+                    "vlink": "https://jiotunepreview.jio.com/content/Converted/010910400691694.mp3",
+                    "primary_artists": "Armaan Malik",
+                    "singers": "Armaan Malik",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "telugu"
+                }
+            },
+            {
+                "id": "8o0eLGyX",
+                "title": "Hello",
+                "image": "https://c.saavncdn.com/432/Hello-Punjabi-2021-20211123132715-50x50.jpg",
+                "album": "Hello",
+                "url": "https://www.jiosaavn.com/song/hello/SAdbVDh3Tms",
+                "type": "song",
+                "description": "Hello \u00b7 Nirvair Pannu",
+                "ctr": 204,
+                "position": 2,
+                "more_info": {
+                    "vcode": "010912551849584",
+                    "vlink": "https://jiotunepreview.jio.com/content/Converted/010912551802399.mp3",
+                    "primary_artists": "Nirvair Pannu",
+                    "singers": "Nirvair Pannu",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "punjabi"
+                }
+            },
+            {
+                "id": "uKQpSw_8",
+                "title": "Hello Rammante",
+                "image": "https://c.saavncdn.com/105/Orange-Telugu-2006-20210624180302-50x50.jpg",
+                "album": "Orange",
+                "url": "https://www.jiosaavn.com/song/hello-rammante/BSM6QSdHaAs",
+                "type": "song",
+                "description": "Orange \u00b7 Vijay Prakash, Devan Ekambaram, D. Burns",
+                "ctr": 506,
+                "position": 3,
+                "more_info": {
+                    "vcode": "010910400232683",
+                    "vlink": "https://jiotunepreview.jio.com/content/Converted/010910400245390.mp3",
+                    "primary_artists": "Vijay Prakash, Devan Ekambaram, D. Burns",
+                    "singers": "Vijay Prakash, Devan Ekambaram, D. Burns",
+                    "video_available": null,
+                    "triller_available": false,
+                    "language": "telugu"
+                }
+            }
+        ],
+        "position": 1
+    },
+    "playlists": {
+        "data": [],
+        "position": 3
+    },
+    "artists": {
+        "data": [
+            {
+                "id": "3163978",
+                "title": "Hello I'm Adele",
+                "image": "https://c.saavncdn.com/605/Someone-Like-You-English-2017-50x50.jpg",
+                "extra": "singer",
+                "url": "https://www.jiosaavn.com/artist/hello-im-adele-songs/vFWAJFpzZbc_",
+                "type": "artist",
+                "description": "Singer",
+                "ctr": 0,
+                "entity": 1,
+                "position": 1
+            },
+            {
+                "id": "783001",
+                "title": "The Oh Hellos",
+                "image": "https://c.saavncdn.com/995/Like-The-Dawn-David-K-Radio-Mix-English-2015-50x50.jpg",
+                "extra": "singer",
+                "url": "https://www.jiosaavn.com/artist/the-oh-hellos-songs/Eh4vbJj2ao0_",
+                "type": "artist",
+                "description": "Singer",
+                "ctr": 0,
+                "entity": 1,
+                "position": 2
+            },
+            {
+                "id": "3790791",
+                "title": "Hello I'm Throwed",
+                "image": "https://www.jiosaavn.com/_i/3.0/artist-default-music.png",
+                "extra": "singer",
+                "url": "https://www.jiosaavn.com/artist/hello-im-throwed-songs/t2xd4-nxEBI_",
+                "type": "artist",
+                "description": "Singer",
+                "ctr": 0,
+                "entity": 0,
+                "position": 3
+            }
+        ],
+        "position": 4
+    },
+    "topquery": {
+        "data": [
+            {
+                "id": "1029814",
+                "title": "Hello Brother",
+                "image": "https://c.saavncdn.com/814/Hello-Brother-2000-50x50.jpg",
+                "music": "K. S. Chithra, S.P. Balasubrahmanyam, Raj-Koti",
+                "url": "https://www.jiosaavn.com/album/hello-brother/dLgAJYAcReo_",
+                "type": "album",
+                "description": "1994 \u00b7 Telugu Film",
+                "ctr": 596,
+                "position": 1,
+                "more_info": {
+                    "year": "1994",
+                    "is_movie": "1",
+                    "language": "telugu",
+                    "song_pids": "0VFDKT00, h4MElUhV, JlH7soSO, lDnlQgKc, MiIVQSrN, x-bry8Li"
+                }
+            }
+        ],
+        "position": 0
+    },
+    "shows": {
+        "data": [
+            {
+                "id": "167564",
+                "title": "hello",
+                "image": "https://c.sop.saavncdn.com/hello-20211224160957-500x500.jpg",
+                "type": "show",
+                "season_number": 1,
+                "description": "Season 1",
+                "url": "https://www.jiosaavn.com/shows/hello/1/qeQZTg3G,jc_",
+                "position": 1
+            },
+            {
+                "id": "202133",
+                "title": "Hello [FIRST NAME]",
+                "image": "https://c.sop.saavncdn.com/Hello-FIRST-NAME-20220517200213-500x500.jpg",
+                "type": "show",
+                "season_number": 1,
+                "description": "Season 1",
+                "url": "https://www.jiosaavn.com/shows/hello-first-name/1/rioWmm9ZxQw_",
+                "position": 2
+            },
+            {
+                "id": "234157",
+                "title": "Hello",
+                "image": "https://c.sop.saavncdn.com/Hello-20220811123631-500x500.jpg",
+                "type": "show",
+                "season_number": 1,
+                "description": "Season 1",
+                "url": "https://www.jiosaavn.com/shows/hello/1/foWPx2-XkiA_",
+                "position": 3
+            }
+        ],
+        "position": 5
+    },
+    "episodes": {
+        "data": [],
+        "position": 6
+    }
+}

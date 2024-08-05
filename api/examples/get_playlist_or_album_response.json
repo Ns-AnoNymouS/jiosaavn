@@ -1,0 +1,212 @@
+{
+    "id": "46605369",
+    "title": "Hello Animal",
+    "subtitle": "Unknown Everything",
+    "header_desc": "2024 \u00b7 English Album \u00b7 Unknown Everything",
+    "type": "album",
+    "perma_url": "https://www.jiosaavn.com/album/hello-animal/xNx5XlQGHnQ_",
+    "image": "https://c.saavncdn.com/927/Hello-Animal-English-2024-20230711000102-150x150.jpg",
+    "language": "english",
+    "year": "2024",
+    "play_count": "",
+    "explicit_content": "0",
+    "list_count": "1",
+    "list_type": "song",
+    "list": [
+        {
+            "id": "JgV7RmhP",
+            "title": "Hello Animal",
+            "subtitle": "Unknown Everything - Hello Animal",
+            "header_desc": "",
+            "type": "song",
+            "perma_url": "https://www.jiosaavn.com/song/hello-animal/Og89BiZdX2M",
+            "image": "https://c.saavncdn.com/927/Hello-Animal-English-2024-20230711000102-150x150.jpg",
+            "language": "english",
+            "year": "2024",
+            "play_count": "",
+            "explicit_content": "0",
+            "list_count": "0",
+            "list_type": "",
+            "list": "",
+            "more_info": {
+                "music": "Tom Powell",
+                "album_id": "46605369",
+                "album": "Hello Animal",
+                "label": "Unknown Everything",
+                "origin": "album",
+                "is_dolby_content": false,
+                "320kbps": "true",
+                "encrypted_media_url": "ID2ieOjCrwfgWvL5sXl4B1ImC5QfbsDyCyU7/Nd4xyE/lEtzY3po5Q/5i9AvV5CWG5eyto+T5oL47OB2gE77CBw7tS9a8Gtq",
+                "encrypted_cache_url": "",
+                "encrypted_drm_cache_url": "",
+                "encrypted_drm_media_url": "ID2ieOjCrwdjlkMElYlzWCptgNdUpWD83OesZerfoik3DLgb5tH9nwlNog7NldTQv4Zh61NYPl+liIXdFE+c5Y92mytrdt3FDnQW0nglPS4=",
+                "album_url": "https://www.jiosaavn.com/album/hello-animal/xNx5XlQGHnQ_",
+                "duration": "274",
+                "rights": {
+                    "code": "0",
+                    "cacheable": "true",
+                    "delete_cached_object": "false",
+                    "reason": ""
+                },
+                "cache_state": "",
+                "has_lyrics": "false",
+                "lyrics_snippet": "",
+                "starred": "false",
+                "copyright_text": "\u00a9 2024 Unknown Everything",
+                "artistMap": {
+                    "primary_artists": [
+                        {
+                            "id": "10969479",
+                            "name": "Unknown Everything",
+                            "role": "primary_artists",
+                            "image": "",
+                            "type": "artist",
+                            "perma_url": "https://www.jiosaavn.com/artist/unknown-everything-songs/xOBq,Yyxk6A_"
+                        }
+                    ],
+                    "featured_artists": [],
+                    "artists": [
+                        {
+                            "id": "1161116",
+                            "name": "Tom Powell",
+                            "role": "music",
+                            "image": "",
+                            "type": "artist",
+                            "perma_url": "https://www.jiosaavn.com/artist/tom-powell-songs/yeuSf1WXN2k_"
+                        },
+                        {
+                            "id": "10969479",
+                            "name": "Unknown Everything",
+                            "role": "singer",
+                            "image": "",
+                            "type": "artist",
+                            "perma_url": "https://www.jiosaavn.com/artist/unknown-everything-songs/xOBq,Yyxk6A_"
+                        }
+                    ]
+                },
+                "release_date": "2024-02-23",
+                "label_url": "/label/unknown-everything-albums/qtGPRe8H0WI_",
+                "triller_available": false,
+                "request_jiotune_flag": false,
+                "webp": "true"
+            },
+            "button_tooltip_info": []
+        }
+    ],
+    "more_info": {
+        "artistMap": {
+            "primary_artists": [
+                {
+                    "id": "10969479",
+                    "name": "Unknown Everything",
+                    "role": "",
+                    "image": "",
+                    "type": "artist",
+                    "perma_url": "https://www.jiosaavn.com/artist/unknown-everything-songs/xOBq,Yyxk6A_"
+                }
+            ],
+            "featured_artists": [],
+            "artists": [
+                {
+                    "id": "10969479",
+                    "name": "Unknown Everything",
+                    "role": "",
+                    "image": "",
+                    "type": "artist",
+                    "perma_url": "https://www.jiosaavn.com/artist/unknown-everything-songs/xOBq,Yyxk6A_"
+                }
+            ]
+        },
+        "song_count": "1",
+        "copyright_text": "\u00a9 2024 Unknown Everything",
+        "is_dolby_content": false,
+        "label_url": "/label/unknown-everything-albums/qtGPRe8H0WI_"
+    },
+    "button_tooltip_info": [],
+    "modules": {
+        "list": {
+            "source": "list",
+            "position": 1,
+            "score": "",
+            "bucket": "",
+            "scroll_type": "Cells_Standard",
+            "title": "",
+            "subtitle": "",
+            "highlight": "",
+            "simpleHeader": false,
+            "noHeader": true,
+            "view_more": [],
+            "is_JT_module": false
+        },
+        "reco": {
+            "source": "reco.getAlbumReco",
+            "position": 2,
+            "score": "",
+            "bucket": "",
+            "scroll_type": "SS_Basic",
+            "title": "You Might Like",
+            "subtitle": "",
+            "highlight": "",
+            "simpleHeader": false,
+            "noHeader": false,
+            "source_api": true,
+            "source_params": {
+                "albumid": "46605369"
+            },
+            "view_more": [],
+            "is_JT_module": false
+        },
+        "currentlyTrending": {
+            "source": "content.getTrending",
+            "position": 3,
+            "score": "",
+            "bucket": "",
+            "scroll_type": "SS_Basic",
+            "title": "Currently Trending Albums",
+            "subtitle": "",
+            "highlight": "",
+            "simpleHeader": false,
+            "noHeader": false,
+            "source_api": true,
+            "source_params": {
+                "entity_type": "album",
+                "entity_language": "english"
+            },
+            "view_more": [],
+            "is_JT_module": false
+        },
+        "topAlbumsFromSameYear": {
+            "source": "search.topAlbumsoftheYear",
+            "position": 4,
+            "score": "",
+            "bucket": "",
+            "scroll_type": "SS_Basic",
+            "title": "Top Albums from Same Year",
+            "subtitle": "",
+            "highlight": "",
+            "simpleHeader": false,
+            "noHeader": false,
+            "source_api": true,
+            "source_params": {
+                "album_year": "2024",
+                "album_lang": "english"
+            },
+            "view_more": [],
+            "is_JT_module": false
+        },
+        "artists": {
+            "source": "artists",
+            "position": 5,
+            "score": "",
+            "bucket": "",
+            "scroll_type": "SS_Basic",
+            "title": "Artists",
+            "subtitle": "",
+            "highlight": "",
+            "simpleHeader": false,
+            "noHeader": false,
+            "view_more": [],
+            "is_JT_module": false
+        }
+    }
+}
