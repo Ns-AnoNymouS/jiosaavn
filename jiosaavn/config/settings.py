@@ -12,4 +12,4 @@ BOT_COMMANDS = (
 
 DATABASE_URL = getenv("DATABASE_URL", None)
 HOST = getenv("HOST", "0.0.0.0")
-PORT = int(getenv("POST", "8080"))
+PORT = int(getenv("PORT", "8080"))
