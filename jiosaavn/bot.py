@@ -15,7 +15,7 @@ class Bot(Client):
             api_id=API_ID,
             api_hash=API_HASH,
             sleep_threshold=30,
-            max_concurrent_transmissions=3,
+            max_concurrent_transmissions=10,
             plugins={
                 "root": "jiosaavn/plugins"
             }

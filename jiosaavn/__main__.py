@@ -4,7 +4,7 @@ import logging.config
 import uvloop
 uvloop.install()
 
-from .bot import Bot
+import importlib
 from dotenv import load_dotenv
 
 
@@ -15,8 +15,8 @@ def main():
     logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
     load_dotenv()
-    
-    Bot().run()
+    bot = importlib.import_module("jiosaavn.bot").Bot
+    bot().run()
 
 
 if __name__ == "__main__" :
