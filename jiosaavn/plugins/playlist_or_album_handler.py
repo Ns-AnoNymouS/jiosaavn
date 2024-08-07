@@ -64,6 +64,7 @@ async def playlist_or_album(client: Bot, callback: CallbackQuery):
         buttons.append(navigation_buttons)
 
     buttons.append([InlineKeyboardButton('Upload Album 📤', callback_data=f'upload#{item_id}#{search_type}')])
+    buttons.append([InlineKeyboardButton('Close ❌', callback_data="close")])
     back_callback_data = f"search#{back_type}" if back_type else f"search#{search_type}s"
     buttons.append([InlineKeyboardButton("🔙 Back", callback_data=back_callback_data)])
 

@@ -133,6 +133,8 @@ async def search(client: Bot, message: Message|CallbackQuery):
         if navigation_buttons:
             buttons.append(navigation_buttons)
 
+    buttons.append([InlineKeyboardButton('Close ❌', callback_data="close")])
+
     if not buttons:
         return await send_msg.edit(f'🔎 No search result found for your query `{query}`')
 

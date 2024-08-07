@@ -5,6 +5,7 @@ import traceback
 
 from jiosaavn.bot import Bot
 from api.jiosaavn import Jiosaavn
+from jiosaavn.config,settings import HOST, PORT
 
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
@@ -42,7 +43,8 @@ async def handle_song_callback(client: Bot, callback: CallbackQuery):
     title = html.unescape(title)
     formatted_title = title.replace(" ", "-")
     language = song_data.get("language", "Unknown")
-    play_count = int(song_data.get("play_count", "0"))
+    play_count = song_data.get("play_count", "0")
+    play_count = int(play_count) if play_count else 0
     more_info = song_data.get("more_info", {})
     album = more_info.get("album", "Unknown")
     artist_map = more_info.get("artistMap", {})
@@ -87,6 +89,8 @@ async def handle_song_callback(client: Bot, callback: CallbackQuery):
         InlineKeyboardButton('Upload to TG 📤', callback_data=f'upload#{song_id}#song')
     ], [
         InlineKeyboardButton('🔙', callback_data=back_button_callback_data)
+    ], [
+        InlineKeyboardButton('Close ❌', callback_data="close")
     ]]
     if more_info.get('has_lyrics') == 'true':
         lyrics_id = song_data.get("id")
@@ -97,7 +101,9 @@ async def handle_song_callback(client: Bot, callback: CallbackQuery):
         buttons[0].insert(0, InlineKeyboardButton("Lyrics 📃", callback_data=lyrics_button_callback_data))
 
     await msg.edit(text=text[:4096], reply_markup=InlineKeyboardMarkup(buttons))
-
+    
+    # required to create some traffic to koyeb to keep it running
+    await Jiosaavn()._request_data(url=f"http://{HOST}:{PORT}")
 
 @Bot.on_callback_query(filters.regex(r"^lyrics#"))
 async def lyrics(client: Bot, callback: CallbackQuery):
