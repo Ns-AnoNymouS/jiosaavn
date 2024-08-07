@@ -5,7 +5,7 @@ import traceback
 
 from jiosaavn.bot import Bot
 from api.jiosaavn import Jiosaavn
-from jiosaavn.config,settings import HOST, PORT
+from jiosaavn.config.settings import HOST, PORT
 
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
