@@ -15,7 +15,7 @@ class Jiosaavn:
     async def _request_data(
         self,
         url: str,
-        params: Dict[str, Any]
+        params: Dict[str, Any] = None
     ) -> Union[Dict[str, Any], List[Any]]:
         """
         Makes an asynchronous GET request to the specified URL with the given parameters.
