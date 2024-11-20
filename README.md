@@ -47,12 +47,10 @@
    ```sh
    python3 -m jiosaavn
    ```
-<details>
-  <summary><b>𝐂𝐎𝐍𝐅𝐈𝐆 𝐕𝐀𝐑𝐈𝐀𝐁𝐋𝐄𝐒 :</b></summary>
-   
-Go to a file setting.py in
-jiosaavn/configs/setting.py
-and fill the variables:
+
+
+<b>𝐂𝐎𝐍𝐅𝐈𝐆 𝐕𝐀𝐑𝐈𝐀𝐁𝐋𝐄𝐒 :</b>
+𝘎𝘰 𝘵𝘰 𝘢 𝘧𝘪𝘭𝘦 𝘴𝘦𝘵𝘵𝘪𝘯𝘨.𝘱𝘺 𝘪𝘯 𝘫𝘪𝘰𝘴𝘢𝘢𝘷𝘯/𝘤𝘰𝘯𝘧𝘪𝘨𝘴/𝘴𝘦𝘵𝘵𝘪𝘯𝘨.𝘱𝘺 𝘢𝘯𝘥 𝘧𝘪𝘭𝘭 𝘵𝘩𝘦 𝘷𝘢𝘳𝘪𝘢𝘣𝘭𝘦𝘴:
 ```py
 API_ID=12345
 API_HASH=esx576f8738x883f3sfzx83
@@ -71,17 +69,14 @@ DATABASE_URL=mongodb_uri
 `OWNER_ID` : Your Telegram User ID
 
 `DATABASE_URL` : MongoDB URI for saving User IDs when they first Start the Bot. We will use that for Broadcasting to them. I will try to add more features related with Database. If you need help to get the URI you can click on logo below!
-
 [![mongo](https://telegra.ph/file/fd68906852c71fdd68bef.jpg)](https://www.youtube.com/watch?v=HhHzCfrqsoE)
 
- **Option Vars**
+**Option Vars**:
+
 `PORT` : The port that you want your webapp to be listened to. Defaults to `8080`
-`BOT_COMMANDS` : Your wish
+`BOT_COMMANDS` : Your wish 🙂
 
-<details>
-  <summary><b>How to Use :</b></summary>
-
-
+   
 ## Running Methods
 
 1. **Deploy to Heroku**:
