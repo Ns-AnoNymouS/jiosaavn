@@ -21,9 +21,9 @@ __- Explore various features tailored to enhance your music experience__\n\n
 **😊 Feel free to explore and enjoy the music!**
 """
 
-    ABOUT_MSG ="""
+    ABOUT_MSG = """
 <blockquote>
-**🤖 Bot Name:** {me.mention()}\n\n
+**🤖 Bot Name:** [@{me.username}](https://t.me/{me.username})\n\n
 **📝 Language:** [Python 3](https://www.python.org/)\n\n
 **🧰 Framework:** [Pyrogram](https://github.com/pyrogram/pyrogram)\n\n
 **👨‍💻 Developer:** [Anonymous](https://t.me/Ns_AnoNymouS)\n\n
