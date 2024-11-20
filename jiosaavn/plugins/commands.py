@@ -1,6 +1,6 @@
 import logging
 from jiosaavn.bot import Bot
-from jiosaavn.plugins import TEXT
+from jiosaavn.plugins.text import TEXT
 from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
