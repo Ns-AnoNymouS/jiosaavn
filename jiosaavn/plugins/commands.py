@@ -65,7 +65,7 @@ async def about(client: Bot, message: Message|CallbackQuery):
     if isinstance(message, Message):
         await message.reply_text(text=TEXT.ABOUT_MSG.format(me=me), reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True, quote=True)
     else:
-        await message.message.edit(text=TEXT.ABOUT_MSG.format(me=me) reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+        await message.message.edit(text=TEXT.ABOUT_MSG.format(me=me), reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 @Bot.on_callback_query(filters.regex('^close$'))
 async def close_cb(client: Bot, callback: CallbackQuery):
