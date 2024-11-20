@@ -35,7 +35,7 @@ async def start_handler(c: Client, m: Message | CallbackQuery):
     ]]
     
     if isinstance(m, Message):
-        await msg.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+        await msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
     else:
         await msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
 
