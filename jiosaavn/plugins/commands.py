@@ -78,14 +78,14 @@ async def about(client: Bot, message: Message | CallbackQuery):
         ]]
         if isinstance(message, Message):
             await message.reply_text(
-                text=TEXT.ABOUT_MSG.format(me=me.mention),
+                text=TEXT.ABOUT_MSG.format(me=me),  # Updated to pass `me` directly
                 reply_markup=InlineKeyboardMarkup(buttons),
                 disable_web_page_preview=True,
                 quote=True
             )
         else:
             await message.message.edit(
-                text=TEXT.ABOUT_MSG.format(me=me.mention),
+                text=TEXT.ABOUT_MSG.format(me=me),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 disable_web_page_preview=True
             )
@@ -95,7 +95,7 @@ async def about(client: Bot, message: Message | CallbackQuery):
             await message.reply("An error occurred while processing your request.")
         else:
             await message.message.edit("An error occurred while processing your request.")
-
+            
 @Bot.on_callback_query(filters.regex('^close$'))
 async def close_cb(client: Bot, callback: CallbackQuery):
     try:
