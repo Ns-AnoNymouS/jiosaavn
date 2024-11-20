@@ -1,43 +1,39 @@
 import logging
 from jiosaavn.bot import Bot
+from jiosaavn.plugins import TEXT
 from pyrogram import Client, filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 logger = logging.getLogger(__name__)
 
 #################### COMMAND ##########
-
 @Bot.on_callback_query(filters.regex('^home$'))
 @Bot.on_message(filters.command('start') & filters.private & filters.incoming)
-async def start_handler(c: Client, m: Message | CallbackQuery):
-    msg = await m.reply("**Checking....🔍**", quote=True)
-    # Mention user
+async def start(c, m):
     last_name = f' {m.from_user.last_name}' if m.from_user.last_name else ''
-    mention = f"[{m.from_user.first_name}{last_name}](tg://user?id={m.from_user.id})"
-    
-    text = (
-        f"**Hello {mention},**\n\n<blockquote>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴊɪᴏsᴀᴀᴠɴ ᴛᴇʟᴇɢʀᴀᴍ ʙᴏᴛ! ᴛʜɪs ᴘᴏᴡᴇʀғᴜʟ ʙᴏᴛ ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ sᴇᴀʀᴄʜ ᴀɴᴅ ᴅᴏᴡɴʟᴏᴀᴅ sᴏɴɢs, ᴘʟᴀʏʟɪsᴛs, ᴀʟʙᴜᴍs, ᴀɴᴅ ᴀʀᴛɪsᴛs ᴅɪʀᴇᴄᴛʟʏ ғʀᴏᴍ ᴊɪᴏsᴀᴀᴠɴ.</blockquote>\n\n"
-        "**With this Bot, you can:**\n\n"
-        "__- Search for songs, albums, playlists, and artists__\n"
-        "__- Download your favorite tracks directly to Telegram__\n"
-        "__- Explore various features tailored to enhance your music experience__\n\n"
-        "**Maintained By:** [Anonymous](https://t.me/Ns_AnoNymous)"
-    )
+    mention = f"[{m.from_user.first_name}{last_name}](tg://user?id={m.from_user.id})" if m.from_user.first_name else f"[User](tg://user?id={m.from_user.id})"
+ 
+    msg = m.message if getattr(m, "data", None) else await m.reply("**Processing....⌛**", quote=True)
+    try:
+        buttons = [[
+            InlineKeyboardButton('Owner 🧑', url='https://t.me/Ns_AnoNymous'),
+            InlineKeyboardButton('About 📕', callback_data='about')
+        ], [
+            InlineKeyboardButton('Help 💡', callback_data='help'),
+            InlineKeyboardButton('Settings ⚙', callback_data='settings')
+        ], [
+            InlineKeyboardButton('Open Source Repository 🌐', url='https://github.com/Ns-AnoNymouS/jiosaavn')
+        ]]  
+        logger.debug(f"User mention: {mention}")  
+        await msg.edit(
+            text=TEXT.START_MSG.format(mention=mention),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except KeyError as e:
+        logger.error(f"Error in start command: {e}")
+        await msg.edit(text="An error occurred while processing your request.")
 
-    buttons = [[
-        InlineKeyboardButton('Owner 🧑', url='https://t.me/Ns_AnoNymous'),
-        InlineKeyboardButton('About 📕', callback_data='about')
-    ], [
-        InlineKeyboardButton('Help 💡', callback_data='help'),
-        InlineKeyboardButton('Settings ⚙', callback_data='settings')
-    ], [
-        InlineKeyboardButton('Open Source Repository 🌐', url='https://github.com/Ns-AnoNymouS/jiosaavn')
-    ]]
-    
-    if isinstance(m, Message):
-        await msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
-    else:
-        await msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
 
 @Bot.on_callback_query(filters.regex('^help$'))
 @Bot.on_message(filters.command('help') & filters.private & filters.incoming)
