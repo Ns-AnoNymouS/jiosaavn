@@ -54,7 +54,8 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
         message_id=message.id,
         emoji=random_emoji,
         big=True  # Set big animation for the reaction
-    )    
+    )
+    msg = message.message if getattr(message, "data", None) else await message.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [
             [InlineKeyboardButton('About 📕', callback_data='about'),
@@ -92,6 +93,7 @@ async def about(client: Bot, message: Message | CallbackQuery):
         big=True  # Set big animation for the reaction
     )
     try:
+        msg = message.message if getattr(message, "data", None) else await message.reply("**Processing....⌛**", quote=True)
         me = await client.get_me()
         buttons = [
             [InlineKeyboardButton('Help 💡', callback_data='help'),
