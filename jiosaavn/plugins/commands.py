@@ -67,10 +67,23 @@ async def about(client: Bot, message: Message | CallbackQuery):
             [InlineKeyboardButton('Home 🏕', callback_data='home'),
              InlineKeyboardButton('Close ❌', callback_data='close')]
         ]
-        await send_reaction_and_edit(client, message, TEXT.ABOUT_MSG.format(me=me), buttons)
+        
+        # Ensure that the message exists before attempting to edit
+        if isinstance(message, Message):
+            await send_reaction_and_edit(client, message, TEXT.ABOUT_MSG.format(me=me), buttons)
+        elif isinstance(message, CallbackQuery):
+            # Replying to the callback query message
+            await message.answer(TEXT.ABOUT_MSG.format(me=me), show_alert=True)
     except Exception as e:
         logger.error(f"Error in about command: {e}")
-        await message.edit("An error occurred while processing your request.")
+        try:
+            if isinstance(message, Message):
+                await message.edit("An error occurred while processing your request.")
+            elif isinstance(message, CallbackQuery):
+                # Handle callback case and send an answer to the callback query
+                await message.answer("An error occurred while processing your request.", show_alert=True)
+        except Exception as edit_error:
+            logger.error(f"Error during edit: {edit_error}")
 
 # Close Command
 @Bot.on_callback_query(filters.regex('^close$'))
@@ -83,4 +96,3 @@ async def close_cb(client: Bot, callback: CallbackQuery):
     except Exception as e:
         logger.error(f"Error in close_cb command: {e}")
         await callback.message.edit("An error occurred while closing the message.")
-        
