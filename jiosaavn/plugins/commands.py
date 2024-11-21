@@ -53,7 +53,7 @@ async def start(c, m):
 async def help_handler(client: Bot, message: Message | CallbackQuery):
     ### Send reaction to command
     random_emoji = random.choice(TEXT.EMOJI_LIST)
-    await c.send_reaction(
+    await client.send_reaction(
         chat_id=message.chat.id,
         message_id=message.id,
         emoji=random_emoji,
@@ -92,7 +92,7 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
 async def about(client: Bot, message: Message | CallbackQuery):
         ### Send reaction to command
     random_emoji = random.choice(TEXT.EMOJI_LIST)
-    await c.send_reaction(
+    await client.send_reaction(
         chat_id=message.chat.id,
         message_id=message.id,
         emoji=random_emoji,
