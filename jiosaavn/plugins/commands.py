@@ -23,7 +23,10 @@ async def start(c, m):
             InlineKeyboardButton('Settings ⚙', callback_data='settings')
         ], [
             InlineKeyboardButton('Open Source Repository 🌐', url='https://github.com/Ns-AnoNymouS/jiosaavn')
-        ]]  
+        ], [
+            InlineKeyboardButton('Close ❌', callback_data='close')
+           ]
+        ]  
         logger.debug(f"User mention: {mention}")  
         await msg.edit(
             text=TEXT.START_MSG.format(mention=mention),
