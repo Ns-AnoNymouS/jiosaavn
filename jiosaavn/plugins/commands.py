@@ -72,8 +72,7 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
         if isinstance(message, Message):
             await msg.edit(
                 text=TEXT.HELP_MSG,
-                reply_markup=InlineKeyboardMarkup(buttons),
-                quote=True
+                reply_markup=InlineKeyboardMarkup(buttons)
             )
         else:
             await msg.edit(
@@ -113,8 +112,7 @@ async def about(client: Bot, message: Message | CallbackQuery):
             await msg.editt(
                 text=TEXT.ABOUT_MSG.format(me=me),  # Updated to pass `me` directly
                 reply_markup=InlineKeyboardMarkup(buttons),
-                disable_web_page_preview=True,
-                quote=True
+                disable_web_page_preview=True
             )
         else:
             await msg.edit(
