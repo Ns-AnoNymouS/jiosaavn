@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from jiosaavn.bot import Bot
 from jiosaavn.plugins.text import TEXT
 from pyrogram import Client, filters
@@ -12,7 +13,15 @@ logger = logging.getLogger(__name__)
 async def start(c, m):
     last_name = f' {m.from_user.last_name}' if m.from_user.last_name else ''
     mention = f"[{m.from_user.first_name}{last_name}](tg://user?id={m.from_user.id})" if m.from_user.first_name else f"[User](tg://user?id={m.from_user.id})"
- 
+### Send reaction to command
+    random_emoji = random.choice(TEXT.EMOJI_LIST)
+    await c.send_reaction(
+        chat_id=m.chat.id,
+        message_id=m.id,
+        emoji=random_emoji,
+        big=True  # Set big animation for the reaction
+    )
+    await asyncio.sleep(0.5)
     msg = m.message if getattr(m, "data", None) else await m.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [[
