@@ -70,22 +70,22 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
             InlineKeyboardButton('Close ❌', callback_data='close')
         ]]
         if isinstance(message, Message):
-            await message.reply_text(
+            await msg.edit(
                 text=TEXT.HELP_MSG,
                 reply_markup=InlineKeyboardMarkup(buttons),
                 quote=True
             )
         else:
-            await message.message.edit(
+            await msg.edit(
                 text=TEXT.HELP_MSG,
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
     except Exception as e:
         logger.error(f"Error in help_handler command: {e}")
         if isinstance(message, Message):
-            await message.reply("An error occurred while processing your request.")
+            await msg.edit("An error occurred while processing your request.")
         else:
-            await message.message.edit("An error occurred while processing your request.")
+            await msg.edit("An error occurred while processing your request.")
 
 @Bot.on_callback_query(filters.regex('^about$'))
 @Bot.on_message(filters.command('about') & filters.private & filters.incoming)
@@ -110,14 +110,14 @@ async def about(client: Bot, message: Message | CallbackQuery):
             InlineKeyboardButton('Close ❌', callback_data='close')
         ]]
         if isinstance(message, Message):
-            await message.reply_text(
+            await msg.editt(
                 text=TEXT.ABOUT_MSG.format(me=me),  # Updated to pass `me` directly
                 reply_markup=InlineKeyboardMarkup(buttons),
                 disable_web_page_preview=True,
                 quote=True
             )
         else:
-            await message.message.edit(
+            await msg.edit(
                 text=TEXT.ABOUT_MSG.format(me=me),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 disable_web_page_preview=True
@@ -125,9 +125,9 @@ async def about(client: Bot, message: Message | CallbackQuery):
     except Exception as e:
         logger.error(f"Error in about command: {e}")
         if isinstance(message, Message):
-            await message.reply("An error occurred while processing your request.")
+            await msg.edit("An error occurred while processing your request.")
         else:
-            await message.message.edit("An error occurred while processing your request.")
+            await msg.edit("An error occurred while processing your request.")
             
 @Bot.on_callback_query(filters.regex('^close$'))
 async def close_cb(client: Bot, callback: CallbackQuery):
