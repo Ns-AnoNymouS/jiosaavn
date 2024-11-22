@@ -56,7 +56,7 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
     if getattr(message, "text", None):
         random_emoji = random.choice(TEXT.EMOJI_LIST)
         try:
-            await c.send_reaction(
+            await client.send_reaction(
                 chat_id=message.chat.id,
                 message_id=message.id,
                 emoji=random_emoji,
@@ -98,7 +98,7 @@ async def about(client: Bot, message: Message | CallbackQuery):
     if getattr(message, "text", None):
         random_emoji = random.choice(TEXT.EMOJI_LIST)
         try:
-            await c.send_reaction(
+            await client.send_reaction(
                 chat_id=message.chat.id,
                 message_id=message.id,
                 emoji=random_emoji,
