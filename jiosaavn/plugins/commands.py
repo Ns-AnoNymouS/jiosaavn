@@ -53,14 +53,18 @@ async def start(c, m):
 @Bot.on_callback_query(filters.regex('^help$'))
 @Bot.on_message(filters.command('help') & filters.private & filters.incoming)
 async def help_handler(client: Bot, message: Message | CallbackQuery):
-    # Send reaction to command
-    random_emoji = random.choice(TEXT.EMOJI_LIST)
-    await client.send_reaction(
-        chat_id=message.chat.id,
-        message_id=message.id,
-        emoji=random_emoji,
-        big=True  # Set big animation for the reaction
-    )
+    if getattr(message, "text", None):
+        random_emoji = random.choice(TEXT.EMOJI_LIST)
+        try:
+            await c.send_reaction(
+                chat_id=message.chat.id,
+                message_id=message.id,
+                emoji=random_emoji,
+                big=True  # Optional
+            )
+        except AttributeError:
+            pass 
+    asyncio.sleep(0.5)
     msg = message.message if getattr(message, "data", None) else await message.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [
@@ -91,13 +95,18 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
 @Bot.on_message(filters.command('about') & filters.private & filters.incoming)
 async def about(client: Bot, message: Message | CallbackQuery):
     # Send reaction to command
-    random_emoji = random.choice(TEXT.EMOJI_LIST)
-    await client.send_reaction(
-        chat_id=message.chat.id,
-        message_id=message.id,
-        emoji=random_emoji,
-        big=True  # Set big animation for the reaction
-    )
+    if getattr(message, "text", None):
+        random_emoji = random.choice(TEXT.EMOJI_LIST)
+        try:
+            await c.send_reaction(
+                chat_id=message.chat.id,
+                message_id=message.id,
+                emoji=random_emoji,
+                big=True  # Optional
+            )
+        except AttributeError:
+            pass 
+    asyncio.sleep(0.5)
     try:
         msg = message.message if getattr(message, "data", None) else await message.reply("**Processing....⌛**", quote=True)
         me = await client.get_me()
