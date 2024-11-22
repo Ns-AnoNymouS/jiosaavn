@@ -26,7 +26,7 @@ async def start(c, m):
             )
         except AttributeError:
             pass 
-    asnycio.sleep(0.5)        
+    asyncio.sleep(0.5)        
     msg = m.message if getattr(m, "data", None) else await m.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [
