@@ -1,6 +1,6 @@
 import logging
 from jiosaavn.bot import Bot
-
+from jiosaavn.plugins.text import TEXT
 from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import MessageNotModified
@@ -10,8 +10,20 @@ logger = logging.getLogger(__name__)
 @Bot.on_message(filters.command("settings"))
 @Bot.on_callback_query(filters.regex(r"^settings"))
 async def settings(client: Bot, message: Message|CallbackQuery):
+    if getattr(message, "text", None):
+        random_emoji = random.choice(TEXT.EMOJI_LIST)
+        try:
+            await client.send_reaction(
+                chat_id=message.chat.id,
+                message_id=message.id,
+                emoji=random_emoji,
+                big=True  # Optional
+            )
+        except AttributeError:
+            pass 
+    asyncio.sleep(0.5)
     if isinstance(message, Message):
-        msg = await message.reply("Processing...", quote=True)
+        msg = await message.reply("**Processing...**", quote=True)
     else:
         msg = message.message
         await message.answer()
