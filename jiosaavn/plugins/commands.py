@@ -14,15 +14,19 @@ logger = logging.getLogger(__name__)
 async def start(c, m):
     last_name = f' {m.from_user.last_name}' if m.from_user.last_name else ''
     mention = f"[{m.from_user.first_name}{last_name}](tg://user?id={m.from_user.id})" if m.from_user.first_name else f"[User](tg://user?id={m.from_user.id})"
-    # Send reaction to command
-    random_emoji = random.choice(TEXT.EMOJI_LIST)
-    await c.send_reaction(
-        chat_id=m.chat.id,
-        message_id=m.id,
-        emoji=random_emoji,
-        big=True  # Set big animation for the reaction
-    )
-    await asyncio.sleep(0.5)    
+    # Reaction only for commands, not callbacks
+    if getattr(m, "text", None):
+        random_emoji = random.choice(TEXT.EMOJI_LIST)
+        try:
+            await c.send_reaction(
+                chat_id=m.chat.id,
+                message_id=m.id,
+                emoji=random_emoji,
+                big=True  # Optional
+            )
+        except AttributeError:
+            pass 
+    asnycio.sleep(0.5)        
     msg = m.message if getattr(m, "data", None) else await m.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [
@@ -32,8 +36,7 @@ async def start(c, m):
              InlineKeyboardButton('Settings ⚙', callback_data='settings')],
             [InlineKeyboardButton('Open Source Repository 🌐', url='https://github.com/Ns-AnoNymouS/jiosaavn')],
             [InlineKeyboardButton('Close ❌', callback_data='close')]
-        ]       
-        logger.debug(f"User mention: {mention}")
+        ]
         await msg.edit(
             text=TEXT.START_MSG.format(mention=mention),
             disable_web_page_preview=True,
@@ -42,7 +45,10 @@ async def start(c, m):
     except KeyError as e:
         logger.error(f"Error in start command: {e}")
         await msg.edit(text="An error occurred while processing your request.")
-
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        await msg.edit(text="An unexpected error occurred while processing your request.")
+        
 
 @Bot.on_callback_query(filters.regex('^help$'))
 @Bot.on_message(filters.command('help') & filters.private & filters.incoming)
