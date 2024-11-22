@@ -1,4 +1,5 @@
 import logging
+import random
 from jiosaavn.bot import Bot
 from jiosaavn.plugins.text import TEXT
 from pyrogram import filters
