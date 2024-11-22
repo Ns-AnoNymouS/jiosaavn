@@ -24,7 +24,7 @@ async def settings(client: Bot, message: Message|CallbackQuery):
             )
         except AttributeError:
             pass 
-    asyncio.sleep(0.5)
+    await asyncio.sleep(0.5)
     if isinstance(message, Message):
         msg = await message.reply("**Processing...**", quote=True)
     else:
@@ -49,7 +49,7 @@ async def settings(client: Bot, message: Message|CallbackQuery):
     
     buttons = [
         [
-            InlineKeyboardButton("Search Type 🔍", callback_data="dummy"),
+            InlineKeyboardButton("𝐒𝐞𝐚𝐫𝐜𝐡 𝐓𝐲𝐩𝐞 🔍", callback_data="dummy"),
         ],
         [
             InlineKeyboardButton(all, callback_data='settings#type#all'),
@@ -60,11 +60,14 @@ async def settings(client: Bot, message: Message|CallbackQuery):
             InlineKeyboardButton(playlists, callback_data='settings#type#playlists'),
         ],
         [
-            InlineKeyboardButton("Audio Quaulity 🔊", callback_data="dummy"),
+            InlineKeyboardButton("𝐀𝐮𝐝𝐢𝐨 𝐐𝐮𝐚𝐮𝐥𝐢𝐭𝐲 🔊", callback_data="dummy"),
         ],
         [
             InlineKeyboardButton(quality_320, callback_data='settings#quality#320kbps'),
             InlineKeyboardButton(quality_160, callback_data='settings#quality#160kbps')
+        ],
+        [   
+            InlineKeyboardButton('𝐂𝐋𝐎𝐒𝐄 ❌', callback_data='close')
         ]
     ]
 
@@ -76,4 +79,4 @@ async def settings(client: Bot, message: Message|CallbackQuery):
 
 @Bot.on_callback_query(filters.regex(r"^dummy$"))
 async def dummy(client: Bot, callback: CallbackQuery):
-    await callback.answer("Please try selecting another button.", show_alert=True)
+    await callback.answer("PLEASE CHOOSE ANOTHER BUTTON 🙆", show_alert=True)
