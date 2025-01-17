@@ -1,6 +1,8 @@
 motor
 uvloop
 aiofiles
+mutagen
+requests
 dnspython
 pyrofork
 humanfriendly
