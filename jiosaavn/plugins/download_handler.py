@@ -8,8 +8,10 @@ from jiosaavn.bot import Bot
 from api.jiosaavn import Jiosaavn
 
 import aiohttp
+import requests
 import aiofiles
 from pyrogram import filters
+from mutagen.mp4 import MP4, MP4Cover
 from pyrogram.types import Message, CallbackQuery
 from pyrogram.enums import ChatAction
 
@@ -101,6 +103,7 @@ async def download_tool(client: Bot, message: Message|CallbackQuery, msg: Messag
 
     singers = get_artist_by_role("singer")
     release_date = more_info.get("release_date")
+    copyright_text = more_info.get("copyright_text", "Unknown")
     duration = int(more_info.get("duration", "0"))
     release_year = song_data.get("year")
     album_url = more_info.get("album_url", "")
@@ -124,6 +127,7 @@ async def download_tool(client: Bot, message: Message|CallbackQuery, msg: Messag
     if not os.path.isdir(download_dir):
         os.makedirs(download_dir)
 
+    pre_file_name = f"{download_dir}{title}_{quality}.mp4"
     file_name = f"{download_dir}{title}_{quality}.mp3"
     thumbnail_location = f"{download_dir}{title}.jpg"
 
@@ -138,7 +142,20 @@ async def download_tool(client: Bot, message: Message|CallbackQuery, msg: Messag
             async with aiofiles.open(thumbnail_location, "wb") as file:
                 await file.write(await response.read())
 
-    audio = await Jiosaavn().download_song(song_id=song_id, bitrate=bitrate, download_location=file_name)
+    pre_audio = await Jiosaavn().download_song(song_id=song_id, bitrate=bitrate, download_location=pre_file_name)
+    img_response = requests.get(image_url)
+    cover_art = img_response.content  # Get image as bytes
+    audio = MP4(pre_audio)
+    audio["\xa9nam"] = title
+    audio["\xa9alb"] = album
+    audio["\xa9ART"] = singers
+    audio["\xa9cmt"] = f"Powered by NS Bots - {song_url}"
+    audio["cprt"] = copyright_text
+    audio["\xa9day"] = release_year
+    audio["covr"] = [MP4Cover(cover_art, imageformat=MP4Cover.FORMAT_JPEG)]
+    audio.save()
+    os.rename(pre_audio, file_name)
+    
     await msg.edit(f"__📤 Uploading {title}__")
     await client.send_chat_action(
         chat_id=message.from_user.id,
@@ -147,7 +164,7 @@ async def download_tool(client: Bot, message: Message|CallbackQuery, msg: Messag
 
     song_file = await client.send_audio(
         chat_id=message.from_user.id,
-        audio=audio,
+        audio=file_name,
         caption=caption,
         duration=duration,
         title=title,
