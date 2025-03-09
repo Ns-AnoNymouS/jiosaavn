@@ -127,7 +127,7 @@ async def lyrics(client: Bot, callback: CallbackQuery):
             pass
     else:
         await callback.answer("Sending a song lyrics document")
-        file_location = f"{response.get("snippet")} song lyrics.txt"
+        file_location = f'{response.get("snippet")} song lyrics.txt'
         with open(file_location, 'w') as f:
             f.write(lyrics)
 
