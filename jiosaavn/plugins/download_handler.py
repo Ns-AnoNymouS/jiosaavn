@@ -101,7 +101,8 @@ async def download_tool(client: Bot, message: Message|CallbackQuery, msg: Messag
     def get_artist_by_role(role: str) -> str:
         return ", ".join(artist.get("name") for artist in artists if artist.get("role") == role)
 
-    singers = get_artist_by_role("singer")
+    music = more_info.get("music") or get_artist_by_role("music")
+    singers = get_artist_by_role("singer") or music
     release_date = more_info.get("release_date")
     copyright_text = more_info.get("copyright_text", "Unknown")
     duration = int(more_info.get("duration", "0"))
