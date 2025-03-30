@@ -13,24 +13,11 @@ logger = logging.getLogger(__name__)
 @Bot.on_message(filters.command('start') & filters.private & filters.incoming)
 async def start(c, m):
     last_name = f' {m.from_user.last_name}' if m.from_user.last_name else ''
-    mention = f"[{m.from_user.first_name}{last_name}](tg://user?id={m.from_user.id})" if m.from_user.first_name else f"[User](tg://user?id={m.from_user.id})"
-    # Reaction only for commands, not callbacks
-    if getattr(m, "text", None):
-        random_emoji = random.choice(TEXT.EMOJI_LIST)
-        try:
-            await c.send_reaction(
-                chat_id=m.chat.id,
-                message_id=m.id,
-                emoji=random_emoji,
-                big=True  # Optional
-            )
-        except AttributeError:
-            pass 
-    asyncio.sleep(0.5)        
+    mention = f"[{m.from_user.first_name}{last_name}](tg://user?id={m.from_user.id})" if m.from_user.first_name else f"[User](tg://user?id={m.from_user.id})"    
     msg = m.message if getattr(m, "data", None) else await m.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [
-            [InlineKeyboardButton('Owner 🧑', url='https://t.me/Ns_AnoNymous'),
+            [InlineKeyboardButton('Owner 🧑', url='https://t.me/The_proGrammerr'),
              InlineKeyboardButton('About 📕', callback_data='about')],
             [InlineKeyboardButton('Help 💡', callback_data='help'),
              InlineKeyboardButton('Settings ⚙', callback_data='settings')],
@@ -53,18 +40,6 @@ async def start(c, m):
 @Bot.on_callback_query(filters.regex('^help$'))
 @Bot.on_message(filters.command('help') & filters.private & filters.incoming)
 async def help_handler(client: Bot, message: Message | CallbackQuery):
-    if getattr(message, "text", None):
-        random_emoji = random.choice(TEXT.EMOJI_LIST)
-        try:
-            await client.send_reaction(
-                chat_id=message.chat.id,
-                message_id=message.id,
-                emoji=random_emoji,
-                big=True  # Optional
-            )
-        except AttributeError:
-            pass 
-    asyncio.sleep(0.5)
     msg = message.message if getattr(message, "data", None) else await message.reply("**Processing....⌛**", quote=True)
     try:
         buttons = [
@@ -94,19 +69,6 @@ async def help_handler(client: Bot, message: Message | CallbackQuery):
 @Bot.on_callback_query(filters.regex('^about$'))
 @Bot.on_message(filters.command('about') & filters.private & filters.incoming)
 async def about(client: Bot, message: Message | CallbackQuery):
-    # Send reaction to command
-    if getattr(message, "text", None):
-        random_emoji = random.choice(TEXT.EMOJI_LIST)
-        try:
-            await client.send_reaction(
-                chat_id=message.chat.id,
-                message_id=message.id,
-                emoji=random_emoji,
-                big=True  # Optional
-            )
-        except AttributeError:
-            pass 
-    asyncio.sleep(0.5)
     try:
         msg = message.message if getattr(message, "data", None) else await message.reply("**Processing....⌛**", quote=True)
         me = await client.get_me()
