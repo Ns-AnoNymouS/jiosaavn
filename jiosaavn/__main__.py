@@ -1,12 +1,12 @@
 import logging
 import logging.config
-
-import uvloop
-uvloop.install()
-
 import importlib
-from dotenv import load_dotenv
 
+try:
+    import uvloop
+    uvloop.install()
+except ImportError:
+    pass
 
 def main():
     # Get logging configurations
