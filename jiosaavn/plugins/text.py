@@ -1,6 +1,7 @@
 ##### MODIFY MESSAGE ACCORDING TO U ###
 
 class TEXT:
+    EMOJI_LIST = ["👍", "👎", "😊", "😢", "😍", "🔥", "🎉"]
  
     ###### COMMANDS RELATED 
  
