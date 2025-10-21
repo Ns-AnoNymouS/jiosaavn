@@ -7,7 +7,7 @@ from jiosaavn.bot import Bot
 
 from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
-
+from pyrogram.errors import MessageNotModified
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,6 @@ async def search(client: Bot, message: Message|CallbackQuery):
 
     buttons = []
     if search_type == "all" or search_type == "topquery":
-        # Define the mapping for button labels and callback data based on result type
         button_song_type_map = {
             "songs": (f"🎙 Songs", f"search#songs"),
             "albums": (f"📚 Albums", f"search#albums"),
@@ -65,7 +64,6 @@ async def search(client: Bot, message: Message|CallbackQuery):
                 key=lambda x: x.get("position", 0)
             )
             for data in sub_sorted_data:
-                # Extract relevant information from the result
                 title = data.get("title", "unkown")
                 title = html.unescape(title)
                 album = data.get("album")
@@ -84,10 +82,8 @@ async def search(client: Bot, message: Message|CallbackQuery):
                 callback_data = f"{item_type}#{item_id}#topquery" if item_type == "song" else f"{item_type}#{item_id}#topquery"
                 buttons.append([InlineKeyboardButton(text=button_text, callback_data=callback_data)])
         else:
-            # Sorts the response data by position to maintain consistency with the official JioSaavn website's.
             sorted_data = sorted(response.items(), key=lambda value: value[1].get("position", 0))
             for result_type, result in sorted_data:
-                # ignore if the search type is unkown
                 if result_type not in button_song_type_map:
                     continue
 
@@ -96,12 +92,9 @@ async def search(client: Bot, message: Message|CallbackQuery):
                     buttons.append([InlineKeyboardButton(text=button_label, callback_data=callback_data)])
         text = f"**🔍 Search Query:** {query}\n\n__Please select one catogery 👇__"
     else:
-        # Get the total number of results
         total_results = response.get("total", 0)
 
-        # Iterate over each result
         for result in response.get("results", []):
-            # Extract relevant information from the result
             item_id = result.get("perma_url", "/").rsplit("/", 1)[1]
             title = result.get("title", "unknown")
             title = html.unescape(title)
@@ -111,7 +104,6 @@ async def search(client: Bot, message: Message|CallbackQuery):
             more_info = result.get("more_info", {})
             album = more_info.get("album", "")
 
-            # Define the mapping for button labels based on result type
             button_label_map = {
                 "song": f"🎙 {title} from '{album}'" if album else f"🎙 {title}",
                 "album": f"📚 {title}",
@@ -119,7 +111,6 @@ async def search(client: Bot, message: Message|CallbackQuery):
                 "artist": f"👨‍🎤 {artist}",
             }
 
-            # Get the button label and callback data for the current result type
             button_label = button_label_map.get(result_type)
             if button_label:
                 buttons.append([InlineKeyboardButton(text=button_label, callback_data=f"{result_type}#{item_id}")])
@@ -133,9 +124,15 @@ async def search(client: Bot, message: Message|CallbackQuery):
         if navigation_buttons:
             buttons.append(navigation_buttons)
 
-
     if not buttons:
         return await send_msg.edit(f'🔎 No search result found for your query `{query}`')
 
     buttons.append([InlineKeyboardButton('Close ❌', callback_data="close")])
-    await send_msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+    try:
+        if send_msg.text != text or send_msg.reply_markup != InlineKeyboardMarkup(buttons):
+            await send_msg.edit(text, reply_markup=InlineKeyboardMarkup(buttons))
+    except MessageNotModified:
+        logger.warning("Message not modified in search_handler")
+    except Exception as e:
+        logger.error(f"Failed to edit message in search_handler: {e}")
+        await send_msg.edit("An error occurred while updating search results.")
