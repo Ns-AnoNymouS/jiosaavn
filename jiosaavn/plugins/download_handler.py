@@ -6,6 +6,7 @@ import logging
 
 from jiosaavn.bot import Bot
 from api.jiosaavn import Jiosaavn
+from jiosaavn.config.settings import DUMP_CHANNEL
 
 import aiohttp
 import aiofiles
@@ -182,4 +183,12 @@ async def download_tool(client: Bot, message: Message|CallbackQuery, msg: Messag
         return await msg.edit(text=f"Failed to upload {song}")
 
     await client.db.update_song(song_id, quality, song_file.chat.id, song_file.id)
+
+    # Also send the song to the dump channel
+    if DUMP_CHANNEL:
+        try:
+            await song_file.copy(DUMP_CHANNEL)
+        except Exception as e:
+            logger.error(f"Failed to send {title} to dump channel: {e}")
+
     shutil.rmtree(download_dir)

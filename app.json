@@ -19,6 +19,10 @@
     "API_HASH": {
       "description": "Your API_HASH, Get it from https://my.telegram.org/"
     },
+    "DUMP_CHANNEL": {
+      "description": "Optional. Channel ID (-100...) that receives a copy of every song sent. Bot must be admin.",
+      "required": false
+    },
     "DATABASE_URL": {
       "description": "Mongodb token for saving the users data",
       "value": ""

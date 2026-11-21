@@ -15,3 +15,7 @@ HOST = getenv("HOST", "0.0.0.0")
 PORT = int(getenv("PORT", "8080"))
 KOYEB_URL = getenv("KOYEB_URL")
 PING_INTERVAL = int(getenv("PING_INTERVAL", 600))
+
+# Optional: channel (ID like -1001234567890 or @username) that receives a copy of every song sent to a user.
+_dump = getenv("DUMP_CHANNEL", "").strip()
+DUMP_CHANNEL = int(_dump) if _dump.lstrip("-").isdigit() else (_dump or None)

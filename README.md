@@ -57,6 +57,7 @@ API_HASH=esx576f8738x883f3sfzx83
 BOT_TOKEN=Your_Bot_Token
 PORT=8080
 OWNER_ID=your_user_id
+DUMP_CHANNEL=-1001234567890
 DATABASE_URL=mongodb_uri
 KOYEB_URL=https://your-koyeb-app-name.koyeb.app
 PING_INTERVAL=600
@@ -69,6 +70,8 @@ PING_INTERVAL=600
 `BOT_TOKEN` : Get the bot token from [@BotFather](https://telegram.dog/BotFather)  
 
 `OWNER_ID` : Your Telegram User ID
+
+`DUMP_CHANNEL` (Optional) : Channel ID (e.g. `-1001234567890`) or `@username`. Every song the bot sends to a user is also sent to this channel. Add the bot as an admin with post permission.
 
 `PORT` : The port that you want your webapp to be listened to. Defaults to `8080`
 
